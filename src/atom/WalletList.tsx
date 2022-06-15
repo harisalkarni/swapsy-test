@@ -1,5 +1,6 @@
 interface WalletListProps {
-  icon: HTMLImageElement;
+  // icon: HTMLImageElement;
+  icon: string;
   label: string;
 }
 
