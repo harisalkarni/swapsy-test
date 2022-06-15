@@ -16,7 +16,8 @@ module.exports = {
       'silver': '#ecebff',
       'bubble-gum': '#ff77e9',
       'bermuda': '#78dcca',
-      'tea-green': '#D4FAC9'
+      'tea-green': '#D4FAC9',
+      'ocean-blue': '#423AD0'
     },
     extend: {
       opacity: {
