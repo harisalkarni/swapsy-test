@@ -19,7 +19,8 @@ module.exports = {
       'tea-green': '#D4FAC9',
       'second-tea-green': '#DBF9CD',
       'ocean-blue': '#423AD0',
-      'second-ocean-blue': '#4131CB'
+      'second-ocean-blue': '#4131CB',
+      'dark-charcoal': '#303030'
     },
     extend: {
       opacity: {
