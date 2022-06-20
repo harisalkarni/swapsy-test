@@ -17,7 +17,9 @@ module.exports = {
       'bubble-gum': '#ff77e9',
       'bermuda': '#78dcca',
       'tea-green': '#D4FAC9',
-      'ocean-blue': '#423AD0'
+      'second-tea-green': '#DBF9CD',
+      'ocean-blue': '#423AD0',
+      'second-ocean-blue': '#4131CB'
     },
     extend: {
       opacity: {
@@ -25,7 +27,7 @@ module.exports = {
           '20': '0.2',
           '98': '0.98',
           '80': '0.80'
-      }
+      },
     },
   },
   plugins: [],

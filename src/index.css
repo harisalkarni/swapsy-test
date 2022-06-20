@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.swap-custom-bg{
+background: transparent linear-gradient(180deg, #000000 0%, #413AC8 100%) 0% 0% no-repeat padding-box;
+}
