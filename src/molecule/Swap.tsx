@@ -1,5 +1,6 @@
 import Logo from "../assets/logo-swapsi.png";
-import TokenSwap from "../atom/TokenSwap";
+// import TokenSwap from "../atom/TokenSwap";
+import MySwap from "./MySwap";
 import { BiWalletAlt } from "react-icons/bi";
 const Swap = () => {
   return (
@@ -15,7 +16,7 @@ const Swap = () => {
       </div>
 
       <div className="flex flex-1 justify-center items-center">
-        <TokenSwap />
+        <MySwap />
       </div>
     </div>
   );
