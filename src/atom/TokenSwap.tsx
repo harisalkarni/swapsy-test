@@ -3,7 +3,7 @@ import Duration from "./Duration";
 const TokenSwap = () => {
   return (
     <div className="w-[294px] h-[436px] px-[40px] pt-[38px] pb-[34px] bg-erie-black relative">
-      <div className="flex flex-row items-center">
+      <div className="flex flex-row items-center mb-[8px]">
         <div className="w-[108px]">
           <ListIcon />
         </div>
@@ -16,7 +16,7 @@ const TokenSwap = () => {
         <div className="text-[24px]">0.00</div>
         <div className="text-[16px] ml-1">ETH</div>
       </div>
-      <div className="flex flex-row items-center">
+      <div className="flex flex-row items-center mb-[8px]">
         <div className="w-[108px]">
           <ListIcon />
         </div>
@@ -33,7 +33,7 @@ const TokenSwap = () => {
         <Duration />
       </div>
 
-      <div className="text-white flex flex-col">
+      <div className="text-white flex flex-col mt-[37px]">
         <div className="flex flex-row justify-between">
           <div className="text-white opacity-40 text-[10px]">Price</div>
           <div className="text-right text-white opacity-40 text-[10px]">
