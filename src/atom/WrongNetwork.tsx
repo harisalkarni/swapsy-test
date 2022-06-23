@@ -1,8 +1,16 @@
+import ErrorIcon from "../assets/error-icon.svg";
+import { IoMdClose } from "react-icons/io";
+
 const WrongNetwork = () => {
   return (
-    <div className="w-[281px] h-[369px] bg-erie-black bg-opacity-98 pt-[53px] pb-[42px] px-[32px] rounded-[10px] relative">
-      <div className="absolute top-[19px] right-[19px]">x</div>
-      <div className="text-[20px] text-white font-medium text-center">
+    <div className="w-[281px] h-[369px] bg-erie-black bg-opacity-98 pt-[53px] pb-[42px] px-[32px] rounded-[10px] relative flex flex-col justify-center">
+      <div className="absolute top-[19px] right-[19px]">
+        <IoMdClose size={20} color="#707070" />
+      </div>
+      <div className="text-[20px] text-white font-medium text-center  mb-[59px]">
+        <div className="flex flex-row justify-center mb-[25px]">
+          <img src={ErrorIcon} alt="error icon" />
+        </div>
         Wrong Network Detected
       </div>
 
