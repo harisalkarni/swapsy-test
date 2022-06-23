@@ -1,5 +1,6 @@
 import ListIcon from "./ListIcon";
 import Duration from "./Duration";
+import ArrowIcon from "../assets/arrow-icon.svg";
 const TokenSwap = () => {
   return (
     <div className="w-[294px] h-[436px] px-[40px] pt-[38px] pb-[34px] bg-erie-black relative">
@@ -12,9 +13,14 @@ const TokenSwap = () => {
           <div>0.00</div>
         </div>
       </div>
-      <div className="text-white opacity-30 flex flex-row items-end w-[85px] h-[33px]">
-        <div className="text-[24px]">0.00</div>
-        <div className="text-[16px] ml-1">ETH</div>
+      <div className="text-white opacity-30 flex flex-row items-end w-full  justify-between">
+        <div className="w-[85px] h-[33px] flex flex-row items-end">
+          <div className="text-[24px]">0.00</div>
+          <div className="text-[16px] ml-1">ETH</div>
+        </div>
+        <div>
+          <img src={ArrowIcon} alt="Arrow Icon" />
+        </div>
       </div>
       <div className="flex flex-row items-center mb-[8px]">
         <div className="w-[108px]">
@@ -32,7 +38,6 @@ const TokenSwap = () => {
       <div>
         <Duration />
       </div>
-
       <div className="text-white flex flex-col mt-[37px]">
         <div className="flex flex-row justify-between">
           <div className="text-white opacity-40 text-[10px]">Price</div>

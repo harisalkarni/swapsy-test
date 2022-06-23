@@ -1,8 +1,9 @@
-import { useState } from "react";
 const menuList = ["Open", "Completed", "Cancelled", "Expired"];
-const MySwapTableTab = () => {
-  const [seletedMenu, setSelectedMenu] = useState<string>("");
-
+interface MySwapTabProps {
+  selectedMenu: string;
+  setSelectedMenu: (a: string) => void;
+}
+const MySwapTableTab = ({ selectedMenu, setSelectedMenu }: MySwapTabProps) => {
   return (
     <div className="text-white flex flex-row text-[12px]">
       {menuList.map((val) => {
@@ -10,7 +11,7 @@ const MySwapTableTab = () => {
           <div
             onClick={() => setSelectedMenu(val)}
             className={`py-[6px] px-[12px]  rounded-full ${
-              seletedMenu === val ? "bg-ocean-blue" : "bg-transparent"
+              selectedMenu === val ? "bg-ocean-blue" : "bg-transparent"
             }`}
           >
             {val}

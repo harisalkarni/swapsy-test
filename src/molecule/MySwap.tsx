@@ -1,16 +1,55 @@
 import MySwapChild from "../atom/MySwapChild";
 import MySwapTableTab from "../atom/MySwapTableTab";
+import { useState } from "react";
 const MySwap = () => {
+  const [selectedMenu, setSelectedMenu] = useState<string>("Open");
+
+  const renderTable = (type: string) => {
+    switch (type) {
+      case "Open":
+        return (
+          <MySwapChild
+            displayBtn={true}
+            expiredStatus={false}
+            btnBorder={false}
+          />
+        );
+      case "Completed":
+        return (
+          <MySwapChild
+            displayBtn={true}
+            expiredStatus={false}
+            btnBorder={true}
+          />
+        );
+      case "Cancelled":
+        return (
+          <MySwapChild
+            displayBtn={false}
+            expiredStatus={false}
+            btnBorder={true}
+          />
+        );
+      case "Expired":
+        return (
+          <MySwapChild
+            displayBtn={true}
+            expiredStatus={false}
+            btnBorder={false}
+          />
+        );
+
+      default:
+        break;
+    }
+  };
   return (
     <div className="w-full mx-[19px]">
-      <MySwapTableTab />
-      <div className="text-white flex flex-row px-[9px] text-[10px] mb-[22px] mt-[29px]">
-        <div className="w-1/5">Swap</div>
-        <div className="w-1/3">From</div>
-        <div className="w-1/3">To</div>
-        <div></div>
-      </div>
-      <MySwapChild />
+      <MySwapTableTab
+        selectedMenu={selectedMenu}
+        setSelectedMenu={setSelectedMenu}
+      />
+      {renderTable(selectedMenu)}
     </div>
   );
 };
