@@ -6,7 +6,7 @@ import SwapScreen from "../molecule/SwapScreen";
 const HomePage = () => {
   return (
     <div className="flex flex-1 bg-black bg-opacity-80 min-h-screen justify-center items-center">
-      <SwapScreen />
+      <SwapScreen status="default" />
     </div>
   );
 };
