@@ -1,6 +1,20 @@
 import { FiCopy } from "react-icons/fi";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useState, useEffect } from "react";
 
 const SwapCreated = () => {
+  const [textBox, setTextBox] = useState<string>(
+    " https://swapsy.io/0x..67e67/94"
+  );
+  const [copiedData, setCopiedData] = useState<boolean>(false);
+
+  useEffect(() => {
+    let timeout: any;
+    if (copiedData) {
+      timeout = setTimeout(() => setCopiedData(false), 2000);
+    }
+    return () => clearTimeout(timeout);
+  }, [copiedData]);
   const socialMedia = [
     {
       name: "whatsapp",
@@ -24,22 +38,33 @@ const SwapCreated = () => {
     },
   ];
   return (
-    <div className="w-[294px] h-[485px] bg-ocean-blue rounded-[5px] relative pt-[69px]">
+    <div className="w-[281px] h-[481px] bg-ocean-blue rounded-[5px] relative pt-[69px]">
       <div className="flex flex-col items-center">
         <div className="w-[67px] h-[50px] mb-[24px]">x</div>
         <div className="text-[20px] text-white w-[83px] text-center font-bold">
           Swap Created
         </div>
       </div>
-      <div className=" mt-[59px] px-[24px]">
+      <div className=" mt-[59px] px-[24px] ">
         <div className="text-[12px] text-white mb-[8px]">Swap Link</div>
-        <div className="bg-white w-[234px] h-[40px] flex flex-row justify-between items-center rounded-[5px] px-[10px] mb-[24px]">
-          <div className="text-[11px] font-bold">
-            https://swapsy.io/0x..67e67/94
-          </div>
-          <div>
-            <FiCopy color="#443CCF" size={18} />
-          </div>
+        <div className="bg-white w-[234px] h-[40px] rounded-[5px] flex items-center justify-center  px-[10px] mb-[24px]">
+          {copiedData ? (
+            <div className="text-secondary-purple text-[14px] font-bold">
+              Link Copied!
+            </div>
+          ) : (
+            <div className="flex flex-row justify-between w-full">
+              <div className="text-[11px] font-bold">{textBox}</div>
+              <CopyToClipboard
+                text={textBox}
+                onCopy={() => setCopiedData(true)}
+              >
+                <div>
+                  <FiCopy color="#443CCF" size={18} />
+                </div>
+              </CopyToClipboard>
+            </div>
+          )}
         </div>
         <div className="flex flex-col items-center">
           <div className="flex flex-row justify-between w-[179px]">
