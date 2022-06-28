@@ -7,7 +7,8 @@ import { useState } from "react";
 const Swap = () => {
   const [activeTab, setActiveTab] = useState("create");
   return (
-    <div className="min-w-screen min-h-screen swap-custom-bg bg-opacity-30 pt-[117px]">
+    <div className="min-w-screen min-h-screen pt-[117px] bg-black">
+      <div className="absolute inset-0 opacity-30 bg-gradient-to-b from-black to-blue-purple"></div>
       <div className="flex flex-row justify-between w-full px-[30px] h-[36px] items-center">
         <div>
           <img src={Logo} alt="swapsi logo" className="w-[93px] h-[28px]" />
