@@ -11,6 +11,7 @@ module.exports = {
       'erie-black': '#181818',
       'white': '#ffffff',
       'purple': '#3f3cbb',
+      'secondary-purple': '#443CCF',
       'midnight': '#121063',
       'metal': '#565584',
       'tahiti': '#3ab7bf',
@@ -34,3 +35,5 @@ module.exports = {
   },
   plugins: [],
 };
+
+
