@@ -1,6 +1,11 @@
+import { IoMdClose } from "react-icons/io";
+
 const DepositModal = () => {
   return (
     <div className="w-[294px] h-[485px] bg-erie-black rounded-[5px]  justify-center relative text-center flex flex-col items-center">
+      <div className="absolute top-[18px] right-[18px]">
+        <IoMdClose size={20} color="#707070" />
+      </div>
       <div className="w-[112px] text-[20px] font-bold text-white ">
         Depositing Eth
       </div>

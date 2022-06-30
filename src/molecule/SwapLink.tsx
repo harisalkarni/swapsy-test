@@ -1,6 +1,7 @@
 import SwapConnect from "../atom/SwapConnect";
 import BottomInfo from "../atom/BottomInfo";
 import { FiCopy } from "react-icons/fi";
+import { IoMdClose } from "react-icons/io";
 
 interface SwapLinkprops {
   text: string;
@@ -20,6 +21,9 @@ const SwapLink = ({ text, button }: SwapLinkprops) => {
         button ? "pt-[33px]" : "pt-[69px]"
       }`}
     >
+      <div className="absolute top-[18px] right-[18px]">
+        <IoMdClose size={20} color="#707070" />
+      </div>
       <div className={`flex flex-col items-center mb-[24px] `}>
         <div className="text-[20px] text-tea-green">Swap #94812</div>
         <div className="text-white opacity-70 text-[10px]">{text}</div>

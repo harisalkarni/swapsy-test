@@ -1,6 +1,10 @@
+import { IoMdClose } from "react-icons/io";
 const SwapCancelled = () => {
   return (
     <div className="w-[294px] h-[485px]  rounded-[5px] pt-[88px] px-[33px] relative bg-erie-black flex flex-col items-center">
+      <div className="absolute top-[18px] right-[18px]">
+        <IoMdClose size={20} color="#707070" />
+      </div>
       <div className="w-[67px] h-[50px] mb-[24px]">x</div>
       <div className="text-white w-[104px] text-center text-[20px]">
         Swap Cancelled

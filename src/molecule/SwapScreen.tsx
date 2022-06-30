@@ -1,6 +1,6 @@
 import SwapConnect from "../atom/SwapConnect";
 import BottomInfo from "../atom/BottomInfo";
-
+import { IoMdClose } from "react-icons/io";
 interface SwapConnectProps {
   status?: string;
 }
@@ -18,6 +18,12 @@ const SwapScreen = ({ status }: SwapConnectProps) => {
         status === "completed" ? "bg-ocean-blue" : "bg-erie-black"
       }`}
     >
+      {status === "completed" && (
+        <div className="absolute top-[18px] right-[18px]">
+          <IoMdClose size={20} color="#FFF" />
+        </div>
+      )}
+
       {status === "completed" && (
         <div className="bg-tea-green w-[137px] h-[41px] text-ocean-blue font-bold text-[17px] rounded-[5px] flex flex-row justify-center items-center -ml-[40px] mb-[33px]">
           <span>Completed</span>
