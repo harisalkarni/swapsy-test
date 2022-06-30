@@ -3,7 +3,7 @@ import SwapPage from "./organism/swapIndex";
 export default function App() {
   return (
     <div>
-      <HomePage />
+      <SwapPage />
     </div>
   );
 }

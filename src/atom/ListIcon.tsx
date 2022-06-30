@@ -36,7 +36,7 @@ export default function ListIcon() {
       {({ open }) => (
         <>
           <div className="mt-1 relative">
-            <Listbox.Button className="relative w-full bg-secondaryblack border border-gray-300 rounded-md shadow-sm px-[7px] pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <Listbox.Button className="relative w-full bg-secondaryblack rounded-md shadow-sm px-[7px] pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               <span className="flex items-center">
                 <img
                   src={selected.avatar}
