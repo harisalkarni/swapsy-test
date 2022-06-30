@@ -6,11 +6,12 @@
 // import CancelingSwap from "../atom/CancelingSwap";
 // import SwapLink from "../molecule/SwapLink";
 // import WithdrawingFunds from "../atom/WithdrawingProcess";
-import SwapCancelled from "../atom/SwapCancelles";
+// import SwapCancelled from "../atom/SwapCancelled";
+import SomethingWrong from "../atom/SomethingWrong";
 const HomePage = () => {
   return (
     <div className="flex flex-1 bg-black bg-opacity-80 min-h-screen justify-center items-center">
-      <SwapCancelled />
+      <SomethingWrong />
     </div>
   );
 };
