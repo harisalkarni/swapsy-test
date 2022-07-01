@@ -4,7 +4,7 @@ let MySwapDummy = [
         coinFrom: 'ETH',
         amountFrom: 991900,
         coinTo: 'USDT',
-        amounTo: 991900
+        amountTo: 991900
 
     },
     {
@@ -12,7 +12,7 @@ let MySwapDummy = [
         coinFrom: 'ETH',
         amountFrom: 991900,
         coinTo: 'USDT',
-        amounTo: 991900
+        amountTo: 991900
 
     },
     {
@@ -20,7 +20,7 @@ let MySwapDummy = [
         coinFrom: 'ETH',
         amountFrom: 991900,
         coinTo: 'USDT',
-        amounTo: 991900
+        amountTo: 991900
 
     },
     {
@@ -28,7 +28,7 @@ let MySwapDummy = [
         coinFrom: 'ETH',
         amountFrom: 991900,
         coinTo: 'USDT',
-        amounTo: 991900
+        amountTo: 991900
 
     },
     {
@@ -36,7 +36,7 @@ let MySwapDummy = [
         coinFrom: 'ETH',
         amountFrom: 991900,
         coinTo: 'USDT',
-        amounTo: 991900
+        amountTo: 991900
 
     }
 ]

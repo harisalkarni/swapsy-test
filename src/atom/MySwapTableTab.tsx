@@ -1,20 +1,25 @@
-const menuList = ["Open", "Completed", "Cancelled", "Expired"];
-interface MySwapTabProps {
-  selectedMenu: string;
-  setSelectedMenu: (a: string) => void;
+import Menus from "constants/menus";
+import { MenuType } from "constants/types";
+import { SetStateAction } from "react";
+import { Dispatch } from "react";
+
+interface Props {
+  selected: MenuType;
+  setSelected: Dispatch<SetStateAction<MenuType>>;
 }
-const MySwapTableTab = ({ selectedMenu, setSelectedMenu }: MySwapTabProps) => {
+const MySwapTableTab = ({ selected, setSelected }: Props) => {
   return (
-    <div className="text-white flex flex-row text-[12px]">
-      {menuList.map((val) => {
+    <div className="text-white flex flex-row text-[12px] cursor-pointer">
+      {Menus.map((menu, index) => {
         return (
           <div
-            onClick={() => setSelectedMenu(val)}
+            key={index}
+            onClick={() => setSelected(menu as MenuType)}
             className={`py-[6px] px-[12px]  rounded-full ${
-              selectedMenu === val ? "bg-ocean-blue" : "bg-transparent"
+              selected === menu ? "bg-ocean-blue" : "bg-transparent"
             }`}
           >
-            {val}
+            {menu}
           </div>
         );
       })}
