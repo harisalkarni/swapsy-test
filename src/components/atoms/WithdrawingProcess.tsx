@@ -1,4 +1,5 @@
 import { IoMdClose } from "react-icons/io";
+
 const WithdrawingFunds = () => {
   return (
     <div className="w-[294px] h-[485px]  rounded-[5px] pt-[41px] px-[33px] relative bg-erie-black flex flex-col items-center">

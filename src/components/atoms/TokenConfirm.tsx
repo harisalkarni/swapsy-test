@@ -1,7 +1,7 @@
-import EthIcon from "../assets/coin-eth.png";
-import USDT from "../assets/coin-usdt.png";
-import USDC from "../assets/coin-usdc.png";
-import DAI from "../assets/coin-dai.png";
+import EthIcon from "assets/coin-eth.png";
+import USDT from "assets/coin-usdt.png";
+import USDC from "assets/coin-usdc.png";
+import DAI from "assets/coin-dai.png";
 import { useState } from "react";
 interface TokenConfirmProps {
   token: string;

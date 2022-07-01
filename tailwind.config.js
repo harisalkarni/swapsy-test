@@ -34,11 +34,8 @@ module.exports = {
         "second-ocean-blue": "#4131CB",
         "dark-charcoal": "#303030",
         "blue-purple": "#413AC8",
-        'secondary-purple': '#443CCF',
+        "secondary-purple": "#443CCF",
       },
     },
   },
-  plugins: [],
 };
-
-

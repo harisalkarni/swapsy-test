@@ -1,5 +1,5 @@
-import SwapConnect from "../atom/SwapConnect";
-import BottomInfo from "../atom/BottomInfo";
+import SwapConnect from "components/atoms/SwapConnect";
+import BottomInfo from "components/atoms/BottomInfo";
 import { FiCopy } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 

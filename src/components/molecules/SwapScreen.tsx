@@ -1,5 +1,5 @@
-import SwapConnect from "../atom/SwapConnect";
-import BottomInfo from "../atom/BottomInfo";
+import SwapConnect from "components/atoms/SwapConnect";
+import BottomInfo from "components/atoms/BottomInfo";
 import { IoMdClose } from "react-icons/io";
 interface SwapConnectProps {
   status?: string;

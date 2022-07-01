@@ -1,10 +1,13 @@
-interface MySwapProps {
+interface Props {
   activeTab: string;
-  setActiveTab: (a: string) => void;
+  setActiveTab: (tab: string) => void;
+  classname: string;
 }
-const MySwapTab = ({ activeTab, setActiveTab }: MySwapProps) => {
+const MySwapTab = ({ activeTab, setActiveTab, classname }: Props) => {
   return (
-    <div className="flex flex-row w-screen px-8 text-white text-[20px]  border-b border-tea-green px-[27px] my-[40px] border-opacity-20">
+    <div
+      className={`flex flex-row w-screen text-white text-[20px] md:border-b-0 border-b border-tea-green px-[27px] md:px-0 my-[40px] border-opacity-20 ${classname} md:justify-center`}
+    >
       <div
         className="relative pb-[9px] mr-[40px] cursor-pointer"
         onClick={() => setActiveTab("create")}
@@ -17,7 +20,7 @@ const MySwapTab = ({ activeTab, setActiveTab }: MySwapProps) => {
         )}
       </div>
       <div
-        className="relative pb-[9px] mr-[40px] cursor-pointer"
+        className="relative pb-[9px] cursor-pointer"
         onClick={() => setActiveTab("myswap")}
       >
         <div>My Swaps</div>

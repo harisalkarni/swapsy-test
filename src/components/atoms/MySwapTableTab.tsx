@@ -9,7 +9,7 @@ interface Props {
 }
 const MySwapTableTab = ({ selected, setSelected }: Props) => {
   return (
-    <div className="text-white flex flex-row text-[12px] cursor-pointer">
+    <div className="text-white flex flex-row text-[12px] md:text-[14px] cursor-pointer">
       {Menus.map((menu, index) => {
         return (
           <div

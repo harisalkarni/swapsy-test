@@ -1,4 +1,4 @@
-import WalletList from "../atom/WalletList";
+import WalletList from "../atoms/WalletList";
 const SelectWallet = () => {
   const listWallet = [
     {

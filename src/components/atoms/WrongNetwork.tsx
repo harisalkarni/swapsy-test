@@ -1,4 +1,4 @@
-import ErrorIcon from "../assets/error-icon.svg";
+import ErrorIcon from "assets/error-icon.svg";
 import { IoMdClose } from "react-icons/io";
 
 const WrongNetwork = () => {

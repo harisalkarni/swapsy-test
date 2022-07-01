@@ -1,7 +1,7 @@
-import MySwapTableTab from "atom/MySwapTableTab";
+import MySwapTableTab from "components/atoms/MySwapTableTab";
 import { useState } from "react";
 import { MenuType } from "constants/types";
-import TransactionTable from "atom/TransactionTable";
+import TransactionTable from "components/atoms/TransactionTable";
 
 const MySwap = () => {
   const [selectedMenu, setSelectedMenu] = useState<MenuType>("Open");

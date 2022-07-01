@@ -1,7 +1,7 @@
-import EthIcon from "../assets/coin-eth.png";
-import UsdcIcon from "../assets/coin-usdc.png";
-import UsdtIcon from "../assets/coin-usdt.png";
-import DaiIcon from "../assets/coin-dai.png";
+import EthIcon from "assets/coin-eth.png";
+import UsdcIcon from "assets/coin-usdc.png";
+import UsdtIcon from "assets/coin-usdt.png";
+import DaiIcon from "assets/coin-dai.png";
 import { FiCopy } from "react-icons/fi";
 
 const ConnectWallet = () => {

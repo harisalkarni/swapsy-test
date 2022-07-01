@@ -19,7 +19,7 @@ const TokenSwap = () => {
   };
 
   return (
-    <div className="px-[40px] pt-[38px] pb-[34px] relative z-10">
+    <div className="relative z-10">
       <div className="flex flex-row items-center mb-[8px]">
         <div className="w-[114px]">
           <ListIcon selected={from} setSelected={setFrom} />

@@ -1,4 +1,4 @@
-import Swap from "organism/Swap";
+import Swap from "components/organisms/Swap";
 
 export default function App() {
   return <Swap />;

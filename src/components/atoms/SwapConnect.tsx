@@ -1,5 +1,5 @@
 import TokenConfirm from "./TokenConfirm";
-import ArrowIcon from "../assets/arrow-icon.svg";
+import ArrowIcon from "assets/arrow-icon.svg";
 
 interface SwapConnectData {
   tokenFrom: string;
