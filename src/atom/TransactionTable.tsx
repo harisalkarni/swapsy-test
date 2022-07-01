@@ -1,94 +1,88 @@
-import EthIcon from "../assets/coin-eth.png";
-import USDT from "../assets/coin-usdt.png";
-import USDC from "../assets/coin-usdc.png";
-import DAI from "../assets/coin-dai.png";
-import { renderName } from "../utils";
-import { MySwapDummy } from "../dummy/dummy";
+import { MySwapDummy } from "dummy/dummy";
+import { MenuType } from "constants/types";
+import Coins from "constants/coins";
 
-interface MySwapChildProps {
-  displayBtn: boolean;
-  expiredStatus: boolean;
-  btnBorder: boolean;
+interface Props {
+  type: MenuType;
 }
-const MySwapChild = ({
-  displayBtn,
-  expiredStatus,
-  btnBorder,
-}: MySwapChildProps) => {
-  const renderIcon = (type: string) => {
-    switch (type) {
-      case "ETH":
-        return EthIcon;
-      case "USDC":
-        return USDC;
-      case "USDT":
-        return USDT;
-      case "DAI":
-        return DAI;
-      default:
-        break;
-    }
+
+function TransactionTable({ type }: Props) {
+  const isOpen = type === "Open";
+  const isCancelled = type === "Cancelled";
+  const isCompleted = type === "Completed";
+
+  const getCoin = (name: string) => {
+    const coin = Coins.filter((coin) => coin.name === name)[0];
+    return coin;
   };
 
+  const renderButtonLabel = () => {
+    switch (type) {
+      case "Open":
+        return "Cancel";
+      case "Completed":
+        return "View";
+      case "Expired":
+        return "Withdraw";
+    }
+  };
   return (
     <div>
       <div className="text-white flex flex-row px-[9px] text-[10px] mb-[22px] mt-[29px] justify-between">
         <div className="w-1/5">Swap</div>
         <div className="w-1/3">From</div>
         <div className="w-1/3">To</div>
-        {displayBtn && <div className="w-1/6"></div>}
+        {!isCancelled && <div className="w-1/6"></div>}
       </div>
 
-      {MySwapDummy.map((val) => {
+      {MySwapDummy.map(({ amountTo, amountFrom, coinFrom, coinTo, id }) => {
         return (
           <div className="w-full mb-[8px] bg-erie-black px-[9px] py-[10px] rounded-[5px]">
             <div className="flex flex-row justify-between text-white items-center">
               <div className="w-1/5">
-                <div className="text-[10px] text-tea-green">{val.id}</div>
-                {expiredStatus && (
-                  <div className="text-[6px]">Expires in 1d 45m</div>
-                )}
+                <div className="text-[10px] text-tea-green">{id}</div>
+                {isOpen && <div className="text-[6px]">Expires in 1d 45m</div>}
               </div>
               <div className="flex flex-row items-center w-1/3">
                 <div className="mr-[5px]">
                   <img
-                    src={renderIcon(val.coinFrom)}
+                    src={getCoin(coinFrom).avatar}
                     className="w-[21px] h-[21px]"
                     alt="coin icon"
                   />
                 </div>
                 <div>
                   <div className="text-[7px] text-tea-green">
-                    {renderName(val.coinFrom)}
+                    {getCoin(coinFrom).name}
                   </div>
-                  <div className="text-[10px]">{val.amountFrom}</div>
+                  <div className="text-[10px]">{amountFrom}</div>
                 </div>
               </div>
               <div className="flex flex-row items-center w-1/3">
                 <div className="mr-[5px]">
                   <img
-                    src={renderIcon(val.coinTo)}
+                    src={getCoin(coinTo).avatar}
                     className="w-[21px] h-[21px]"
                     alt="coin icon"
                   />
                 </div>
                 <div>
                   <div className="text-[7px] text-tea-green">
-                    {renderName(val.coinTo)}
+                    {getCoin(coinTo).name}
                   </div>
-                  <div className="text-[10px]">{val.amounTo}</div>
+                  <div className="text-[10px]">{amountTo}</div>
                 </div>
               </div>
-              {displayBtn && (
+              {!isCancelled && (
                 <div className="w-1/6">
                   <button
-                    className={`text-[7px] w-[44px] h-[20px]   rounded-full ${
-                      btnBorder
+                    className={`text-[7px] px-[9px] py-[6px] rounded-full ${
+                      isCompleted
                         ? " border border-tea-green text-white"
                         : "bg-tea-green text-black"
-                    }`}
+                    } ${isCompleted && 'px-3'}`}
                   >
-                    Cancel
+                    {renderButtonLabel()}
                   </button>
                 </div>
               )}
@@ -98,6 +92,6 @@ const MySwapChild = ({
       })}
     </div>
   );
-};
+}
 
-export default MySwapChild;
+export default TransactionTable;

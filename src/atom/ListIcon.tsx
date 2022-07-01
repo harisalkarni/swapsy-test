@@ -1,36 +1,20 @@
-import { Fragment, useState } from "react";
+import { Dispatch, Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/solid";
-import EthCoin from "../assets/coin-eth.png";
-import UsdtCoin from "../assets/coin-usdt.png";
-import UsdcCoin from "../assets/coin-usdc.png";
-import DaiCoin from "../assets/coin-dai.png";
-const people = [
-  {
-    name: "ETH",
-    avatar: EthCoin,
-  },
-  {
-    name: "USDT",
-    avatar: UsdtCoin,
-  },
-  {
-    name: "USDC",
-    avatar: UsdcCoin,
-  },
-  {
-    name: "DAI",
-    avatar: DaiCoin,
-  },
-];
+import Coins from "constants/coins";
+import { CoinType } from "constants/types";
+import { SetStateAction } from "react";
 
-function classNames(...classes: any) {
+interface Props {
+  selected: CoinType;
+  setSelected: Dispatch<SetStateAction<CoinType>>;
+}
+
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ListIcon() {
-  const [selected, setSelected] = useState(people[0]);
-
+export default function ListIcon({ selected, setSelected }: Props) {
   return (
     <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
@@ -63,7 +47,7 @@ export default function ListIcon() {
               leaveTo="opacity-0"
             >
               <Listbox.Options className="absolute z-10 mt-1 w-full bg-secondaryblack shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
-                {people.map((person, index) => (
+                {Coins.map((coin, index) => (
                   <Listbox.Option
                     key={index}
                     className={({ active }) =>
@@ -72,13 +56,13 @@ export default function ListIcon() {
                         "cursor-default select-none relative py-2 px-[7px] pr-9"
                       )
                     }
-                    value={person}
+                    value={coin}
                   >
                     {({ selected, active }) => (
                       <>
                         <div className="flex items-center">
                           <img
-                            src={person.avatar}
+                            src={coin.avatar}
                             alt=""
                             className="flex-shrink-0 h-[21px] w-[21px] rounded-full"
                           />
@@ -88,7 +72,7 @@ export default function ListIcon() {
                               "ml-3 block truncate text-white text-[12px]"
                             )}
                           >
-                            {person.name}
+                            {coin.name}
                           </span>
                         </div>
 

@@ -1,9 +1,5 @@
-import HomePage from "./organism";
-import SwapPage from "./organism/swapIndex";
+import Swap from "organism/Swap";
+
 export default function App() {
-  return (
-    <div>
-      <SwapPage />
-    </div>
-  );
+  return <Swap />;
 }
