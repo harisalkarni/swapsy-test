@@ -3,7 +3,7 @@ import { useState } from "react";
 import { MenuType } from "constants/types";
 import TransactionTable from "components/atoms/TransactionTable";
 
-const MySwap = () => {
+const History = () => {
   const [selectedMenu, setSelectedMenu] = useState<MenuType>("Open");
 
   return (
@@ -14,4 +14,4 @@ const MySwap = () => {
   );
 };
 
-export default MySwap;
+export default History;

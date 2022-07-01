@@ -14,7 +14,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ListIcon({ selected, setSelected }: Props) {
+export default function CoinOptions({ selected, setSelected }: Props) {
   return (
     <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (

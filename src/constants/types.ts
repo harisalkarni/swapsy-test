@@ -4,3 +4,4 @@ export type CoinType = {
 };
 
 export type MenuType = "Open" | "Completed" | "Cancelled" | "Expired";
+export type TabType = "CREATE" | "HISTORY";
