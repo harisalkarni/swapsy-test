@@ -13,7 +13,7 @@ const Swap = () => {
       <Header activeTab={activeTab} setTab={setActiveTab} />
       <div
         className={`w-[360px] rounded-[8px] relative z-10 md:w-[480px] md:mt-20 ${
-          activeTab === "CREATE" && "bg-erie-black p-8  md:w-[420px]"
+          activeTab === "CREATE" && "bg-erie-black p-8 w-[320px] md:w-[420px]"
         }`}
       >
         {activeTab === "CREATE" ? <TokenSwap /> : <History />}
