@@ -46,7 +46,6 @@ const TokenSwap = () => {
         <BalanceLabel />
       </div>
       <AmountLabel amount="0.00" name={to.name} />
-
       <Duration selected={duration} setSelected={setDuration} />
       <div className="text-white/40 flex flex-col mt-9 text-[10px] md:text-xs">
         <FeeLabel label="Price" value="0.007 per USDT" />
@@ -58,7 +57,7 @@ const TokenSwap = () => {
         <FeeLabel label="Total Amount" value={`${total} ETH`} />
       </div>
       <div className="flex justify-center mt-10">
-        <button className="text-white bg-ocean-blue py-[10px] px-[33px] rounded-full text-[14px]">
+        <button className="text-white font-semibold bg-ocean-blue py-[10px] px-[33px] rounded-full text-[14px]">
           Connect Wallet
         </button>
       </div>
