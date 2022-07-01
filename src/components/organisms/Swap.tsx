@@ -41,7 +41,7 @@ const Swap = () => {
       />
       <div
         className={`w-[360px] rounded-[8px] relative z-10 md:w-[480px] md:mt-20 ${
-          activeTab === "create" && "bg-erie-black p-8"
+          activeTab === "create" && "bg-erie-black p-8  md:w-[420px]"
         }`}
       >
         {activeTab === "create" ? <TokenSwap /> : <MySwap />}

@@ -24,10 +24,10 @@ export default function ListIcon({ selected, setSelected }: Props) {
               <span className="flex items-center">
                 <img
                   src={selected.avatar}
-                  alt=""
-                  className="flex-shrink-0 h-[21px] w-[21px] rounded-full"
+                  alt="icon"
+                  className="flex-shrink-0 w-5 md:w-8 object-contain rounded-full"
                 />
-                <span className="ml-3 block truncate text-white text-[12px]">
+                <span className="ml-3 block truncate text-white text-[12px] md:text-lg">
                   {selected.name}
                 </span>
               </span>
@@ -63,13 +63,13 @@ export default function ListIcon({ selected, setSelected }: Props) {
                         <div className="flex items-center">
                           <img
                             src={coin.avatar}
-                            alt=""
-                            className="flex-shrink-0 h-[21px] w-[21px] rounded-full"
+                            alt="icon"
+                            className="flex-shrink-0 object-contain w-5 md:w-8 rounded-full"
                           />
                           <span
                             className={classNames(
                               selected ? "font-semibold" : "font-normal",
-                              "ml-3 block truncate text-white text-[12px]"
+                              "ml-3 block truncate text-white text-[12px] md:text-lg"
                             )}
                           >
                             {coin.name}
