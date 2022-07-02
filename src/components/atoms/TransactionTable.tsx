@@ -1,6 +1,7 @@
 import { MySwapDummy } from "dummy/dummy";
 import { MenuType } from "constants/types";
 import Coins from "constants/coins";
+import numeral from "numeral";
 
 interface Props {
   type: MenuType;
@@ -41,7 +42,7 @@ function TransactionTable({ type }: Props) {
             return (
               <div
                 key={index}
-                className="w-full mb-[8px] bg-erie-black px-[9px] md:px-4 py-[10px] md:py-4 rounded-[5px]"
+                className="w-full mb-[8px] bg-erie-black px-[9px] md:px-4 py-[10px] md:py-4 rounded-[5px] font-medium"
               >
                 <div className="flex flex-row justify-between text-white items-center">
                   <div className="w-1/5 md:w-1/4">
@@ -49,7 +50,7 @@ function TransactionTable({ type }: Props) {
                       {id}
                     </div>
                     {isOpen && (
-                      <div className="text-[6px] md:text-[10px]">
+                      <div className="text-[6px] md:text-[10px] font-normal">
                         Expires in 1d 45m
                       </div>
                     )}
@@ -66,7 +67,9 @@ function TransactionTable({ type }: Props) {
                       <div className="text-[7px] md:text-[10px] text-tea-green">
                         {getCoin(coinFrom).name}
                       </div>
-                      <div className="text-[10px] md:text-xs">{amountFrom}</div>
+                      <div className="text-[10px] md:text-xs">
+                        {numeral(amountFrom).format("0,0")}
+                      </div>
                     </div>
                   </div>
                   <div className="flex flex-row items-center w-1/3">
@@ -81,13 +84,15 @@ function TransactionTable({ type }: Props) {
                       <div className="text-[7px] md:text-[10px] text-tea-green">
                         {getCoin(coinTo).name}
                       </div>
-                      <div className="text-[10px] md:text-xs">{amountTo}</div>
+                      <div className="text-[10px] md:text-xs">
+                        {numeral(amountTo).format("0,0")}
+                      </div>
                     </div>
                   </div>
                   {!isCancelled && (
                     <div className="w-1/6">
                       <button
-                        className={`text-[7px] md:text-[10px] px-[9px] md:px-[12px] md:py-[8px] py-[6px] rounded-full ${
+                        className={`text-[7px] font-semibold md:text-[10px] px-[9px] md:px-[12px] md:py-[8px] py-[6px] rounded-full ${
                           isCompleted
                             ? " border border-tea-green text-white"
                             : "bg-tea-green text-black"

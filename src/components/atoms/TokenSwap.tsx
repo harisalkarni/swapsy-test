@@ -27,10 +27,10 @@ const TokenSwap = () => {
         <div className="w-[124px] md:w-[148px]">
           <CoinOptions selected={from} setSelected={setFrom} />
         </div>
-        <BalanceLabel />
+        <BalanceLabel balance={100.1234} />
       </div>
       <div className="text-white/30 flex flex-row items-end w-full  justify-between">
-        <AmountLabel amount="0.00" name={from.name} />
+        <AmountLabel amount={1.2212} name={from.name} />
         <button onClick={reverse}>
           <img
             src={ArrowIcon}
@@ -43,9 +43,9 @@ const TokenSwap = () => {
         <div className="w-[124px] md:w-[148px]">
           <CoinOptions selected={to} setSelected={setTo} />
         </div>
-        <BalanceLabel />
+        <BalanceLabel balance={100.1234} />
       </div>
-      <AmountLabel amount="0.00" name={to.name} />
+      <AmountLabel amount={1.2212} name={to.name} />
       <Duration selected={duration} setSelected={setDuration} />
       <div className="text-white/40 flex flex-col mt-9 text-[10px] md:text-xs">
         <FeeLabel label="Price" value="0.007 per USDT" />
