@@ -15,7 +15,7 @@ const MySwapTableTab = ({ selected, setSelected }: Props) => {
           <div
             key={index}
             onClick={() => setSelected(menu as MenuType)}
-            className={`py-[6px] px-[12px]  rounded-full ${
+            className={`py-[6px] px-[12px]  rounded-full md:mr-[24px] ${
               selected === menu ? "bg-ocean-blue" : "bg-transparent"
             }`}
           >

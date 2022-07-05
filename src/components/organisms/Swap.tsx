@@ -12,7 +12,7 @@ const Swap = () => {
       <div className="absolute inset-0 opacity-40 bg-gradient-to-b from-black to-blue-purple"></div>
       <Header activeTab={activeTab} setTab={setActiveTab} />
       <div
-        className={`w-[360px] rounded-[8px] relative z-10 md:w-[480px] md:mt-20 ${
+        className={`w-[360px] rounded-[8px] relative z-10 md:w-[648px] md:mt-20 ${
           activeTab === "CREATE" && "bg-erie-black p-8 w-[320px] md:w-[420px]"
         }`}
       >

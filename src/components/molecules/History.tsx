@@ -8,7 +8,10 @@ const History = () => {
 
   return (
     <div className="w-full">
-      <MySwapTableTab selected={selectedMenu} setSelected={setSelectedMenu} />
+      <div className="md:flex md:flex-row md:justify-center">
+        <MySwapTableTab selected={selectedMenu} setSelected={setSelectedMenu} />
+      </div>
+
       <TransactionTable type={selectedMenu} />
     </div>
   );
