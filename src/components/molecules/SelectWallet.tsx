@@ -23,9 +23,9 @@ const SelectWallet = () => {
     },
   ];
   return (
-    <div className="w-[319px] h-[481px] bg-erie-black bg-opacity-98 pt-[53px] pb-[42px] px-[32px] rounded-[10px] relative">
+    <div className="w-[319px] md:w-[222px] md:h-[314px] h-[481px] bg-erie-black bg-opacity-98 pt-[53px] md:pt-[24px] md:pb-[24px] pb-[42px] px-[32px] md:px-[23px] rounded-[10px] relative">
       <div className="absolute top-[19px] right-[19px]">x</div>
-      <div className="text-[20px] text-white mb-[36px] font-medium">
+      <div className="text-[20px] md:text-[16px] text-white mb-[36px] md:mb-[20px] font-medium">
         Select a Wallet
       </div>
       {listWallet.map((wallet) => {
