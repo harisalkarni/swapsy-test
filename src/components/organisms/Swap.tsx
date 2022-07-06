@@ -7,7 +7,8 @@ import History from "components/molecules/History";
 
 const Swap = () => {
   const [activeTab, setActiveTab] = useState<TabType>("CREATE");
-  const [showModalType, setShowModalType] = useState<ModalType>("SelectWallet");
+  const [showModalType, setShowModalType] =
+    useState<ModalType>("ConnectWallet");
   return (
     <div className="min-h-screen min-w-screen flex flex-col items-center justify-start pt-[96px] md:pt-0 overflow-x-hidden bg-black">
       <div className="absolute inset-0 opacity-40 bg-gradient-to-b from-black to-blue-purple"></div>

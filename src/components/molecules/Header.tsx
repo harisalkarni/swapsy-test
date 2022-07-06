@@ -4,6 +4,7 @@ import Logo from "assets/logo.png";
 import Wallet from "assets/wallet.png";
 import Tabs from "components/atoms/Tabs";
 import SelectWallet from "components/molecules/SelectWallet";
+import ConnectWallet from "components/molecules/ConnectWallet";
 interface Props {
   activeTab: TabType;
   setTab: Dispatch<React.SetStateAction<TabType>>;
@@ -14,7 +15,7 @@ interface Props {
 function Header({ activeTab, setTab, modalType, setModalType }: Props) {
   return (
     <>
-      <div className="flex flex-row justify-between w-full px-[30px] md:px-14 h-[36px] items-center relative z-10 md:py-10 relative">
+      <div className="flex flex-row justify-between w-full px-[30px] md:px-[40px] h-[36px] items-center relative z-10 md:py-10">
         <img
           src={Logo}
           alt="swapsi logo"
@@ -39,7 +40,7 @@ function Header({ activeTab, setTab, modalType, setModalType }: Props) {
           {modalType === "SelectWallet" ? (
             <SelectWallet />
           ) : modalType === "ConnectWallet" ? (
-            <div>kontole</div>
+            <ConnectWallet />
           ) : (
             <div></div>
           )}

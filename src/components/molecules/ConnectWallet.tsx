@@ -43,10 +43,10 @@ const ConnectWallet = () => {
     }
   };
   return (
-    <div className="w-[319px] h-[481px] bg-erie-black bg-opacity-98 pt-[63px] pb-[42px] px-[38px] rounded-[10px] relative">
+    <div className="w-[319px] md:w-[222px] md:h-[352px] h-[481px] bg-erie-black bg-opacity-98 pt-[63px] md:pt-[24px] pb-[42px] px-[38px] md:px-[20px] rounded-[10px] relative">
       <div className="absolute top-[19px] right-[19px]">x</div>
       <div>
-        <div className="text-[10px] mb-[41px] flex flex-row justify-between items-center">
+        <div className="text-[10px] mb-[41px] md:mb-[39px] flex flex-row justify-between items-center">
           <div>
             <div className="text-tea-green">Connected Wallet</div>
             <div className="text-white">0xb319ac09505b1f04c1bf216…</div>
@@ -59,19 +59,23 @@ const ConnectWallet = () => {
 
       {amountList.map((list) => {
         return (
-          <div className="flex flex-row justify-between items-center mb-[16px]">
+          <div className="flex flex-row justify-between items-center mb-[16px] md:mb-[9px]">
             <div className="flex flex-1 items-center">
-              <div className="w-[30px] h-[30px] mr-[12px]">
+              <div className="w-[30px] h-[30px] md:w-[25px] md:h-[25px] mr-[12px]">
                 {iconRender(list.name)}
               </div>
-              <div className="text-[12px] text-white">{list.name}</div>
+              <div className="text-[12px] text-white md:text-[9px]">
+                {list.name}
+              </div>
             </div>
-            <div className="text-white text-[12px]">{list.amount}</div>
+            <div className="text-white text-[12px] opacity-100 md:opacity-50">
+              {list.amount}
+            </div>
           </div>
         );
       })}
 
-      <div className="absolute bottom-[42px] left-0 right-0 flex flex-1 justify-center">
+      <div className="absolute bottom-[42px] md:bottom-[32px] left-0 right-0 flex flex-1 justify-center">
         <button className=" w-[136px] text-[11px] text-white h-[34px] border border-tea-green rounded-full">
           Disconnect
         </button>
