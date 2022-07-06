@@ -29,8 +29,8 @@ function TransactionTable({ type }: Props) {
   };
   return (
     <div className="md:mt-[55px]">
-      <div className="text-white flex flex-row px-[9px] text-[10px] md:text-xs mb-[22px] mt-[29px] justify-between">
-        <div className="w-1/5 md:w-1/3">Swap</div>
+      <div className="text-white flex flex-row px-[9px] md:px-4  text-[10px] md:text-xs mb-[22px] mt-[29px] justify-between">
+        <div className="w-1/5 md:w-1/1">Swap</div>
         <div className="w-1/3 md:w-1/3">From</div>
         <div className="w-1/3">To</div>
         {!isCancelled && <div className="w-1/6"></div>}
@@ -41,10 +41,10 @@ function TransactionTable({ type }: Props) {
             return (
               <div
                 key={index}
-                className="w-full mb-[8px] bg-erie-black px-[9px] md:px-4 py-[10px] md:py-[10px] rounded-[5px] font-medium"
+                className="w-full  mb-[8px] bg-erie-black px-[9px] md:px-4 py-[10px] md:py-[10px] rounded-[5px] font-medium"
               >
                 <div className="flex flex-row justify-between text-white items-center">
-                  <div className="w-1/5 md:w-1/3">
+                  <div className="w-1/5 md:w-1/1">
                     <div className="text-[10px] md:text-xs text-tea-green">
                       {id}
                     </div>
@@ -91,7 +91,7 @@ function TransactionTable({ type }: Props) {
                   {!isCancelled && (
                     <div className="w-1/6 md:flex md:flex-row md:justify-end">
                       <button
-                        className={`text-[7px] font-semibold md:text-[10px] px-[9px] md:px-[12px] md:py-[8px] py-[6px] rounded-full ${
+                        className={`text-[7px] font-semibold md:text-[10px] w-[53px] h-[20px] md:w-[60px] md:h-[22px] rounded-full ${
                           isCompleted
                             ? " border border-tea-green text-white"
                             : "bg-tea-green text-black"

@@ -9,13 +9,13 @@ interface Props {
 }
 const MySwapTableTab = ({ selected, setSelected }: Props) => {
   return (
-    <div className="text-white flex flex-row text-[12px] md:text-[14px] cursor-pointer">
+    <div className="text-white flex flex-row text-[12px] cursor-pointer">
       {Menus.map((menu, index) => {
         return (
           <div
             key={index}
             onClick={() => setSelected(menu as MenuType)}
-            className={`py-[6px] px-[12px]  rounded-full md:mr-[24px] ${
+            className={`rounded-full mr-[18px] px-[12px] py-[6px]   flex flex-row items-center justify-center ${
               selected === menu ? "bg-ocean-blue" : "bg-transparent"
             }`}
           >
