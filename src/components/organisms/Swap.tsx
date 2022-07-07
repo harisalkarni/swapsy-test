@@ -7,6 +7,7 @@ import History from "components/molecules/History";
 import SelectWallet from "components/molecules/SelectWallet";
 import ConnectWallet from "components/molecules/ConnectWallet";
 import DepositModal from "components/atoms/DepositModal";
+import SwapCreated from "components/atoms/SwapCreated";
 
 const Swap = () => {
   const [activeTab, setActiveTab] = useState<TabType>("CREATE");
@@ -19,10 +20,16 @@ const Swap = () => {
         return <SelectWallet onSelectWallet={onSelectWallet} />;
 
       case "ConnectWallet":
-        return <ConnectWallet />;
+        return <ConnectWallet onDisconnect={setShowModalType} />;
 
       case "DepositETH":
-        return <DepositModal />;
+        return <DepositModal onCancel={setShowModalType} />;
+
+      case "SwapCreated":
+        return <SwapCreated onCancel={setShowModalType} />;
+
+      case "MyWallet":
+        return <ConnectWallet onDisconnect={setShowModalType} />;
     }
   };
 
@@ -42,7 +49,11 @@ const Swap = () => {
   return (
     <div className="min-h-screen min-w-screen flex flex-col items-center justify-start pt-[96px] md:pt-0 overflow-x-hidden bg-black">
       <div className="absolute inset-0 opacity-40 bg-gradient-to-b from-black to-blue-purple"></div>
-      <Header activeTab={activeTab} setTab={setActiveTab} />
+      <Header
+        activeTab={activeTab}
+        setTab={setActiveTab}
+        onConnect={setShowModalType}
+      />
       <div className="absolute">{renderModalType() as any}</div>
       <div
         className={`rounded-[8px] relative z-5  md:mt-20 w-full ${

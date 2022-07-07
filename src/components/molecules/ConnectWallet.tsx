@@ -3,8 +3,14 @@ import UsdcIcon from "assets/coin-usdc.png";
 import UsdtIcon from "assets/coin-usdt.png";
 import DaiIcon from "assets/coin-dai.png";
 import { FiCopy } from "react-icons/fi";
+import React, { Dispatch } from "react";
+import { ModalType } from "constants/types";
 
-const ConnectWallet = () => {
+interface ConnectWalletProps {
+  onDisconnect: Dispatch<React.SetStateAction<ModalType>>;
+}
+
+const ConnectWallet = ({ onDisconnect }: ConnectWalletProps) => {
   const amountList = [
     {
       name: "ETH",
@@ -43,7 +49,7 @@ const ConnectWallet = () => {
     }
   };
   return (
-    <div className="w-[319px] md:w-[222px] md:h-[352px] h-[481px] bg-erie-black bg-opacity-98 pt-[63px] md:pt-[24px] pb-[42px] px-[38px] md:px-[20px] rounded-[10px] relative">
+    <div className="z-20 w-[319px] md:w-[222px] md:h-[352px] h-[481px] bg-erie-black bg-opacity-98 pt-[63px] md:pt-[24px] pb-[42px] px-[38px] md:px-[20px] rounded-[10px] relative">
       <div className="absolute top-[19px] right-[19px]">x</div>
       <div>
         <div className="text-[10px] mb-[41px] md:mb-[39px] flex flex-row justify-between items-center">
@@ -76,7 +82,10 @@ const ConnectWallet = () => {
       })}
 
       <div className="absolute bottom-[42px] md:bottom-[32px] left-0 right-0 flex flex-1 justify-center">
-        <button className=" w-[136px] text-[11px] text-white h-[34px] border border-tea-green rounded-full">
+        <button
+          className=" w-[136px] text-[11px] text-white h-[34px] border border-tea-green rounded-full"
+          onClick={() => onDisconnect("NULL")}
+        >
           Disconnect
         </button>
       </div>
