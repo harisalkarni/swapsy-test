@@ -2,7 +2,7 @@ import { IoMdClose } from "react-icons/io";
 
 const DepositModal = () => {
   return (
-    <div className="w-[294px] h-[485px] bg-erie-black rounded-[5px]  justify-center relative text-center flex flex-col items-center">
+    <div className="w-[294px] h-[485px] bg-erie-black rounded-[5px]  justify-center relative text-center flex flex-col items-center z-20">
       <div className="absolute top-[18px] right-[18px]">
         <IoMdClose size={20} color="#707070" />
       </div>

@@ -2,6 +2,9 @@
   "name": "swapsy-frontend",
   "version": "0.1.0",
   "private": true,
+  "resolutions": {
+    "@types/react": "^18.0.12"
+  },
   "dependencies": {
     "@headlessui/react": "^1.6.4",
     "@heroicons/react": "^1.0.6",
