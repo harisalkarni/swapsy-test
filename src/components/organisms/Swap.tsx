@@ -42,8 +42,39 @@ const Swap = () => {
             onClose={setShowModalType}
           />
         );
+
       case "CancelingSwap":
         return <CancelingSwap onClose={setShowModalType} />;
+
+      case "CompletedModal":
+        return (
+          <SwapLink
+            text="Completed"
+            button={true}
+            onCancel={setShowModalType}
+            onClose={setShowModalType}
+          />
+        );
+
+      case "CanceledModal":
+        return (
+          <SwapLink
+            text="Canceled"
+            button={true}
+            onCancel={setShowModalType}
+            onClose={setShowModalType}
+          />
+        );
+
+      case "WithdrawModal":
+        return (
+          <SwapLink
+            text="Expired"
+            button={true}
+            onCancel={setShowModalType}
+            onClose={setShowModalType}
+          />
+        );
     }
   };
 

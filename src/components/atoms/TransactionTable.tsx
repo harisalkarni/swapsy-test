@@ -28,6 +28,26 @@ function TransactionTable({ type, getDetailSwap }: Props) {
         return "Withdraw";
     }
   };
+
+  const displayModal = () => {
+    switch (type) {
+      case "Open":
+        getDetailSwap("CancelingSwap");
+        break;
+      case "Completed":
+        getDetailSwap("CompletedModal");
+        break;
+      case "Cancelled":
+        getDetailSwap("CanceledModal");
+        break;
+      case "Expired":
+        getDetailSwap("WithdrawModal");
+        break;
+
+      default:
+        break;
+    }
+  };
   return (
     <div className="md:mt-[55px]">
       <div className="text-white flex flex-row px-[9px] md:px-4  text-[10px] md:text-xs mb-[22px] mt-[29px] justify-between">
@@ -95,6 +115,7 @@ function TransactionTable({ type, getDetailSwap }: Props) {
                   {!isCancelled && (
                     <div className="w-1/6 md:flex md:flex-row md:justify-end">
                       <button
+                        onClick={() => displayModal()}
                         className={`text-[7px] font-semibold md:text-[10px] w-[53px] h-[20px] md:w-[60px] md:h-[22px] rounded-full ${
                           isCompleted
                             ? " border border-tea-green text-white"
