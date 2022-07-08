@@ -8,6 +8,8 @@ import SelectWallet from "components/molecules/SelectWallet";
 import ConnectWallet from "components/molecules/ConnectWallet";
 import DepositModal from "components/atoms/DepositModal";
 import SwapCreated from "components/atoms/SwapCreated";
+import SwapLink from "components/molecules/SwapLink";
+import CancelingSwap from "components/atoms/CancelingSwap";
 
 const Swap = () => {
   const [activeTab, setActiveTab] = useState<TabType>("CREATE");
@@ -30,6 +32,18 @@ const Swap = () => {
 
       case "MyWallet":
         return <ConnectWallet onDisconnect={setShowModalType} />;
+
+      case "DetailSwap":
+        return (
+          <SwapLink
+            text="Hello World"
+            button={true}
+            onCancel={setShowModalType}
+            onClose={setShowModalType}
+          />
+        );
+      case "CancelingSwap":
+        return <CancelingSwap onClose={setShowModalType} />;
     }
   };
 
@@ -63,7 +77,7 @@ const Swap = () => {
         {activeTab === "CREATE" ? (
           <TokenSwap actionConnect={onActionConnect} address={selectedWallet} />
         ) : (
-          <History />
+          <History getDetailSwap={setShowModalType} />
         )}
       </div>
     </div>

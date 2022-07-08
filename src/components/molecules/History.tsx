@@ -1,9 +1,13 @@
 import MySwapTableTab from "components/atoms/MySwapTableTab";
-import { useState } from "react";
-import { MenuType } from "constants/types";
+import React, { useState, Dispatch } from "react";
+import { MenuType, ModalType } from "constants/types";
 import TransactionTable from "components/atoms/TransactionTable";
 
-const History = () => {
+interface HistoryProps {
+  getDetailSwap: Dispatch<React.SetStateAction<ModalType>>;
+}
+
+const History = ({ getDetailSwap }: HistoryProps) => {
   const [selectedMenu, setSelectedMenu] = useState<MenuType>("Open");
 
   return (
@@ -12,7 +16,7 @@ const History = () => {
         <MySwapTableTab selected={selectedMenu} setSelected={setSelectedMenu} />
       </div>
 
-      <TransactionTable type={selectedMenu} />
+      <TransactionTable type={selectedMenu} getDetailSwap={getDetailSwap} />
     </div>
   );
 };

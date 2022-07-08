@@ -2,12 +2,16 @@ import SwapConnect from "components/atoms/SwapConnect";
 import BottomInfo from "components/atoms/BottomInfo";
 import { FiCopy } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
+import React, { Dispatch } from "react";
+import { ModalType } from "constants/types";
 
 interface SwapLinkprops {
   text: string;
   button: boolean;
+  onCancel: Dispatch<React.SetStateAction<ModalType>>;
+  onClose: Dispatch<React.SetStateAction<ModalType>>;
 }
-const SwapLink = ({ text, button }: SwapLinkprops) => {
+const SwapLink = ({ text, button, onCancel, onClose }: SwapLinkprops) => {
   const ExampleSwap = {
     tokenFrom: "ETH",
     amountFrom: 2323,
@@ -17,11 +21,14 @@ const SwapLink = ({ text, button }: SwapLinkprops) => {
 
   return (
     <div
-      className={`w-[294px] h-[485px]  rounded-[5px]  px-[33px] relative bg-erie-black  ${
+      className={`z-20 w-[294px] h-[485px]  rounded-[5px]  px-[33px] relative bg-erie-black  ${
         button ? "pt-[33px]" : "pt-[69px]"
       }`}
     >
-      <div className="absolute top-[18px] right-[18px]">
+      <div
+        className="absolute top-[18px] right-[18px]"
+        onClick={() => onClose("NULL")}
+      >
         <IoMdClose size={20} color="#707070" />
       </div>
       <div className={`flex flex-col items-center mb-[24px] `}>
@@ -49,7 +56,10 @@ const SwapLink = ({ text, button }: SwapLinkprops) => {
 
       {button && (
         <div className="absolute bottom-[42px] flex flex-row justify-center w-full left-0 right-0">
-          <button className="bg-ocean-blue text-white text-[11px] py-[9px] px-[48px] rounded-full">
+          <button
+            className="bg-ocean-blue text-white text-[11px] py-[9px] px-[48px] rounded-full"
+            onClick={() => onCancel("CancelingSwap")}
+          >
             Cancel
           </button>
         </div>

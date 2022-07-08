@@ -1,13 +1,14 @@
 import { MySwapDummy } from "dummy/dummy";
-import { MenuType } from "constants/types";
+import { MenuType, ModalType } from "constants/types";
 import Coins from "constants/coins";
 import numeral from "numeral";
-
+import React, { Dispatch } from "react";
 interface Props {
   type: MenuType;
+  getDetailSwap: Dispatch<React.SetStateAction<ModalType>>;
 }
 
-function TransactionTable({ type }: Props) {
+function TransactionTable({ type, getDetailSwap }: Props) {
   const isOpen = type === "Open";
   const isCancelled = type === "Cancelled";
   const isCompleted = type === "Completed";
@@ -44,7 +45,10 @@ function TransactionTable({ type }: Props) {
                 className="w-full  mb-[8px] bg-erie-black px-[9px] md:px-4 py-[10px] md:py-[10px] rounded-[5px] font-medium"
               >
                 <div className="flex flex-row justify-between text-white items-center">
-                  <div className="w-1/5 md:w-1/1">
+                  <div
+                    className="w-1/5 md:w-1/1"
+                    onClick={() => getDetailSwap("DetailSwap")}
+                  >
                     <div className="text-[10px] md:text-xs text-tea-green">
                       {id}
                     </div>
