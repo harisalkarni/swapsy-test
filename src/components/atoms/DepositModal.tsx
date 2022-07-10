@@ -14,7 +14,7 @@ const DepositModal = ({ title, body, onCancel, onSuccess, type }: Props) => {
   useEffect(() => {
     let timeout = setTimeout(() => {
       onSuccess();
-    }, 1000);
+    }, 500);
     return () => clearTimeout(timeout);
   }, []);
 

@@ -6,7 +6,7 @@ const CancelingSwap = () => {
   useEffect(() => {
     let timeout = setTimeout(() => {
       store.updateModal("CancelingSwapSuccess");
-    }, 1000);
+    }, 500);
     return () => clearTimeout(timeout);
   }, []);
   return (

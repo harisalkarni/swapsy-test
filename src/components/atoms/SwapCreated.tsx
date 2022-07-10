@@ -18,7 +18,7 @@ const SwapCreated = () => {
       timeout = setTimeout(() => {
         setCopiedData(false);
         store.updateModal("SwapConfirm");
-      }, 1000);
+      }, 500);
     }
     return () => clearTimeout(timeout);
   }, [copiedData]);
