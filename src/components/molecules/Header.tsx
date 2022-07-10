@@ -13,7 +13,7 @@ function Header({ activeTab, setTab }: Props) {
   const store = useStore();
   return (
     <>
-      <div className="flex flex-row justify-between w-full px-[30px] md:px-[40px] h-[36px] items-center relative z-10 md:py-10">
+      <div className="flex flex-row justify-between w-full px-[30px] md:px-[40px] h-[36px] items-center relative z-0 md:py-10">
         <img
           src={Logo}
           alt="swapsi logo"
