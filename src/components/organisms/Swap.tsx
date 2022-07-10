@@ -11,9 +11,16 @@ import SwapCreated from "components/atoms/SwapCreated";
 import SwapLink from "components/molecules/SwapLink";
 import CancelingSwap from "components/atoms/CancelingSwap";
 import useStore from "utils/store";
+import SwapScreen from "components/molecules/SwapScreen";
+import {
+  DepositText,
+  ProcessingText,
+  ApprovingText,
+  TransactionSuccess,
+} from "dummy/dummy";
+
 const Swap = () => {
   const [activeTab, setActiveTab] = useState<TabType>("CREATE");
-  const [selectedWallet, setSelectedWallet] = useState<String>("");
   const store = useStore();
 
   const renderModalType = () => {
@@ -25,7 +32,17 @@ const Swap = () => {
         return <ConnectWallet />;
 
       case "DepositETH":
-        return <DepositModal />;
+        return (
+          <DepositModal
+            title={DepositText.title}
+            body={DepositText.body}
+            onCancel={() => store.updateModal("NULL")}
+            onSuccess={() => {
+              store.updateModal("SwapCreated");
+            }}
+            type="loading"
+          />
+        );
 
       case "SwapCreated":
         return <SwapCreated />;
@@ -47,11 +64,53 @@ const Swap = () => {
 
       case "WithdrawModal":
         return <SwapLink text="Expired" button={true} />;
+      case "SwapConfirm":
+        return <SwapScreen status="default" />;
+      case "ApprovingToken":
+        return (
+          <DepositModal
+            title={ApprovingText.title}
+            body={ApprovingText.body}
+            onCancel={() => store.updateModal("NULL")}
+            onSuccess={() => {
+              store.updateModal("SwapConfirm");
+              store.updateTrxStatus(true);
+            }}
+            type="loading"
+          />
+        );
+      case "ProcessingTrx":
+        return (
+          <DepositModal
+            title={ProcessingText.title}
+            body={ProcessingText.body}
+            onCancel={() => store.updateModal("NULL")}
+            onSuccess={() => {
+              store.updateModal("TransactionSuccess");
+              store.updateTrxStatus(true);
+            }}
+            type="loading"
+          />
+        );
+      case "TransactionSuccess":
+        return (
+          <DepositModal
+            title={TransactionSuccess.title}
+            body={TransactionSuccess.body}
+            onCancel={() => store.updateModal("TransactionComplete")}
+            onSuccess={() => {
+              return false;
+            }}
+            type="success"
+          />
+        );
+      case "TransactionComplete":
+        return <SwapScreen status="completed" />;
     }
   };
 
   const onActionConnect = () => {
-    if (selectedWallet === "") {
+    if (store.wallet === "") {
       store.updateModal("SelectWallet");
     } else {
       store.updateModal("DepositETH");
@@ -59,7 +118,7 @@ const Swap = () => {
   };
 
   const onSelectWallet = (a: string) => {
-    setSelectedWallet(a);
+    store.addAddressToWallet(a);
     store.updateModal("NULL");
   };
 
@@ -74,7 +133,7 @@ const Swap = () => {
         }`}
       >
         {activeTab === "CREATE" ? (
-          <TokenSwap actionConnect={onActionConnect} address={selectedWallet} />
+          <TokenSwap actionConnect={onActionConnect} address={store.wallet} />
         ) : (
           <History />
         )}

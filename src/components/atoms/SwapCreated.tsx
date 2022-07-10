@@ -14,7 +14,10 @@ const SwapCreated = () => {
   useEffect(() => {
     let timeout: any;
     if (copiedData) {
-      timeout = setTimeout(() => setCopiedData(false), 2000);
+      timeout = setTimeout(() => {
+        setCopiedData(false);
+        store.updateModal("SwapConfirm");
+      }, 2000);
     }
     return () => clearTimeout(timeout);
   }, [copiedData]);
