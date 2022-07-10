@@ -1,15 +1,11 @@
 import { FiCopy } from "react-icons/fi";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
-import { Dispatch } from "react";
-import { ModalType } from "constants/types";
+import useStore from "utils/store";
 
-interface SwapCreatedProps {
-  onCancel: Dispatch<React.SetStateAction<ModalType>>;
-}
-
-const SwapCreated = ({ onCancel }: SwapCreatedProps) => {
+const SwapCreated = () => {
+  const store = useStore();
   const [textBox, setTextBox] = useState<string>(
     " https://swapsy.io/0x..67e67/94"
   );
@@ -48,7 +44,7 @@ const SwapCreated = ({ onCancel }: SwapCreatedProps) => {
     <div className="w-[281px] h-[481px] bg-ocean-blue rounded-[5px] relative pt-[69px] z-20">
       <div
         className="absolute top-[18px] right-[18px]"
-        onClick={() => onCancel("NULL")}
+        onClick={() => store.updateModal("NULL")}
       >
         <IoMdClose size={20} color="#fff" />
       </div>

@@ -1,16 +1,16 @@
-import { TabType, ModalType } from "constants/types";
+import { TabType } from "constants/types";
 import React, { Dispatch } from "react";
 import Logo from "assets/logo.png";
 import Wallet from "assets/wallet.png";
 import Tabs from "components/atoms/Tabs";
-
+import useStore from "utils/store";
 interface Props {
   activeTab: TabType;
   setTab: Dispatch<React.SetStateAction<TabType>>;
-  onConnect: Dispatch<React.SetStateAction<ModalType>>;
 }
 
-function Header({ activeTab, setTab, onConnect }: Props) {
+function Header({ activeTab, setTab }: Props) {
+  const store = useStore();
   return (
     <>
       <div className="flex flex-row justify-between w-full px-[30px] md:px-[40px] h-[36px] items-center relative z-10 md:py-10">
@@ -26,7 +26,7 @@ function Header({ activeTab, setTab, onConnect }: Props) {
         />
         <button
           className="flex flex-row items-center relative z-10 md:bg-ocean-blue justify-center md:h-[40px] md:w-[141px] text-center md:rounded-full"
-          onClick={() => onConnect("MyWallet")}
+          onClick={() => store.updateModal("MyWallet")}
         >
           <img
             alt="wallet"

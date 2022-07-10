@@ -3,14 +3,9 @@ import UsdcIcon from "assets/coin-usdc.png";
 import UsdtIcon from "assets/coin-usdt.png";
 import DaiIcon from "assets/coin-dai.png";
 import { FiCopy } from "react-icons/fi";
-import React, { Dispatch } from "react";
-import { ModalType } from "constants/types";
-
-interface ConnectWalletProps {
-  onDisconnect: Dispatch<React.SetStateAction<ModalType>>;
-}
-
-const ConnectWallet = ({ onDisconnect }: ConnectWalletProps) => {
+import useStore from "utils/store";
+const ConnectWallet = () => {
+  const store = useStore();
   const amountList = [
     {
       name: "ETH",
@@ -84,7 +79,7 @@ const ConnectWallet = ({ onDisconnect }: ConnectWalletProps) => {
       <div className="absolute bottom-[42px] md:bottom-[32px] left-0 right-0 flex flex-1 justify-center">
         <button
           className=" w-[136px] text-[11px] text-white h-[34px] border border-tea-green rounded-full"
-          onClick={() => onDisconnect("NULL")}
+          onClick={() => store.updateModal("NULL")}
         >
           Disconnect
         </button>

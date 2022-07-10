@@ -2,16 +2,13 @@ import SwapConnect from "components/atoms/SwapConnect";
 import BottomInfo from "components/atoms/BottomInfo";
 import { FiCopy } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
-import React, { Dispatch } from "react";
-import { ModalType } from "constants/types";
-
+import useStore from "utils/store";
 interface SwapLinkprops {
   text: string;
   button: boolean;
-  onCancel: Dispatch<React.SetStateAction<ModalType>>;
-  onClose: Dispatch<React.SetStateAction<ModalType>>;
 }
-const SwapLink = ({ text, button, onCancel, onClose }: SwapLinkprops) => {
+const SwapLink = ({ text, button }: SwapLinkprops) => {
+  const store = useStore();
   const ExampleSwap = {
     tokenFrom: "ETH",
     amountFrom: 2323,
@@ -27,7 +24,7 @@ const SwapLink = ({ text, button, onCancel, onClose }: SwapLinkprops) => {
     >
       <div
         className="absolute top-[18px] right-[18px]"
-        onClick={() => onClose("NULL")}
+        onClick={() => store.updateModal("NULL")}
       >
         <IoMdClose size={20} color="#707070" />
       </div>
@@ -58,7 +55,7 @@ const SwapLink = ({ text, button, onCancel, onClose }: SwapLinkprops) => {
         <div className="absolute bottom-[42px] flex flex-row justify-center w-full left-0 right-0">
           <button
             className="bg-ocean-blue text-white text-[11px] py-[9px] px-[48px] rounded-full"
-            onClick={() => onCancel("CancelingSwap")}
+            onClick={() => store.updateModal("CancelingSwap")}
           >
             Cancel
           </button>

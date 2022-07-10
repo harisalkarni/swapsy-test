@@ -1,15 +1,14 @@
 import Duration from "./Duration";
 import ArrowIcon from "assets/arrow-icon.svg";
-import { useState, Dispatch } from "react";
+import { useState } from "react";
 import Coins from "constants/coins";
 import { CoinType } from "constants/types";
 import Durations from "constants/durations";
 import BalanceLabel from "./BalanceLabel";
 import CoinOptions from "./CoinOptions";
 import FeeLabel from "./FeeLabel";
-import { ModalType } from "constants/types";
 import AmountLabel from "./AmountLabel";
-
+import useStore from "utils/store";
 interface TokenSwapProps {
   address: String;
   actionConnect: () => void;
@@ -21,6 +20,7 @@ const TokenSwap = ({ actionConnect, address }: TokenSwapProps) => {
   const [duration, setDuration] = useState<string>(Durations[0]);
   const [total, setTotal] = useState("-");
 
+  const store = useStore();
   const reverse = () => {
     const temp = from;
     setFrom(to);
