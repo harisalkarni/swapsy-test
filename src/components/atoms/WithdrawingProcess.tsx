@@ -1,9 +1,13 @@
 import { IoMdClose } from "react-icons/io";
-
+import useStore from "utils/store";
 const WithdrawingFunds = () => {
+  const store = useStore();
   return (
-    <div className="w-[294px] h-[485px]  rounded-[5px] pt-[41px] px-[33px] relative bg-erie-black flex flex-col items-center">
-      <div className="absolute top-[18px] right-[18px]">
+    <div className="z-20 w-[294px] h-[485px]  rounded-[5px] pt-[41px] px-[33px] relative bg-erie-black flex flex-col items-center">
+      <div
+        className="absolute top-[18px] right-[18px]"
+        onClick={() => store.updateModal("NULL")}
+      >
         <IoMdClose size={20} color="#707070" />
       </div>
       <div className="text-[20px] text-tea-green">Swap #9481</div>

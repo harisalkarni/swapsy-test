@@ -1,7 +1,14 @@
 import { IoMdClose } from "react-icons/io";
 import useStore from "utils/store";
+import { useEffect } from "react";
 const CancelingSwap = () => {
   const store = useStore();
+  useEffect(() => {
+    let timeout = setTimeout(() => {
+      store.updateModal("CancelingSwapSuccess");
+    }, 2000);
+    return () => clearTimeout(timeout);
+  }, []);
   return (
     <div className="z-20 w-[294px] h-[485px]  rounded-[5px] pt-[88px] px-[33px] relative bg-erie-black flex flex-col items-center">
       <div

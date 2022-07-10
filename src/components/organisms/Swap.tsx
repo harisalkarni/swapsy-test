@@ -12,6 +12,8 @@ import SwapLink from "components/molecules/SwapLink";
 import CancelingSwap from "components/atoms/CancelingSwap";
 import useStore from "utils/store";
 import SwapScreen from "components/molecules/SwapScreen";
+import SwapCancelled from "components/atoms/SwapCancelled";
+import WithdrawingFunds from "components/atoms/WithdrawingProcess";
 import {
   DepositText,
   ProcessingText,
@@ -27,10 +29,8 @@ const Swap = () => {
     switch (store.modal) {
       case "SelectWallet":
         return <SelectWallet onSelectWallet={onSelectWallet} />;
-
       case "ConnectWallet":
         return <ConnectWallet />;
-
       case "DepositETH":
         return (
           <DepositModal
@@ -43,27 +43,50 @@ const Swap = () => {
             type="loading"
           />
         );
-
       case "SwapCreated":
         return <SwapCreated />;
-
       case "MyWallet":
         return <ConnectWallet />;
-
       case "DetailSwap":
-        return <SwapLink text="Hello World" button={true} />;
-
+        return (
+          <SwapLink
+            text="Expired"
+            button={true}
+            onCancel={() => store.updateModal("NULL")}
+          />
+        );
       case "CancelingSwap":
         return <CancelingSwap />;
-
+      case "CancelingSwapSuccess":
+        return (
+          <SwapCancelled text="Swap Cancelled" amount={999999} swap="#94812" />
+        );
       case "CompletedModal":
-        return <SwapLink text="Completed" button={true} />;
-
+        return (
+          <SwapLink
+            text="Completed"
+            button={true}
+            onCancel={() => store.updateModal("CancelingSwap")}
+          />
+        );
       case "CanceledModal":
-        return <SwapLink text="Canceled" button={true} />;
-
+        return (
+          <SwapLink
+            text="Canceled"
+            button={true}
+            onCancel={() => store.updateModal("CancelingSwap")}
+          />
+        );
       case "WithdrawModal":
-        return <SwapLink text="Expired" button={true} />;
+        return (
+          <SwapLink
+            text="Expired"
+            button={true}
+            onCancel={() => store.updateModal("WithdrawProcess")}
+          />
+        );
+      case "WithdrawProcess":
+        return <WithdrawingFunds />;
       case "SwapConfirm":
         return <SwapScreen status="default" />;
       case "ApprovingToken":

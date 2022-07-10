@@ -6,8 +6,9 @@ import useStore from "utils/store";
 interface SwapLinkprops {
   text: string;
   button: boolean;
+  onCancel: () => void;
 }
-const SwapLink = ({ text, button }: SwapLinkprops) => {
+const SwapLink = ({ text, button, onCancel }: SwapLinkprops) => {
   const store = useStore();
   const ExampleSwap = {
     tokenFrom: "ETH",
@@ -55,7 +56,7 @@ const SwapLink = ({ text, button }: SwapLinkprops) => {
         <div className="absolute bottom-[42px] flex flex-row justify-center w-full left-0 right-0">
           <button
             className="bg-ocean-blue text-white text-[11px] py-[9px] px-[48px] rounded-full"
-            onClick={() => store.updateModal("CancelingSwap")}
+            onClick={() => onCancel()}
           >
             Cancel
           </button>
