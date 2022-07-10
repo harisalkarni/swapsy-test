@@ -1,12 +1,14 @@
 import { IoMdClose } from "react-icons/io";
 import { useEffect } from "react";
-
+import { FaCheck } from "react-icons/fa";
+import { ImCross } from "react-icons/im";
+import { ModalAlert } from "constants/types";
 interface Props {
   title: string;
   body: string;
   onCancel: () => void;
   onSuccess: () => void;
-  type: "loading" | "success";
+  type: ModalAlert;
 }
 const DepositModal = ({ title, body, onCancel, onSuccess, type }: Props) => {
   useEffect(() => {
@@ -21,6 +23,18 @@ const DepositModal = ({ title, body, onCancel, onSuccess, type }: Props) => {
       <div className="absolute top-[18px] right-[18px]">
         <IoMdClose size={20} color="#707070" />
       </div>
+      {type === "success" && (
+        <div className="w-[112px]  text-[20px] font-bold flex flex-row justify-center ">
+          <FaCheck color="#DBF9CD" size={67} />
+        </div>
+      )}
+
+      {type === "failed" && (
+        <div className="w-[112px]  text-[20px] font-bold flex flex-row justify-center ">
+          <ImCross color="#E95B71" size={67} />
+        </div>
+      )}
+
       <div className="w-[112px] text-center text-[20px] font-bold text-white ">
         {title}
       </div>

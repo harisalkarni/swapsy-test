@@ -2,6 +2,7 @@ import { FiCopy } from "react-icons/fi";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
+import { FaCheck } from "react-icons/fa";
 import useStore from "utils/store";
 
 const SwapCreated = () => {
@@ -52,7 +53,9 @@ const SwapCreated = () => {
         <IoMdClose size={20} color="#fff" />
       </div>
       <div className="flex flex-col items-center">
-        <div className="w-[67px] h-[50px] mb-[24px]">x</div>
+        <div className="w-[67px] h-[50px] mb-[24px]">
+          <FaCheck color="#DBF9CD" size={67} />
+        </div>
         <div className="text-[20px] text-white w-[83px] text-center font-bold">
           Swap Created
         </div>
