@@ -7,9 +7,10 @@ import useStore from "utils/store";
 interface Props {
   activeTab: TabType;
   setTab: Dispatch<React.SetStateAction<TabType>>;
+  onConnect: () => void;
 }
 
-function Header({ activeTab, setTab }: Props) {
+function Header({ activeTab, setTab, onConnect }: Props) {
   const store = useStore();
   return (
     <>
@@ -26,7 +27,7 @@ function Header({ activeTab, setTab }: Props) {
         />
         <button
           className="flex flex-row items-center relative z-10 md:bg-ocean-blue justify-center md:h-[40px] md:w-[141px] text-center md:rounded-full"
-          onClick={() => store.updateModal("MyWallet")}
+          onClick={() => onConnect()}
         >
           <img
             alt="wallet"
