@@ -48,9 +48,7 @@ const ConnectWallet = ({ isMobile }: ConnectWalletProps) => {
   };
   return (
     <div
-      className={`z-20 w-[319px] md:w-[222px] md:h-[352px] h-[481px]  bg-opacity-98 pt-[63px] md:pt-[24px] pb-[42px] px-[38px] md:px-[20px] rounded-[10px] relative ${
-        isMobile ? "bg-erie-black" : "bg-ocean-blue"
-      }`}
+      className={`z-20 w-[319px] md:w-[222px] md:h-[352px] h-[481px]  bg-opacity-98 pt-[63px] md:pt-[24px] pb-[42px] px-[38px] md:px-[20px] rounded-[10px] relative bg-erie-black md:bg-ocean-blue`}
     >
       {/* <div className="absolute top-[5px] right-[19px]">x</div> */}
       <div>
@@ -60,7 +58,7 @@ const ConnectWallet = ({ isMobile }: ConnectWalletProps) => {
             <div className="text-white">0xb319ac09505b1f04c1bf216…</div>
           </div>
           <div>
-            <FiCopy size={20} color={isMobile ? "#413AC8" : "#FFF"} />
+            <FiCopy size={20} className="md:text-white text-ocean-blue" />
           </div>
         </div>
       </div>

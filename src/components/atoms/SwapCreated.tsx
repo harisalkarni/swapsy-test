@@ -7,9 +7,7 @@ import useStore from "utils/store";
 
 const SwapCreated = () => {
   const store = useStore();
-  const [textBox, setTextBox] = useState<string>(
-    " https://swapsy.io/0x..67e67/94"
-  );
+  const textBox = " https://swapsy.io/0x..67e67/94";
   const [copiedData, setCopiedData] = useState<boolean>(false);
 
   useEffect(() => {

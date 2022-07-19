@@ -8,7 +8,7 @@ import BalanceLabel from "./BalanceLabel";
 import CoinOptions from "./CoinOptions";
 import FeeLabel from "./FeeLabel";
 import AmountLabel from "./AmountLabel";
-import useStore from "utils/store";
+
 interface TokenSwapProps {
   address: String;
   actionConnect: () => void;
@@ -18,9 +18,8 @@ const TokenSwap = ({ actionConnect, address }: TokenSwapProps) => {
   const [from, setFrom] = useState<CoinType>(Coins[0]);
   const [to, setTo] = useState<CoinType>(Coins[1]);
   const [duration, setDuration] = useState<string>(Durations[0]);
-  const [total, setTotal] = useState("-");
 
-  const store = useStore();
+  const total = "-";
   const reverse = () => {
     const temp = from;
     setFrom(to);

@@ -1,11 +1,13 @@
 import { IoMdClose } from "react-icons/io";
 import useStore from "utils/store";
 import { FaCheck } from "react-icons/fa";
+
 interface Props {
   text: string;
   swap: string;
   amount: number;
 }
+
 const SwapCancelled = ({ text, swap, amount }: Props) => {
   const store = useStore();
   return (

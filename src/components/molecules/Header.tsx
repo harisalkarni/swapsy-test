@@ -3,7 +3,6 @@ import React, { Dispatch } from "react";
 import Logo from "assets/logo.png";
 import Wallet from "assets/wallet.png";
 import Tabs from "components/atoms/Tabs";
-import useStore from "utils/store";
 interface Props {
   activeTab: TabType;
   setTab: Dispatch<React.SetStateAction<TabType>>;
@@ -11,7 +10,6 @@ interface Props {
 }
 
 function Header({ activeTab, setTab, onConnect }: Props) {
-  const store = useStore();
   return (
     <>
       <div className="flex flex-row justify-between w-full px-[30px] md:px-[40px] h-[36px] items-center relative z-0 md:py-10">

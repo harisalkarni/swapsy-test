@@ -4,7 +4,7 @@ type Store = {
     modal: string,
     wallet:string,
     trxStatus: boolean,
-    updateModal: (a: ModalType) => void,
+    updateModal: (modalType: ModalType) => void,
     addAddressToWallet: (a: string) =>void,
     updateTrxStatus: (a: boolean) => void
 }

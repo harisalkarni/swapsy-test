@@ -1,5 +1,3 @@
-import { Dispatch } from "react";
-
 interface WalletListProps {
   // icon: HTMLImageElement;
   icon: string;
