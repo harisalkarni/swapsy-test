@@ -14,12 +14,6 @@ import SwapScreen from "components/molecules/SwapScreen";
 import SwapCancelled from "components/atoms/SwapCancelled";
 import WithdrawingFunds from "components/atoms/WithdrawingProcess";
 import { isMobile, isBrowser } from "react-device-detect";
-import {
-  DepositText,
-  ProcessingText,
-  ApprovingText,
-  TransactionSuccess,
-} from "dummy/dummy";
 
 const Swap = () => {
   const [activeTab, setActiveTab] = useState<TabType>("CREATE");
@@ -57,8 +51,8 @@ const Swap = () => {
       case "DepositETH":
         return (
           <DepositModal
-            title={DepositText.title}
-            body={DepositText.body}
+            title="Depositing Eth"
+            body="To deposit the funds into the Swap approve the transaction in your wallet, you can cancel anytime and withdraw your funds back to your wallet."
             onCancel={() => store.updateModal("NULL")}
             onSuccess={() => {
               store.updateModal("SwapCreated");
@@ -115,8 +109,8 @@ const Swap = () => {
       case "ApprovingToken":
         return (
           <DepositModal
-            title={ApprovingText.title}
-            body={ApprovingText.body}
+            title="Approving USDC"
+            body="To continue the transaction you need to approve spend USDC from your wallet."
             onCancel={() => store.updateModal("NULL")}
             onSuccess={() => {
               store.updateModal("SwapConfirm");
@@ -128,8 +122,8 @@ const Swap = () => {
       case "ProcessingTrx":
         return (
           <DepositModal
-            title={ProcessingText.title}
-            body={ProcessingText.body}
+            title="Processing Transaction"
+            body="You will receive the order amount Once you accept the transaction from your wallet."
             onCancel={() => store.updateModal("NULL")}
             onSuccess={() => {
               store.updateModal("TransactionSuccess");
@@ -141,8 +135,8 @@ const Swap = () => {
       case "TransactionSuccess":
         return (
           <DepositModal
-            title={TransactionSuccess.title}
-            body={TransactionSuccess.body}
+            title="Transaction Successful"
+            body=""
             onCancel={() => store.updateModal("TransactionComplete")}
             onSuccess={() => {
               return false;
@@ -172,8 +166,8 @@ const Swap = () => {
       case "DepositETH":
         return (
           <DepositModal
-            title={DepositText.title}
-            body={DepositText.body}
+            title="Depositing Eth"
+            body="To deposit the funds into the Swap approve the transaction in your wallet, you can cancel anytime and withdraw your funds back to your wallet."
             onCancel={() => store.updateModal("NULL")}
             onSuccess={() => {
               store.updateModal("SwapCreated");
@@ -229,8 +223,8 @@ const Swap = () => {
       case "ApprovingToken":
         return (
           <DepositModal
-            title={ApprovingText.title}
-            body={ApprovingText.body}
+            title="Approving USDC"
+            body="To continue the transaction you need to approve spend USDC from your wallet."
             onCancel={() => store.updateModal("NULL")}
             onSuccess={() => {
               store.updateModal("SwapConfirm");
@@ -242,8 +236,8 @@ const Swap = () => {
       case "ProcessingTrx":
         return (
           <DepositModal
-            title={ProcessingText.title}
-            body={ProcessingText.body}
+            title="Processing Transaction"
+            body="You will receive the order amount Once you accept the transaction from your wallet."
             onCancel={() => store.updateModal("NULL")}
             onSuccess={() => {
               store.updateModal("TransactionSuccess");
@@ -255,8 +249,8 @@ const Swap = () => {
       case "TransactionSuccess":
         return (
           <DepositModal
-            title={TransactionSuccess.title}
-            body={TransactionSuccess.body}
+            title="Transaction Successful"
+            body=""
             onCancel={() => store.updateModal("TransactionComplete")}
             onSuccess={() => {
               return false;
