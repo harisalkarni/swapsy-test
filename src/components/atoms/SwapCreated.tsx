@@ -4,7 +4,10 @@ import { useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
 import { FaCheck } from "react-icons/fa";
 import useStore from "utils/store";
-
+import TwitterIcon from "assets/twitter.png";
+import DiscordIcon from "assets/discord.png";
+import TeleIcon from "assets/telegram.png";
+import WhatsappIcon from "assets/whatsapp.png";
 const SwapCreated = () => {
   const store = useStore();
   const textBox = " https://swapsy.io/0x..67e67/94";
@@ -24,22 +27,30 @@ const SwapCreated = () => {
     {
       name: "whatsapp",
       link: "#",
-      icon: "-",
+      icon: WhatsappIcon,
+      width: 14,
+      heigh: 14,
     },
     {
       name: "telegram",
       link: "#",
-      icon: "-",
+      icon: TeleIcon,
+      width: 15,
+      heigh: 13,
     },
     {
       name: "twitter",
       link: "#",
-      icon: "-",
+      icon: TwitterIcon,
+      width: 14,
+      heigh: 12,
     },
     {
       name: "discord",
       link: "#",
-      icon: "-",
+      icon: DiscordIcon,
+      width: 14,
+      heigh: 11,
     },
   ];
   return (
@@ -84,7 +95,12 @@ const SwapCreated = () => {
             {socialMedia.map((item) => {
               return (
                 <div className="bg-secondaryblack w-[36px] h-[36px] rounded-[2px] flex flex-row justify-center items-center cursor-pointer">
-                  <FiCopy color="#443CCF" size={18} />
+                  <img
+                    src={item.icon}
+                    alt={item.name}
+                    width={item.width}
+                    height={item.heigh}
+                  />
                 </div>
               );
             })}

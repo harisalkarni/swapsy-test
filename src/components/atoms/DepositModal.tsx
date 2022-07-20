@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { FaCheck } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { ModalAlert } from "constants/types";
+import LoadingIcon from "assets/loader.png";
 interface Props {
   title: string;
   body: string;
@@ -35,7 +36,13 @@ const DepositModal = ({ title, body, onCancel, onSuccess, type }: Props) => {
         </div>
       )}
 
-      <div className="w-[112px] text-center text-[20px] font-bold text-white ">
+      {type === "loading" && (
+        <div className="w-[112px]  text-[20px] font-bold flex flex-row justify-center ">
+          <img src={LoadingIcon} alt="Loading" width={50} height={50} />
+        </div>
+      )}
+
+      <div className="w-[112px] text-center text-[20px] font-bold text-white mt-[25px]">
         {title}
       </div>
       <div className="text-white text-center w-[164px] text-[10px] mt-[25px] opacity-70">
