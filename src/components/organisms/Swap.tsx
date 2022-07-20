@@ -1,5 +1,5 @@
 import TokenSwap from "components/atoms/TokenSwap";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { TabType } from "constants/types";
 import Header from "components/molecules/Header";
 import History from "components/molecules/History";
@@ -14,7 +14,7 @@ import SwapScreen from "components/molecules/SwapScreen";
 import SwapCancelled from "components/atoms/SwapCancelled";
 import WithdrawingFunds from "components/atoms/WithdrawingProcess";
 import { isMobile, isBrowser } from "react-device-detect";
-
+import useOnClickOutside from "utils/useOutsideClick";
 const Swap = () => {
   const [activeTab, setActiveTab] = useState<TabType>("CREATE");
   const [rightSide, setRightSide] = useState<boolean>(false);
@@ -26,6 +26,10 @@ const Swap = () => {
       store.updateModal("DepositETH");
     }
   };
+
+  const ref = useRef<HTMLInputElement>(null);
+
+  useOnClickOutside(ref, () => store.updateModal("NULL"));
 
   const onSelectWallet = (a: string) => {
     store.addAddressToWallet(a);
@@ -148,13 +152,20 @@ const Swap = () => {
         return <SwapScreen status="completed" />;
     }
   };
-
   const renderDekstopRight = () => {
     switch (store.modal) {
       case "MyWallet":
-        return <ConnectWallet isMobile={isMobile} />;
+        return (
+          <div ref={ref}>
+            <ConnectWallet isMobile={isMobile} />;
+          </div>
+        );
       case "SelectWallet":
-        return <SelectWallet onSelectWallet={onSelectWallet} />;
+        return (
+          <div ref={ref}>
+            <SelectWallet onSelectWallet={onSelectWallet} />
+          </div>
+        );
 
       default:
         break;
@@ -288,7 +299,7 @@ const Swap = () => {
         <div
           className={`absolute top-0 bottom-0 left-0 right-0 flex bg-black bg-opacity-80 flex-row justify-center items-center `}
         >
-          {renderModalType() as any}
+          <div ref={ref}>{renderModalType() as any}</div>
         </div>
       )}
 
@@ -296,7 +307,7 @@ const Swap = () => {
         <div
           className={`absolute top-0 bottom-0 left-0 right-0 flex bg-black bg-opacity-80 flex-row justify-center items-center `}
         >
-          {renderDesktopModal() as any}
+          <div ref={ref}>{renderDesktopModal() as any}</div>
         </div>
       )}
 
