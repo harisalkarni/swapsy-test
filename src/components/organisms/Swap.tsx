@@ -47,7 +47,7 @@ const Swap = () => {
       setRightSide(false);
     }
 
-    store.updateModal("SwapCreated");
+    store.updateModal("MyWallet");
   };
 
   const renderModalType = () => {
