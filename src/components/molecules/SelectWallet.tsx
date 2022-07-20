@@ -1,28 +1,33 @@
 import WalletList from "../atoms/WalletList";
 import { IoMdClose } from "react-icons/io";
+import MetamaskIcon from "assets/metamask.png";
+import SafepalIcon from "assets/safepal.png";
+import TrustIcon from "assets/trust.png";
+import TokenpocketIcon from "assets/tokenpocket.png";
+import WalletConnect from "assets/walletconnect.png";
 interface SelectedWalletProps {
   onSelectWallet: (a: string) => void;
 }
 const SelectWallet = ({ onSelectWallet }: SelectedWalletProps) => {
   const listWallet = [
     {
-      icon: "",
+      icon: MetamaskIcon,
       label: "Metamask",
     },
     {
-      icon: "",
+      icon: SafepalIcon,
       label: "Safepal",
     },
     {
-      icon: "",
+      icon: TrustIcon,
       label: "Trust Wallet",
     },
     {
-      icon: "",
+      icon: TokenpocketIcon,
       label: "Token Pocket",
     },
     {
-      icon: "",
+      icon: WalletConnect,
       label: "Wallet Connect",
     },
   ];

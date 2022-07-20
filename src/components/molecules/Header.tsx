@@ -2,6 +2,8 @@ import { TabType } from "constants/types";
 import React, { Dispatch } from "react";
 import Logo from "assets/logo.png";
 import Wallet from "assets/wallet.png";
+import WalletDesktop from "assets/top-wallet.png";
+import { isMobile } from "react-device-detect";
 import Tabs from "components/atoms/Tabs";
 interface Props {
   activeTab: TabType;
@@ -29,7 +31,7 @@ function Header({ activeTab, setTab, onConnect }: Props) {
         >
           <img
             alt="wallet"
-            src={Wallet}
+            src={isMobile ? Wallet : WalletDesktop}
             className="w-4 md:w-5 object-contain"
           />
           <p className="text-white font-semibold text-[10px] md:text-[12px] ml-[8px]">
