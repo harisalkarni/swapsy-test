@@ -4,6 +4,7 @@ import { FaCheck } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { ModalAlert } from "constants/types";
 import LoadingIcon from "assets/loader.png";
+import useStore from "utils/store";
 interface Props {
   title: string;
   body: string;
@@ -12,16 +13,20 @@ interface Props {
   type: ModalAlert;
 }
 const DepositModal = ({ title, body, onCancel, onSuccess, type }: Props) => {
-  useEffect(() => {
-    let timeout = setTimeout(() => {
-      onSuccess();
-    }, 500);
-    return () => clearTimeout(timeout);
-  }, []);
+  const store = useStore();
+  // useEffect(() => {
+  //   let timeout = setTimeout(() => {
+  //     onSuccess();
+  //   }, 500);
+  //   return () => clearTimeout(timeout);
+  // }, []);
 
   return (
-    <div className="w-[294px] h-[485px] bg-erie-black rounded-[5px]  justify-center relative text-center flex flex-col items-center z-20">
-      <div className="absolute top-[18px] right-[18px]">
+    <div className="w-[294px] h-[485px] bg-erie-black rounded-[5px] pt-[86px]   relative text-center flex flex-col items-center z-20">
+      <div
+        className="absolute top-[18px] right-[18px]"
+        onClick={() => store.updateModal("NULL")}
+      >
         <IoMdClose size={20} color="#707070" />
       </div>
       {type === "success" && (
@@ -42,10 +47,10 @@ const DepositModal = ({ title, body, onCancel, onSuccess, type }: Props) => {
         </div>
       )}
 
-      <div className="w-[112px] text-center text-[20px] font-bold text-white mt-[25px]">
+      <div className="w-[112px] text-center text-[20px] font-medium text-white mt-[25px]">
         {title}
       </div>
-      <div className="text-white text-center w-[164px] text-[10px] mt-[25px] opacity-70">
+      <div className="text-white/70 text-center w-[164px] text-[10px] mt-[25px]">
         {body}
       </div>
       {type === "success" && (

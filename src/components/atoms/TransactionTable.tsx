@@ -117,11 +117,11 @@ function TransactionTable({ type }: Props) {
                     <div className="w-1/6 md:flex md:flex-row md:justify-end">
                       <button
                         onClick={() => displayModal()}
-                        className={`text-[7px] font-semibold md:text-[10px] w-[53px] h-[20px] md:w-[60px] md:h-[22px] rounded-full ${
+                        className={`text-[7px] text-center md:text-[10px] w-[53px] h-[20px] md:w-[60px] md:h-[22px] rounded-full ${
                           isCompleted
                             ? " border border-tea-green text-white"
                             : "bg-tea-green text-black"
-                        } ${isCompleted && "px-3 md:px-5"}`}
+                        }`}
                       >
                         {renderButtonLabel()}
                       </button>

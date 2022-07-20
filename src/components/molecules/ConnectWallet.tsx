@@ -4,6 +4,7 @@ import UsdtIcon from "assets/coin-usdt.png";
 import DaiIcon from "assets/coin-dai.png";
 import { FiCopy } from "react-icons/fi";
 import useStore from "utils/store";
+import { IoMdClose } from "react-icons/io";
 interface ConnectWalletProps {
   isMobile: boolean;
 }
@@ -50,7 +51,12 @@ const ConnectWallet = ({ isMobile }: ConnectWalletProps) => {
     <div
       className={`z-20 w-[319px] md:w-[222px] md:h-[352px] h-[481px]  bg-opacity-98 pt-[63px] md:pt-[24px] pb-[42px] px-[38px] md:px-[20px] rounded-[10px] relative bg-erie-black md:bg-ocean-blue`}
     >
-      {/* <div className="absolute top-[5px] right-[19px]">x</div> */}
+      <div
+        className="absolute top-[19px] right-[19px]"
+        onClick={() => store.updateModal("NULL")}
+      >
+        <IoMdClose size={20} color="#707070" />
+      </div>
       <div>
         <div className="text-[10px] mb-[41px] md:mb-[39px] flex flex-row justify-between items-center">
           <div>
@@ -58,7 +64,7 @@ const ConnectWallet = ({ isMobile }: ConnectWalletProps) => {
             <div className="text-white">0xb319ac09505b1f04c1bf216…</div>
           </div>
           <div>
-            <FiCopy size={20} className="md:text-white text-ocean-blue" />
+            <FiCopy size={23} className="md:text-white text-white" />
           </div>
         </div>
       </div>

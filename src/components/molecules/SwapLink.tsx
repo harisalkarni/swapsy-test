@@ -24,7 +24,7 @@ const SwapLink = ({ text, button, onCancel }: SwapLinkprops) => {
       }`}
     >
       <div
-        className="absolute top-[18px] right-[18px]"
+        className="absolute top-[12px] right-[12px]"
         onClick={() => store.updateModal("NULL")}
       >
         <IoMdClose size={20} color="#707070" />

@@ -1,5 +1,7 @@
 import { IoMdClose } from "react-icons/io";
 import useStore from "utils/store";
+import Loading from "assets/loader.png";
+
 const WithdrawingFunds = () => {
   const store = useStore();
   return (
@@ -11,8 +13,10 @@ const WithdrawingFunds = () => {
         <IoMdClose size={20} color="#707070" />
       </div>
       <div className="text-[20px] text-tea-green">Swap #9481</div>
-      <div className="w-[50px] h-[50px] mt-[56px] mb-[25px]">x</div>
-      <div className="w-[132px] text-[20px] text-white text-center">
+      <div className="w-[50px] h-[50px] mt-[56px] mb-[25px]">
+        <img src={Loading} alt="loading" />
+      </div>
+      <div className="w-[132px] text-[20px] text-white text-center font-medium">
         Withdrawing Funds...
       </div>
       <div className="w-[162px] text-[10px] text-center mt-[25px] text-white opacity-70">

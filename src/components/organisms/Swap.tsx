@@ -15,6 +15,10 @@ import SwapCancelled from "components/atoms/SwapCancelled";
 import WithdrawingFunds from "components/atoms/WithdrawingProcess";
 import { isMobile, isBrowser } from "react-device-detect";
 import useOnClickOutside from "utils/useOutsideClick";
+import WrongNetwork from "components/atoms/WrongNetwork";
+import SwapExpired from "components/atoms/SwapExpired";
+import SomethingWrong from "components/atoms/SomethingWrong";
+
 const Swap = () => {
   const [activeTab, setActiveTab] = useState<TabType>("CREATE");
   const [rightSide, setRightSide] = useState<boolean>(false);
@@ -150,8 +154,15 @@ const Swap = () => {
         );
       case "TransactionComplete":
         return <SwapScreen status="completed" />;
+      case "WrongNetwork":
+        return <WrongNetwork />;
+      case "SwapExpired":
+        return <SwapExpired />;
+      case "SomethingWrong":
+        return <SomethingWrong />;
     }
   };
+
   const renderDekstopRight = () => {
     switch (store.modal) {
       case "MyWallet":

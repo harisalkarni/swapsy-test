@@ -11,19 +11,24 @@ interface Props {
 const SwapCancelled = ({ text, swap, amount }: Props) => {
   const store = useStore();
   return (
-    <div className="z-20 w-[294px] h-[485px]  rounded-[5px] pt-[88px] px-[33px] relative bg-erie-black flex flex-col items-center">
-      <div className="absolute top-[18px] right-[18px]">
+    <div className="z-20 w-[294px] h-[485px]  rounded-[5px] pt-[68px] px-[33px] relative bg-erie-black flex flex-col items-center">
+      <div
+        className="absolute top-[18px] right-[18px]"
+        onClick={() => store.updateModal("NULL")}
+      >
         <IoMdClose size={20} color="#707070" />
       </div>
       <div className="w-[67px] h-[50px] mb-[24px]">
         {" "}
         <FaCheck color="#DBF9CD" size={67} />
       </div>
-      <div className="text-white w-[104px] text-center text-[20px]">{text}</div>
+      <div className="text-white w-[104px] text-center text-[20px] font-medium">
+        {text}
+      </div>
       <div className="mt-[43px]">
         <div className="bg-secondaryblack w-[220px] h-[40px] flex flex-row justify-between text-[12px] py-[11px] px-[11px]">
-          <div className="opacity-70 text-white">Swap</div>
-          <div className="text-white">{swap}</div>
+          <div className="opacity-70 text-white font-medium">Swap</div>
+          <div className="text-white font-medium">{swap}</div>
         </div>
         <div className="bg-secondaryblack w-[220px] h-[40px] flex flex-row justify-between text-[12px] py-[11px] px-[11px] mt-[8px]">
           <div className="opacity-70 text-white">Amount</div>

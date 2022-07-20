@@ -22,17 +22,18 @@ const SwapScreen = ({ status }: SwapConnectProps) => {
         status === "completed" ? "bg-ocean-blue" : "bg-erie-black"
       }`}
     >
-      {status === "completed" && (
-        <div
-          className="absolute top-[18px] right-[18px]"
-          onClick={() => store.updateModal("NULL")}
-        >
-          <IoMdClose size={20} color="#FFF" />
-        </div>
-      )}
+      <div
+        className="absolute top-[16px] right-[16px]"
+        onClick={() => store.updateModal("NULL")}
+      >
+        <IoMdClose
+          size={20}
+          color={status === "completed" ? "#FFF" : "#707070"}
+        />
+      </div>
 
       {status === "completed" && (
-        <div className="bg-tea-green w-[137px] h-[41px] text-ocean-blue font-bold text-[17px] rounded-[5px] flex flex-row justify-center items-center -ml-[40px] mb-[33px]">
+        <div className="bg-tea-green w-[137px] h-[41px] text-ocean-blue font-medium text-[17px] rounded-[5px] flex flex-row justify-center items-center -ml-[40px] mb-[33px]">
           <span>Completed</span>
         </div>
       )}
