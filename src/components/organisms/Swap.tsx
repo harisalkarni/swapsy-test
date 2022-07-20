@@ -292,7 +292,7 @@ const Swap = () => {
         </div>
       )}
 
-      {store.modal !== "NULL" && isBrowser && rightSide && (
+      {store.modal !== "NULL" && isBrowser && !rightSide && (
         <div
           className={`absolute top-0 bottom-0 left-0 right-0 flex bg-black bg-opacity-80 flex-row justify-center items-center `}
         >
