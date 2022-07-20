@@ -1,4 +1,5 @@
 import { FiCopy } from "react-icons/fi";
+import { FaTelegramPlane } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
@@ -12,7 +13,7 @@ const SwapCreated = () => {
   const store = useStore();
   const textBox = " https://swapsy.io/0x..67e67/94";
   const [copiedData, setCopiedData] = useState<boolean>(false);
-
+  const [sendRecipient, setSendRecipient] = useState<boolean>(false);
   useEffect(() => {
     let timeout: any;
     if (copiedData) {
@@ -69,11 +70,11 @@ const SwapCreated = () => {
           Swap Created
         </div>
       </div>
-      <div className=" mt-[59px] px-[24px] ">
+      <div className="mt-[39px]  px-[24px] ">
         <div className="text-[12px] text-white mb-[8px]">Swap Link</div>
-        <div className="bg-white w-[234px] h-[40px] rounded-[5px] flex items-center justify-center  px-[10px] mb-[24px]">
+        <div className="bg-white w-[234px] h-[40px] rounded-[5px] flex items-center justify-center  px-[10px] mb-[8px]">
           {copiedData ? (
-            <div className="text-secondary-purple text-[14px] font-bold">
+            <div className="text-secondary-purple text-[14px] font-medium  text-center">
               Link Copied!
             </div>
           ) : (
@@ -87,6 +88,28 @@ const SwapCreated = () => {
                   <FiCopy color="#443CCF" size={18} />
                 </div>
               </CopyToClipboard>
+            </div>
+          )}
+        </div>
+        <div
+          className={`border border-white w-[234px] h-[32px] rounded-[5px] flex flex-row  items-center  px-[10px] mb-[28px] ${
+            sendRecipient ? "bg-white justify-center" : "border border-white"
+          }`}
+        >
+          {sendRecipient ? (
+            <div className="text-secondary-purple text-[14px] font-medium">
+              Sent!
+            </div>
+          ) : (
+            <div className="flex justify-between w-full">
+              <input
+                type="text"
+                placeholder="Recipient Email"
+                className="text-[10px] appearance-none text-white/50 w-full bg-none bg-transparent leading-tight focus:text-white focus:outline-none focus:shadow-outline"
+              />
+              <button onClick={() => setSendRecipient(true)}>
+                <FaTelegramPlane color="#fff" size={18} />
+              </button>
             </div>
           )}
         </div>
@@ -107,7 +130,7 @@ const SwapCreated = () => {
           </div>
         </div>
 
-        <div className="text-tea-green text-[10px] mt-[37px] text-center">
+        <div className="text-tea-green text-[10px] mt-[24px] text-center">
           View on Etherscan
         </div>
       </div>
