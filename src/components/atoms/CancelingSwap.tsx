@@ -2,6 +2,7 @@ import { IoMdClose } from "react-icons/io";
 import useStore from "utils/store";
 import { useEffect } from "react";
 import Loading from "assets/loader.png";
+
 const CancelingSwap = () => {
   const store = useStore();
   useEffect(() => {
@@ -9,7 +10,8 @@ const CancelingSwap = () => {
       store.updateModal("CancelingSwapSuccess");
     }, 500);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [store]);
+
   return (
     <div className="z-20 w-[294px] h-[485px]  rounded-[5px] pt-[88px] px-[33px] relative bg-erie-black flex flex-col items-center">
       <div

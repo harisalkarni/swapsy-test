@@ -45,9 +45,10 @@ const SelectWallet = ({ onSelectWallet }: SelectedWalletProps) => {
       <div className="text-[20px] md:text-[16px] text-white mb-[36px] md:mb-[20px] font-medium">
         Select a Wallet
       </div>
-      {listWallet.map((wallet) => {
+      {listWallet.map((wallet, index) => {
         return (
           <WalletList
+            key={index}
             label={wallet.label}
             icon={wallet.icon}
             onSelectWallet={onSelectWallet}

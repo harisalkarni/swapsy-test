@@ -69,9 +69,12 @@ const ConnectWallet = ({ isMobile }: ConnectWalletProps) => {
         </div>
       </div>
 
-      {amountList.map((list) => {
+      {amountList.map((list, index) => {
         return (
-          <div className="flex flex-row justify-between items-center mb-[16px] md:mb-[9px]">
+          <div
+            key={index}
+            className="flex flex-row justify-between items-center mb-[16px] md:mb-[9px]"
+          >
             <div className="flex flex-1 items-center">
               <div className="w-[30px] h-[30px] md:w-[25px] md:h-[25px] mr-[12px]">
                 {iconRender(list.name)}

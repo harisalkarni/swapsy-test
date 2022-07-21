@@ -9,6 +9,7 @@ import TwitterIcon from "assets/twitter.png";
 import DiscordIcon from "assets/discord.png";
 import TeleIcon from "assets/telegram.png";
 import WhatsappIcon from "assets/whatsapp.png";
+
 const SwapCreated = () => {
   const store = useStore();
   const textBox = " https://swapsy.io/0x..67e67/94";
@@ -23,7 +24,8 @@ const SwapCreated = () => {
       }, 500);
     }
     return () => clearTimeout(timeout);
-  }, [copiedData]);
+  }, [copiedData, store]);
+
   const socialMedia = [
     {
       name: "whatsapp",
@@ -54,6 +56,7 @@ const SwapCreated = () => {
       heigh: 11,
     },
   ];
+
   return (
     <div className="w-[281px] h-[481px] bg-ocean-blue rounded-[5px] relative pt-[69px] z-20">
       <div

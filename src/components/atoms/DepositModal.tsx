@@ -12,14 +12,15 @@ interface Props {
   onSuccess: () => void;
   type: ModalAlert;
 }
+
 const DepositModal = ({ title, body, onCancel, onSuccess, type }: Props) => {
   const store = useStore();
-  // useEffect(() => {
-  //   let timeout = setTimeout(() => {
-  //     onSuccess();
-  //   }, 500);
-  //   return () => clearTimeout(timeout);
-  // }, []);
+  useEffect(() => {
+    let timeout = setTimeout(() => {
+      onSuccess();
+    }, 2000);
+    return () => clearTimeout(timeout);
+  }, [onSuccess]);
 
   return (
     <div className="w-[294px] h-[485px] bg-erie-black rounded-[5px] pt-[86px]   relative text-center flex flex-col items-center z-20">
