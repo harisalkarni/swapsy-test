@@ -8,7 +8,7 @@ interface TokenConfirmProps {
   amount: number;
 }
 const TokenConfirm = ({ token, amount }: TokenConfirmProps) => {
-  const [error, setError] = useState<boolean>(false);
+  const [error] = useState<boolean>(false);
   const renderIcon = (type: string) => {
     switch (type) {
       case "ETH":

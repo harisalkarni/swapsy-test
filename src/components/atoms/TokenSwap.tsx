@@ -9,12 +9,17 @@ import CoinOptions from "./CoinOptions";
 import FeeLabel from "./FeeLabel";
 import AmountLabel from "./AmountLabel";
 
-const TokenSwap = () => {
+interface TokenSwapProps {
+  address: String;
+  actionConnect: () => void;
+}
+
+const TokenSwap = ({ actionConnect, address }: TokenSwapProps) => {
   const [from, setFrom] = useState<CoinType>(Coins[0]);
   const [to, setTo] = useState<CoinType>(Coins[1]);
   const [duration, setDuration] = useState<string>(Durations[0]);
-  const [total, setTotal] = useState("-");
 
+  const total = "-";
   const reverse = () => {
     const temp = from;
     setFrom(to);
@@ -22,7 +27,7 @@ const TokenSwap = () => {
   };
 
   return (
-    <div className="relative z-10">
+    <div className="relative z-5">
       <div className="flex flex-row items-center mb-[8px]">
         <div className="w-[124px] md:w-[148px]">
           <CoinOptions selected={from} setSelected={setFrom} />
@@ -57,8 +62,11 @@ const TokenSwap = () => {
         <FeeLabel label="Total Amount" value={`${total} ETH`} />
       </div>
       <div className="flex justify-center mt-10">
-        <button className="text-white font-semibold bg-ocean-blue py-[10px] px-[33px] rounded-full text-[14px]">
-          Connect Wallet
+        <button
+          className="text-white font-semibold bg-ocean-blue py-[10px] px-[33px] rounded-full text-[14px]"
+          onClick={() => actionConnect()}
+        >
+          {address !== "" ? "Create Swap" : "Connect Wallet"}
         </button>
       </div>
     </div>

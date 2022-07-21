@@ -3,11 +3,13 @@ import { MenuType } from "constants/types";
 import Coins from "constants/coins";
 import numeral from "numeral";
 
+import useStore from "utils/store";
 interface Props {
   type: MenuType;
 }
 
 function TransactionTable({ type }: Props) {
+  const store = useStore();
   const isOpen = type === "Open";
   const isCancelled = type === "Cancelled";
   const isCompleted = type === "Completed";
@@ -27,25 +29,47 @@ function TransactionTable({ type }: Props) {
         return "Withdraw";
     }
   };
+
+  const displayModal = () => {
+    switch (type) {
+      case "Open":
+        store.updateModal("CancelingSwap");
+        break;
+      case "Completed":
+        store.updateModal("CompletedModal");
+        break;
+      case "Cancelled":
+        store.updateModal("CanceledModal");
+        break;
+      case "Expired":
+        store.updateModal("WithdrawModal");
+        break;
+
+      default:
+        break;
+    }
+  };
   return (
-    <div>
-      <div className="text-white flex flex-row px-[9px] text-[10px] md:text-xs mb-[22px] mt-[29px] justify-between">
-        <div className="w-1/5 md:w-1/4">Swap</div>
-        <div className="w-1/3">From</div>
+    <div className="md:mt-[55px]">
+      <div className="text-white flex flex-row px-[9px] md:px-4  text-[10px] md:text-xs mb-[22px] mt-[29px] justify-between">
+        <div className="w-1/5 md:w-1/1">Swap</div>
+        <div className="w-1/3 md:w-1/3">From</div>
         <div className="w-1/3">To</div>
         {!isCancelled && <div className="w-1/6"></div>}
       </div>
-
       <div className="h-[274px] md:h-[355px] overflow-y-scroll">
         {MySwapDummy.map(
           ({ amountTo, amountFrom, coinFrom, coinTo, id }, index) => {
             return (
               <div
                 key={index}
-                className="w-full mb-[8px] bg-erie-black px-[9px] md:px-4 py-[10px] md:py-4 rounded-[5px] font-medium"
+                className="w-full  mb-[8px] bg-erie-black px-[9px] md:px-4 py-[10px] md:py-[10px] rounded-[5px] font-medium"
               >
                 <div className="flex flex-row justify-between text-white items-center">
-                  <div className="w-1/5 md:w-1/4">
+                  <div
+                    className="w-1/5 md:w-1/1"
+                    onClick={() => store.updateModal("DetailSwap")}
+                  >
                     <div className="text-[10px] md:text-xs text-tea-green">
                       {id}
                     </div>
@@ -55,7 +79,7 @@ function TransactionTable({ type }: Props) {
                       </div>
                     )}
                   </div>
-                  <div className="flex flex-row items-center w-1/3">
+                  <div className="flex flex-row items-center w-1/3 md:w-1/3">
                     <div className="mr-[5px]">
                       <img
                         src={getCoin(coinFrom).avatar}
@@ -90,13 +114,14 @@ function TransactionTable({ type }: Props) {
                     </div>
                   </div>
                   {!isCancelled && (
-                    <div className="w-1/6">
+                    <div className="w-1/6 md:flex md:flex-row md:justify-end">
                       <button
-                        className={`text-[7px] font-semibold md:text-[10px] px-[9px] md:px-[12px] md:py-[8px] py-[6px] rounded-full ${
+                        onClick={() => displayModal()}
+                        className={`text-[7px] text-center md:text-[10px] w-[53px] h-[20px] md:w-[60px] md:h-[22px] rounded-full ${
                           isCompleted
                             ? " border border-tea-green text-white"
                             : "bg-tea-green text-black"
-                        } ${isCompleted && "px-3 md:px-5"}`}
+                        }`}
                       >
                         {renderButtonLabel()}
                       </button>
