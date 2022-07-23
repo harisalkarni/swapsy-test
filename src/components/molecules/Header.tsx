@@ -5,6 +5,7 @@ import Wallet from "assets/wallet.png";
 import WalletDesktop from "assets/top-wallet.png";
 import { isMobile } from "react-device-detect";
 import Tabs from "components/atoms/Tabs";
+import useStore from "utils/store";
 interface Props {
   activeTab: TabType;
   setTab: Dispatch<React.SetStateAction<TabType>>;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 function Header({ activeTab, setTab, onConnect }: Props) {
+  const store = useStore();
   return (
     <>
       <div className="flex flex-row justify-between w-full px-[30px] md:px-[40px] h-[36px] items-center relative z-0 md:py-10">
@@ -35,7 +37,7 @@ function Header({ activeTab, setTab, onConnect }: Props) {
             className="w-4 md:w-5 object-contain"
           />
           <p className="text-white font-semibold text-[10px] md:text-[12px] ml-[8px]">
-            Connect
+            {store.wallet !== "" ? "2a34s" : "Connect"}
           </p>
         </button>
       </div>

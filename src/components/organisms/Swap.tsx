@@ -18,16 +18,26 @@ import useOnClickOutside from "utils/useOutsideClick";
 import WrongNetwork from "components/atoms/WrongNetwork";
 import SwapExpired from "components/atoms/SwapExpired";
 import SomethingWrong from "components/atoms/SomethingWrong";
+import Coins from "constants/coins";
+import { CoinType } from "constants/types";
 
 const Swap = () => {
   const [activeTab, setActiveTab] = useState<TabType>("CREATE");
   const [rightSide, setRightSide] = useState<boolean>(false);
+
+  const [from, setFrom] = useState<CoinType>(Coins[0]);
+  const [to, setTo] = useState<CoinType>(Coins[1]);
+
   const store = useStore();
   const onActionConnect = () => {
     if (store.wallet === "") {
       store.updateModal("SelectWallet");
     } else {
-      store.updateModal("DepositETH");
+      if (store.approveTrx) {
+        store.updateModal("DepositETH");
+      } else {
+        store.updateModal("ApprovingToken");
+      }
     }
   };
 
@@ -47,7 +57,11 @@ const Swap = () => {
       setRightSide(false);
     }
 
-    store.updateModal("MyWallet");
+    if (store.wallet === "") {
+      store.updateModal("SelectWallet");
+    } else {
+      store.updateModal("MyWallet");
+    }
   };
 
   const renderModalType = () => {
@@ -117,12 +131,13 @@ const Swap = () => {
       case "ApprovingToken":
         return (
           <DepositModal
-            title="Approving USDC"
+            title={`Approving ${to.name}`}
             body="To continue the transaction you need to approve spend USDC from your wallet."
             onCancel={() => store.updateModal("NULL")}
             onSuccess={() => {
-              store.updateModal("SwapConfirm");
+              store.updateApproveTrx(true);
               store.updateTrxStatus(true);
+              store.updateModal("NULL");
             }}
             type="loading"
           />
@@ -301,7 +316,14 @@ const Swap = () => {
         }`}
       >
         {activeTab === "CREATE" ? (
-          <TokenSwap actionConnect={onActionConnect} address={store.wallet} />
+          <TokenSwap
+            actionConnect={onActionConnect}
+            address={store.wallet}
+            to={to}
+            setTo={setTo}
+            from={from}
+            setFrom={setFrom}
+          />
         ) : (
           <History />
         )}
