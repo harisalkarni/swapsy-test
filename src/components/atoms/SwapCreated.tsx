@@ -60,7 +60,11 @@ const SwapCreated = () => {
     <div className="w-[281px] h-[481px] bg-ocean-blue rounded-[5px] relative pt-[69px] z-20">
       <div
         className="absolute top-[18px] right-[18px]"
-        onClick={() => store.updateModal("NULL")}
+        onClick={() => {
+          store.updateModal("NULL");
+          store.addAddressToWallet("");
+          store.updateTrxReceipt(true);
+        }}
       >
         <IoMdClose size={20} color="#fff" />
       </div>

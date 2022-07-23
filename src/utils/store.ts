@@ -5,10 +5,12 @@ type Store = {
     wallet:string,
     trxStatus: boolean,
     approveTrx: boolean,
+    trxReceipt: boolean,
     updateModal: (modalType: ModalType) => void,
     addAddressToWallet: (a: string) =>void,
     updateTrxStatus: (a: boolean) => void,
-    updateApproveTrx: (a: boolean) => void
+    updateApproveTrx: (a: boolean) => void,
+    updateTrxReceipt: (a: boolean) => void
 }
 
 const useStore = create<Store>((set) => ({
@@ -16,6 +18,7 @@ const useStore = create<Store>((set) => ({
     wallet:'',
     trxStatus: false,
     approveTrx: false,
+    trxReceipt: false,
     updateModal(text: ModalType){
         set(state => ({
             ...state, 
@@ -38,6 +41,12 @@ const useStore = create<Store>((set) => ({
         set(state => ({
             ...state, 
             approveTrx: val
+        })) 
+    },
+    updateTrxReceipt(val: boolean){
+        set(state => ({
+            ...state, 
+            trxReceipt: val
         })) 
     }
 }))

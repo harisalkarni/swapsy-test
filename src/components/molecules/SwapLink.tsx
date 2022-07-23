@@ -3,17 +3,29 @@ import BottomInfo from "components/atoms/BottomInfo";
 import { FiCopy } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import useStore from "utils/store";
+import { CoinType } from "constants/types";
+
 interface SwapLinkprops {
   text: string;
   button: boolean;
   onCancel: () => void;
+  from: CoinType;
+  to: CoinType;
+  btnText: string;
 }
-const SwapLink = ({ text, button, onCancel }: SwapLinkprops) => {
+const SwapLink = ({
+  text,
+  button,
+  onCancel,
+  to,
+  from,
+  btnText,
+}: SwapLinkprops) => {
   const store = useStore();
   const ExampleSwap = {
-    tokenFrom: "ETH",
+    tokenFrom: from,
     amountFrom: 2323,
-    tokenTo: "USDC",
+    tokenTo: to,
     amountTo: 4322,
   };
 
@@ -58,7 +70,7 @@ const SwapLink = ({ text, button, onCancel }: SwapLinkprops) => {
             className="bg-ocean-blue text-white text-[11px] py-[9px] px-[48px] rounded-full"
             onClick={() => onCancel()}
           >
-            Cancel
+            {btnText}
           </button>
         </div>
       )}
