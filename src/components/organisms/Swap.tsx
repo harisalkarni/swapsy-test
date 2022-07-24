@@ -115,13 +115,12 @@ const Swap = () => {
         );
       case "CompletedModal":
         return (
-          <SwapLink
-            text="Completed"
-            button={false}
+          <SwapScreen
+            status="completed"
             to={to}
             from={from}
-            btnText="cancel"
-            onCancel={() => store.updateModal("CancelingSwap")}
+            setFrom={setFrom}
+            setTo={setTo}
           />
         );
       case "CanceledModal":
@@ -284,13 +283,12 @@ const Swap = () => {
         );
       case "CompletedModal":
         return (
-          <SwapLink
-            text="Completed"
-            button={false}
+          <SwapScreen
+            status="completed"
             to={to}
             from={from}
-            btnText="cancel"
-            onCancel={() => store.updateModal("CancelingSwap")}
+            setFrom={setFrom}
+            setTo={setTo}
           />
         );
       case "CanceledModal":
