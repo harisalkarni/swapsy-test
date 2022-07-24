@@ -263,7 +263,6 @@ const Swap = () => {
             type="loading"
           />
         );
-
       case "SwapCreated":
         return <SwapCreated />;
       case "DetailSwap":
@@ -271,10 +270,10 @@ const Swap = () => {
           <SwapLink
             text="Expired"
             button={true}
-            onCancel={() => store.updateModal("NULL")}
             to={to}
             from={from}
             btnText="cancel"
+            onCancel={() => store.updateModal("NULL")}
           />
         );
       case "CancelingSwap":
@@ -287,7 +286,7 @@ const Swap = () => {
         return (
           <SwapLink
             text="Completed"
-            button={true}
+            button={false}
             to={to}
             from={from}
             btnText="cancel"
@@ -298,7 +297,7 @@ const Swap = () => {
         return (
           <SwapLink
             text="Canceled"
-            button={false}
+            button={true}
             to={to}
             from={from}
             btnText="cancel"
@@ -331,12 +330,26 @@ const Swap = () => {
       case "ApprovingToken":
         return (
           <DepositModal
-            title="Approving USDC"
+            title={`Approving ${to.name}`}
             body="To continue the transaction you need to approve spend USDC from your wallet."
             onCancel={() => store.updateModal("NULL")}
             onSuccess={() => {
-              store.updateModal("SwapConfirm");
+              store.updateApproveTrx(true);
               store.updateTrxStatus(true);
+              store.updateModal("NULL");
+            }}
+            type="loading"
+          />
+        );
+      case "ApprovingTokenReceipt":
+        return (
+          <DepositModal
+            title={`Approving ${to.name}`}
+            body="To continue the transaction you need to approve spend USDC from your wallet."
+            onCancel={() => store.updateModal("NULL")}
+            onSuccess={() => {
+              store.updateTrxReceipt(false);
+              store.updateModal("SwapConfirm");
             }}
             type="loading"
           />
@@ -376,8 +389,12 @@ const Swap = () => {
             setTo={setTo}
           />
         );
-      default:
-        break;
+      case "WrongNetwork":
+        return <WrongNetwork />;
+      case "SwapExpired":
+        return <SwapExpired />;
+      case "SomethingWrong":
+        return <SomethingWrong />;
     }
   };
 

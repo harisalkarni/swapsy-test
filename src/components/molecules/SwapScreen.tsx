@@ -22,6 +22,18 @@ const SwapScreen = ({ status, from, setFrom, to, setTo }: SwapConnectProps) => {
 
   const store = useStore();
 
+  const onClear = () => {
+    if (status === "completed") {
+      store.updateModal("NULL");
+      store.addAddressToWallet("");
+      store.updateTrxStatus(false);
+      store.updateApproveTrx(false);
+      store.updateTrxReceipt(false);
+    } else {
+      store.updateModal("NULL");
+    }
+  };
+
   return (
     <div
       className={`z-20 w-[294px] h-[485px]  rounded-[5px] pt-[33px] px-[33px] relative ${
@@ -30,7 +42,7 @@ const SwapScreen = ({ status, from, setFrom, to, setTo }: SwapConnectProps) => {
     >
       <div
         className="absolute top-[16px] right-[16px]"
-        onClick={() => store.updateModal("NULL")}
+        onClick={() => onClear()}
       >
         <IoMdClose
           size={20}
