@@ -2,19 +2,37 @@ import SwapConnect from "components/atoms/SwapConnect";
 import BottomInfo from "components/atoms/BottomInfo";
 import { IoMdClose } from "react-icons/io";
 import useStore from "utils/store";
+import { CoinType } from "constants/types";
+import React, { Dispatch } from "react";
 
 interface SwapConnectProps {
   status?: string;
+  from: CoinType;
+  setFrom: Dispatch<React.SetStateAction<CoinType>>;
+  to: CoinType;
+  setTo: Dispatch<React.SetStateAction<CoinType>>;
 }
-const SwapScreen = ({ status }: SwapConnectProps) => {
+const SwapScreen = ({ status, from, setFrom, to, setTo }: SwapConnectProps) => {
   const ExampleSwap = {
-    tokenFrom: "ETH",
+    tokenFrom: from,
     amountFrom: 2323,
-    tokenTo: "USDC",
+    tokenTo: to,
     amountTo: 4322,
   };
 
   const store = useStore();
+
+  const onClear = () => {
+    if (status === "completed") {
+      store.updateModal("NULL");
+      store.addAddressToWallet("");
+      store.updateTrxStatus(false);
+      store.updateApproveTrx(false);
+      store.updateTrxReceipt(false);
+    } else {
+      store.updateModal("NULL");
+    }
+  };
 
   return (
     <div
@@ -24,7 +42,7 @@ const SwapScreen = ({ status }: SwapConnectProps) => {
     >
       <div
         className="absolute top-[16px] right-[16px]"
-        onClick={() => store.updateModal("NULL")}
+        onClick={() => onClear()}
       >
         <IoMdClose
           size={20}
@@ -59,19 +77,19 @@ const SwapScreen = ({ status }: SwapConnectProps) => {
             >
               Connect & Accept
             </button>
-          ) : store.trxStatus ? (
+          ) : store.trxReceipt ? (
+            <button
+              className="bg-ocean-blue text-white text-[14px] py-[10px] px-[31px] rounded-full"
+              onClick={() => store.updateModal("ApprovingTokenReceipt")}
+            >
+              Approve {`${to.name}`}
+            </button>
+          ) : (
             <button
               className="bg-ocean-blue text-white text-[14px] py-[10px] px-[31px] rounded-full"
               onClick={() => store.updateModal("ProcessingTrx")}
             >
               Accept
-            </button>
-          ) : (
-            <button
-              className="bg-ocean-blue text-white text-[14px] py-[10px] px-[31px] rounded-full"
-              onClick={() => store.updateModal("ApprovingToken")}
-            >
-              Approve USDC
             </button>
           )}
         </div>

@@ -1,5 +1,5 @@
 import TokenSwap from "components/atoms/TokenSwap";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { TabType } from "constants/types";
 import Header from "components/molecules/Header";
 import History from "components/molecules/History";
@@ -18,16 +18,26 @@ import useOnClickOutside from "utils/useOutsideClick";
 import WrongNetwork from "components/atoms/WrongNetwork";
 import SwapExpired from "components/atoms/SwapExpired";
 import SomethingWrong from "components/atoms/SomethingWrong";
+import Coins from "constants/coins";
+import { CoinType } from "constants/types";
 
 const Swap = () => {
   const [activeTab, setActiveTab] = useState<TabType>("CREATE");
   const [rightSide, setRightSide] = useState<boolean>(false);
+
+  const [from, setFrom] = useState<CoinType>(Coins[0]);
+  const [to, setTo] = useState<CoinType>(Coins[1]);
+
   const store = useStore();
   const onActionConnect = () => {
     if (store.wallet === "") {
       store.updateModal("SelectWallet");
     } else {
-      store.updateModal("DepositETH");
+      if (store.approveTrx) {
+        store.updateModal("DepositETH");
+      } else {
+        store.updateModal("ApprovingToken");
+      }
     }
   };
 
@@ -37,7 +47,11 @@ const Swap = () => {
 
   const onSelectWallet = (a: string) => {
     store.addAddressToWallet(a);
-    store.updateModal("NULL");
+    if (store.trxReceipt) {
+      store.updateModal("SwapConfirm");
+    } else {
+      store.updateModal("NULL");
+    }
   };
 
   const onConnect = () => {
@@ -47,8 +61,18 @@ const Swap = () => {
       setRightSide(false);
     }
 
-    store.updateModal("MyWallet");
+    if (store.wallet === "") {
+      store.updateModal("SelectWallet");
+    } else {
+      store.updateModal("MyWallet");
+    }
   };
+
+  useEffect(() => {
+    if (store.trxReceipt) {
+      store.updateModal("SwapConfirm");
+    }
+  }, [store.trxReceipt]);
 
   const renderModalType = () => {
     switch (store.modal) {
@@ -77,6 +101,9 @@ const Swap = () => {
           <SwapLink
             text="Expired"
             button={true}
+            to={to}
+            from={from}
+            btnText="cancel"
             onCancel={() => store.updateModal("NULL")}
           />
         );
@@ -88,10 +115,12 @@ const Swap = () => {
         );
       case "CompletedModal":
         return (
-          <SwapLink
-            text="Completed"
-            button={true}
-            onCancel={() => store.updateModal("CancelingSwap")}
+          <SwapScreen
+            status="completed"
+            to={to}
+            from={from}
+            setFrom={setFrom}
+            setTo={setTo}
           />
         );
       case "CanceledModal":
@@ -99,6 +128,9 @@ const Swap = () => {
           <SwapLink
             text="Canceled"
             button={true}
+            to={to}
+            from={from}
+            btnText="cancel"
             onCancel={() => store.updateModal("CancelingSwap")}
           />
         );
@@ -107,22 +139,47 @@ const Swap = () => {
           <SwapLink
             text="Expired"
             button={true}
+            to={to}
+            from={from}
+            btnText="withdraw"
             onCancel={() => store.updateModal("WithdrawProcess")}
           />
         );
       case "WithdrawProcess":
         return <WithdrawingFunds />;
       case "SwapConfirm":
-        return <SwapScreen status="default" />;
+        return (
+          <SwapScreen
+            status="default"
+            to={to}
+            from={from}
+            setFrom={setFrom}
+            setTo={setTo}
+          />
+        );
       case "ApprovingToken":
         return (
           <DepositModal
-            title="Approving USDC"
+            title={`Approving ${to.name}`}
             body="To continue the transaction you need to approve spend USDC from your wallet."
             onCancel={() => store.updateModal("NULL")}
             onSuccess={() => {
-              store.updateModal("SwapConfirm");
+              store.updateApproveTrx(true);
               store.updateTrxStatus(true);
+              store.updateModal("NULL");
+            }}
+            type="loading"
+          />
+        );
+      case "ApprovingTokenReceipt":
+        return (
+          <DepositModal
+            title={`Approving ${to.name}`}
+            body="To continue the transaction you need to approve spend USDC from your wallet."
+            onCancel={() => store.updateModal("NULL")}
+            onSuccess={() => {
+              store.updateTrxReceipt(false);
+              store.updateModal("SwapConfirm");
             }}
             type="loading"
           />
@@ -153,7 +210,15 @@ const Swap = () => {
           />
         );
       case "TransactionComplete":
-        return <SwapScreen status="completed" />;
+        return (
+          <SwapScreen
+            status="completed"
+            to={to}
+            from={from}
+            setFrom={setFrom}
+            setTo={setTo}
+          />
+        );
       case "WrongNetwork":
         return <WrongNetwork />;
       case "SwapExpired":
@@ -197,7 +262,6 @@ const Swap = () => {
             type="loading"
           />
         );
-
       case "SwapCreated":
         return <SwapCreated />;
       case "DetailSwap":
@@ -205,6 +269,9 @@ const Swap = () => {
           <SwapLink
             text="Expired"
             button={true}
+            to={to}
+            from={from}
+            btnText="cancel"
             onCancel={() => store.updateModal("NULL")}
           />
         );
@@ -216,10 +283,12 @@ const Swap = () => {
         );
       case "CompletedModal":
         return (
-          <SwapLink
-            text="Completed"
-            button={true}
-            onCancel={() => store.updateModal("CancelingSwap")}
+          <SwapScreen
+            status="completed"
+            to={to}
+            from={from}
+            setFrom={setFrom}
+            setTo={setTo}
           />
         );
       case "CanceledModal":
@@ -227,6 +296,9 @@ const Swap = () => {
           <SwapLink
             text="Canceled"
             button={true}
+            to={to}
+            from={from}
+            btnText="cancel"
             onCancel={() => store.updateModal("CancelingSwap")}
           />
         );
@@ -235,22 +307,47 @@ const Swap = () => {
           <SwapLink
             text="Expired"
             button={true}
+            to={to}
+            from={from}
+            btnText="Withdraw"
             onCancel={() => store.updateModal("WithdrawProcess")}
           />
         );
       case "WithdrawProcess":
         return <WithdrawingFunds />;
       case "SwapConfirm":
-        return <SwapScreen status="default" />;
+        return (
+          <SwapScreen
+            status="default"
+            to={to}
+            from={from}
+            setFrom={setFrom}
+            setTo={setTo}
+          />
+        );
       case "ApprovingToken":
         return (
           <DepositModal
-            title="Approving USDC"
+            title={`Approving ${to.name}`}
             body="To continue the transaction you need to approve spend USDC from your wallet."
             onCancel={() => store.updateModal("NULL")}
             onSuccess={() => {
-              store.updateModal("SwapConfirm");
+              store.updateApproveTrx(true);
               store.updateTrxStatus(true);
+              store.updateModal("NULL");
+            }}
+            type="loading"
+          />
+        );
+      case "ApprovingTokenReceipt":
+        return (
+          <DepositModal
+            title={`Approving ${to.name}`}
+            body="To continue the transaction you need to approve spend USDC from your wallet."
+            onCancel={() => store.updateModal("NULL")}
+            onSuccess={() => {
+              store.updateTrxReceipt(false);
+              store.updateModal("SwapConfirm");
             }}
             type="loading"
           />
@@ -281,9 +378,21 @@ const Swap = () => {
           />
         );
       case "TransactionComplete":
-        return <SwapScreen status="completed" />;
-      default:
-        break;
+        return (
+          <SwapScreen
+            status="completed"
+            to={to}
+            from={from}
+            setFrom={setFrom}
+            setTo={setTo}
+          />
+        );
+      case "WrongNetwork":
+        return <WrongNetwork />;
+      case "SwapExpired":
+        return <SwapExpired />;
+      case "SomethingWrong":
+        return <SomethingWrong />;
     }
   };
 
@@ -301,7 +410,14 @@ const Swap = () => {
         }`}
       >
         {activeTab === "CREATE" ? (
-          <TokenSwap actionConnect={onActionConnect} address={store.wallet} />
+          <TokenSwap
+            actionConnect={onActionConnect}
+            address={store.wallet}
+            to={to}
+            setTo={setTo}
+            from={from}
+            setFrom={setFrom}
+          />
         ) : (
           <History />
         )}

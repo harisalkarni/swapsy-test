@@ -51,12 +51,12 @@ const ConnectWallet = ({ isMobile }: ConnectWalletProps) => {
     <div
       className={`z-20 w-[319px] md:w-[222px] md:h-[352px] h-[481px]  bg-opacity-98 pt-[63px] md:pt-[24px] pb-[42px] px-[38px] md:px-[20px] rounded-[10px] relative bg-erie-black md:bg-ocean-blue`}
     >
-      <div
+      {/* <div
         className="absolute top-[19px] right-[19px]"
         onClick={() => store.updateModal("NULL")}
       >
         <IoMdClose size={20} color="#707070" />
-      </div>
+      </div> */}
       <div>
         <div className="text-[10px] mb-[41px] md:mb-[39px] flex flex-row justify-between items-center">
           <div>
@@ -93,7 +93,13 @@ const ConnectWallet = ({ isMobile }: ConnectWalletProps) => {
       <div className="absolute bottom-[42px] md:bottom-[32px] left-0 right-0 flex flex-1 justify-center">
         <button
           className=" w-[136px] text-[11px] text-white h-[34px] border border-tea-green rounded-full"
-          onClick={() => store.updateModal("NULL")}
+          onClick={() => {
+            store.updateModal("NULL");
+            store.addAddressToWallet("");
+            store.updateTrxStatus(false);
+            store.updateApproveTrx(false);
+            store.updateTrxReceipt(false);
+          }}
         >
           Disconnect
         </button>

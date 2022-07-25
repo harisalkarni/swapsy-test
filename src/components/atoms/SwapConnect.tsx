@@ -1,10 +1,11 @@
 import TokenConfirm from "./TokenConfirm";
 import ArrowIcon from "assets/arrow-icon.svg";
+import { CoinType } from "constants/types";
 
 interface SwapConnectData {
-  tokenFrom: string;
+  tokenFrom: CoinType;
   amountFrom: number;
-  tokenTo: string;
+  tokenTo: CoinType;
   amountTo: number;
 }
 

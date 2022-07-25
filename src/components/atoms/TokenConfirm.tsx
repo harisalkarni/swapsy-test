@@ -3,8 +3,9 @@ import USDT from "assets/coin-usdt.png";
 import USDC from "assets/coin-usdc.png";
 import DAI from "assets/coin-dai.png";
 import { useState } from "react";
+import { CoinType } from "constants/types";
 interface TokenConfirmProps {
-  token: string;
+  token: CoinType;
   amount: number;
 }
 const TokenConfirm = ({ token, amount }: TokenConfirmProps) => {
@@ -32,9 +33,9 @@ const TokenConfirm = ({ token, amount }: TokenConfirmProps) => {
       >
         <div className="flex flex-row items-center">
           <div className="w-[20px] h-[20px] mr-[6px]">
-            <img src={renderIcon(token)} alt="Eth icon" />
+            <img src={renderIcon(token.name)} alt="Eth icon" />
           </div>
-          <div className="text-white text-[16px]">{token}</div>
+          <div className="text-white text-[16px]">{token.name}</div>
         </div>
         <div className="text-white text-[14px]">{amount}</div>
       </div>

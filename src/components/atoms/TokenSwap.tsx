@@ -1,25 +1,39 @@
 import Duration from "./Duration";
 import ArrowIcon from "assets/arrow-icon.svg";
-import { useState } from "react";
-import Coins from "constants/coins";
-import { CoinType } from "constants/types";
+import React, { useState, Dispatch } from "react";
+
 import Durations from "constants/durations";
 import BalanceLabel from "./BalanceLabel";
 import CoinOptions from "./CoinOptions";
 import FeeLabel from "./FeeLabel";
 import AmountLabel from "./AmountLabel";
+import useStore from "utils/store";
+import { CoinType } from "constants/types";
 
 interface TokenSwapProps {
   address: String;
   actionConnect: () => void;
+  to: CoinType;
+  setTo: Dispatch<React.SetStateAction<CoinType>>;
+  from: CoinType;
+  setFrom: Dispatch<React.SetStateAction<CoinType>>;
 }
 
-const TokenSwap = ({ actionConnect, address }: TokenSwapProps) => {
-  const [from, setFrom] = useState<CoinType>(Coins[0]);
-  const [to, setTo] = useState<CoinType>(Coins[1]);
+const TokenSwap = ({
+  actionConnect,
+  address,
+  to,
+  setTo,
+  from,
+  setFrom,
+}: TokenSwapProps) => {
   const [duration, setDuration] = useState<string>(Durations[0]);
 
+  const [fromAmount, setFromAmount] = useState<number>(0);
+  const [toAmount, setToAmount] = useState<number>(0);
+
   const total = "-";
+  const store = useStore();
   const reverse = () => {
     const temp = from;
     setFrom(to);
@@ -35,7 +49,11 @@ const TokenSwap = ({ actionConnect, address }: TokenSwapProps) => {
         <BalanceLabel balance={100.1234} />
       </div>
       <div className="text-white/30 flex flex-row items-end w-full  justify-between">
-        <AmountLabel amount={1.2212} name={from.name} />
+        <AmountLabel
+          amount={fromAmount}
+          name={from.name}
+          setAmount={setFromAmount}
+        />
         <button onClick={reverse}>
           <img
             src={ArrowIcon}
@@ -50,7 +68,7 @@ const TokenSwap = ({ actionConnect, address }: TokenSwapProps) => {
         </div>
         <BalanceLabel balance={100.1234} />
       </div>
-      <AmountLabel amount={1.2212} name={to.name} />
+      <AmountLabel amount={toAmount} name={to.name} setAmount={setToAmount} />
       <Duration selected={duration} setSelected={setDuration} />
       <div className="text-white/40 flex flex-col mt-9 text-[10px] md:text-xs">
         <FeeLabel label="Price" value="0.007 per USDT" />
@@ -63,10 +81,19 @@ const TokenSwap = ({ actionConnect, address }: TokenSwapProps) => {
       </div>
       <div className="flex justify-center mt-10">
         <button
-          className="text-white font-semibold bg-ocean-blue py-[10px] px-[33px] rounded-full text-[14px]"
+          className={`text-white font-semibold py-[10px] px-[33px] rounded-full text-[14px] ${
+            fromAmount === 0 && address !== ""
+              ? "bg-ocean-blue/30"
+              : "bg-ocean-blue "
+          }`}
           onClick={() => actionConnect()}
+          disabled={fromAmount === 0 && address !== ""}
         >
-          {address !== "" ? "Create Swap" : "Connect Wallet"}
+          {store.approveTrx
+            ? "Create Swap"
+            : address !== ""
+            ? `Approve ${to.name}`
+            : "Connect Wallet"}
         </button>
       </div>
     </div>
