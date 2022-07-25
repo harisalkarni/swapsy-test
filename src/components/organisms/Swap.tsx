@@ -309,7 +309,7 @@ const Swap = () => {
             button={true}
             to={to}
             from={from}
-            btnText="withdraw"
+            btnText="Withdraw"
             onCancel={() => store.updateModal("WithdrawProcess")}
           />
         );

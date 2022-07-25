@@ -57,7 +57,7 @@ function TransactionTable({ type }: Props) {
         <div className="w-1/3">To</div>
         {!isCancelled && <div className="w-1/6"></div>}
       </div>
-      <div className="h-[274px] md:h-[355px] overflow-y-scroll">
+      <div className="h-[274px] md:h-[355px] overflow-y-scroll overscroll-auto hover:overscroll-contain">
         {MySwapDummy.map(
           ({ amountTo, amountFrom, coinFrom, coinTo, id }, index) => {
             return (
