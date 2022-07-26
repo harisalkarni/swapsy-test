@@ -12,6 +12,8 @@ interface SwapLinkprops {
   from: CoinType;
   to: CoinType;
   btnText: string;
+  fromAmount: number;
+  toAmount: number;
 }
 const SwapLink = ({
   text,
@@ -20,13 +22,15 @@ const SwapLink = ({
   to,
   from,
   btnText,
+  fromAmount,
+  toAmount,
 }: SwapLinkprops) => {
   const store = useStore();
   const ExampleSwap = {
     tokenFrom: from,
-    amountFrom: 2323,
+    amountFrom: fromAmount,
     tokenTo: to,
-    amountTo: 4322,
+    amountTo: toAmount,
   };
 
   return (
@@ -61,7 +65,7 @@ const SwapLink = ({
       )}
 
       <div className={`${button ? "mt-[16px]" : "mt-[60px]"}`}>
-        <BottomInfo />
+        <BottomInfo amount={fromAmount} />
       </div>
 
       {button && (

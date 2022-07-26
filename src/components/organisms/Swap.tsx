@@ -108,6 +108,8 @@ const Swap = () => {
             from={from}
             btnText="cancel"
             onCancel={() => store.updateModal("NULL")}
+            toAmount={toAmount}
+            fromAmount={fromAmount}
           />
         );
       case "CancelingSwap":
@@ -137,6 +139,8 @@ const Swap = () => {
             from={from}
             btnText="cancel"
             onCancel={() => store.updateModal("CancelingSwap")}
+            toAmount={toAmount}
+            fromAmount={fromAmount}
           />
         );
       case "WithdrawModal":
@@ -148,6 +152,8 @@ const Swap = () => {
             from={from}
             btnText="withdraw"
             onCancel={() => store.updateModal("WithdrawProcess")}
+            toAmount={toAmount}
+            fromAmount={fromAmount}
           />
         );
       case "WithdrawProcess":
@@ -282,6 +288,8 @@ const Swap = () => {
             from={from}
             btnText="cancel"
             onCancel={() => store.updateModal("NULL")}
+            toAmount={toAmount}
+            fromAmount={fromAmount}
           />
         );
       case "CancelingSwap":
@@ -311,6 +319,8 @@ const Swap = () => {
             from={from}
             btnText="cancel"
             onCancel={() => store.updateModal("CancelingSwap")}
+            toAmount={toAmount}
+            fromAmount={fromAmount}
           />
         );
       case "WithdrawModal":
@@ -322,6 +332,8 @@ const Swap = () => {
             from={from}
             btnText="Withdraw"
             onCancel={() => store.updateModal("WithdrawProcess")}
+            toAmount={toAmount}
+            fromAmount={fromAmount}
           />
         );
       case "WithdrawProcess":

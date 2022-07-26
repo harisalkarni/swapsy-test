@@ -75,7 +75,7 @@ const SwapScreen = ({
       </div>
       <SwapConnect swap={ExampleSwap} />
       <div className="mt-[24px]">
-        <BottomInfo />
+        <BottomInfo amount={fromAmount} />
       </div>
 
       {status === "default" && (

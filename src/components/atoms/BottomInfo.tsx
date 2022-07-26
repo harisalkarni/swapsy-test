@@ -1,4 +1,7 @@
-const BottomInfo = () => {
+interface BottomInfoProps {
+  amount: number;
+}
+const BottomInfo = ({ amount }: BottomInfoProps) => {
   return (
     <div>
       <div className="text-white opacity-60 flex flex-row justify-between text-[10px]">
@@ -11,7 +14,7 @@ const BottomInfo = () => {
       </div>
       <div className="text-white opacity-60 flex flex-row justify-between text-[10px]">
         <div>Total Amount</div>
-        <div>-ETH</div>
+        <div>{amount} ETH</div>
       </div>
       <div className="text-tea-green text-[10px] mt-[16px]">
         View on Eherscan
