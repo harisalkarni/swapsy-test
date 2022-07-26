@@ -20,14 +20,14 @@ export default function CoinOptions({ selected, setSelected }: Props) {
       {({ open }) => (
         <>
           <div className="mt-1 relative">
-            <Listbox.Button className="relative w-full bg-secondaryblack rounded-md shadow-sm px-[7px] pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <Listbox.Button className="relative w-full bg-secondaryblack rounded-md shadow-sm px-[7px] pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-[12px] md:text-[13px]">
               <span className="flex items-center">
                 <img
                   src={selected.avatar}
                   alt="icon"
-                  className="flex-shrink-0 w-5 md:w-8 object-contain rounded-full"
+                  className="flex-shrink-0 w-[21px] md:w-[23px] object-contain rounded-full"
                 />
-                <span className="ml-3 block truncate text-white text-[12px] md:text-lg">
+                <span className="ml-3 block truncate text-white text-[12px] md:text-[13px]">
                   {selected.name}
                 </span>
               </span>
@@ -64,12 +64,12 @@ export default function CoinOptions({ selected, setSelected }: Props) {
                           <img
                             src={coin.avatar}
                             alt="icon"
-                            className="flex-shrink-0 object-contain w-5 md:w-8 rounded-full"
+                            className="flex-shrink-0 object-contain w-[21px] md:w-[23px] rounded-full"
                           />
                           <span
                             className={classNames(
                               selected ? "font-semibold" : "font-normal",
-                              "ml-3 block truncate text-white text-[12px] md:text-lg"
+                              "ml-3 block truncate text-white text-[12px] md:text-[13px]"
                             )}
                           >
                             {coin.name}

@@ -51,7 +51,7 @@ const TokenSwap = ({
   return (
     <div className="relative z-5">
       <div className="flex flex-row items-center mb-[8px]">
-        <div className="w-[124px] md:w-[148px]">
+        <div className="w-[124px] md:w-[123px] h-[36px] md:h-[41px]">
           <CoinOptions selected={from} setSelected={setFrom} />
         </div>
         <BalanceLabel balance={store.wallet.amount} />
@@ -71,14 +71,14 @@ const TokenSwap = ({
         </button>
       </div>
       <div className="flex flex-row items-center mt-4 mb-[8px]">
-        <div className="w-[124px] md:w-[148px]">
+        <div className="w-[124px] md:w-[123px] h-[36px] md:h-[41px]">
           <CoinOptions selected={to} setSelected={setTo} />
         </div>
         <BalanceLabel balance={0} />
       </div>
       <AmountLabel amount={toAmount} name={to.name} setAmount={setToAmount} />
       <Duration selected={duration} setSelected={setDuration} />
-      <div className="text-white/40 flex flex-col mt-9 text-[10px] md:text-xs">
+      <div className="text-white/40 md:text-white flex flex-col mt-9 text-[10px] md:text-[12px]">
         <FeeLabel label="Price" value="0.007 per USDT" />
         <FeeLabel
           label="Platform Fee"
