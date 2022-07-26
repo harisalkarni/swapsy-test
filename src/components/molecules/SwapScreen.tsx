@@ -83,7 +83,10 @@ const SwapScreen = ({
           {store.wallet.label === "" ? (
             <button
               className="bg-ocean-blue text-white text-[14px] py-[10px] px-[31px] rounded-full"
-              onClick={() => store.updateModal("SelectWallet")}
+              onClick={() => {
+                store.updateModal("SelectWallet");
+                store.updateOverlay(false);
+              }}
             >
               Connect & Accept
             </button>

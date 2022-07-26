@@ -5,10 +5,8 @@ import DaiIcon from "assets/coin-dai.png";
 import { FiCopy } from "react-icons/fi";
 import useStore from "utils/store";
 import { IoMdClose } from "react-icons/io";
-interface ConnectWalletProps {
-  isMobile: boolean;
-}
-const ConnectWallet = ({ isMobile }: ConnectWalletProps) => {
+
+const ConnectWallet = () => {
   const store = useStore();
   const amountList = [
     {
