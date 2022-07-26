@@ -48,7 +48,7 @@ const SelectWallet = ({ onSelectWallet }: SelectedWalletProps) => {
       >
         <IoMdClose size={20} color="#707070" />
       </div>
-      <div className="text-[20px] md:text-[16px] text-white mb-[36px] md:mb-[20px] font-medium">
+      <div className="text-[20px] md:text-[16px] text-white mb-[36px] md:mb-[10px] font-medium">
         Select a Wallet
       </div>
       {listWallet.map((wallet, index) => {

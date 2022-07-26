@@ -79,10 +79,13 @@ const Swap = () => {
   };
 
   useEffect(() => {
-    if (store.trxReceipt) {
+    if (window.location.pathname == "/accept") {
       store.updateModal("SwapConfirm");
+      store.updateTrxReceipt(true);
+      setFromAmount(10);
+      setToAmount(10);
     }
-  }, [store.trxReceipt]);
+  }, []);
 
   const renderModalType = () => {
     switch (store.modal) {
