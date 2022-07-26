@@ -6,8 +6,9 @@ import TrustIcon from "assets/trust.png";
 import TokenpocketIcon from "assets/tokenpocket.png";
 import WalletConnect from "assets/walletconnect.png";
 import useStore from "utils/store";
+import { WalletDetail } from "constants/types";
 interface SelectedWalletProps {
-  onSelectWallet: (a: string) => void;
+  onSelectWallet: (a: WalletDetail) => void;
 }
 const SelectWallet = ({ onSelectWallet }: SelectedWalletProps) => {
   const store = useStore();
@@ -16,22 +17,27 @@ const SelectWallet = ({ onSelectWallet }: SelectedWalletProps) => {
     {
       icon: MetamaskIcon,
       label: "Metamask",
+      amount: 100,
     },
     {
       icon: SafepalIcon,
       label: "Safepal",
+      amount: 100,
     },
     {
       icon: TrustIcon,
       label: "Trust Wallet",
+      amount: 100,
     },
     {
       icon: TokenpocketIcon,
       label: "Token Pocket",
+      amount: 100,
     },
     {
       icon: WalletConnect,
       label: "Wallet Connect",
+      amount: 100,
     },
   ];
   return (
@@ -51,6 +57,7 @@ const SelectWallet = ({ onSelectWallet }: SelectedWalletProps) => {
             key={index}
             label={wallet.label}
             icon={wallet.icon}
+            amount={wallet.amount}
             onSelectWallet={onSelectWallet}
           />
         );

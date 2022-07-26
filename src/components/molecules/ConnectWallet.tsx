@@ -13,23 +13,23 @@ const ConnectWallet = ({ isMobile }: ConnectWalletProps) => {
   const amountList = [
     {
       name: "ETH",
-      amount: 999999999,
+      amount: 0,
     },
     {
       name: "USDC",
-      amount: 999999999,
+      amount: 0,
     },
     {
       name: "USDT",
-      amount: 999999999,
+      amount: 0,
     },
     {
       name: "DAI",
-      amount: 999999999,
+      amount: 0,
     },
     {
       name: "WBTC",
-      amount: 999999999,
+      amount: 0,
     },
   ];
 
@@ -95,7 +95,7 @@ const ConnectWallet = ({ isMobile }: ConnectWalletProps) => {
           className=" w-[136px] text-[11px] text-white h-[34px] border border-tea-green rounded-full"
           onClick={() => {
             store.updateModal("NULL");
-            store.addAddressToWallet("");
+            store.addAddressToWallet({ label: "", amount: 0 });
             store.updateTrxStatus(false);
             store.updateApproveTrx(false);
             store.updateTrxReceipt(false);

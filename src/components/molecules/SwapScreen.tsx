@@ -11,13 +11,23 @@ interface SwapConnectProps {
   setFrom: Dispatch<React.SetStateAction<CoinType>>;
   to: CoinType;
   setTo: Dispatch<React.SetStateAction<CoinType>>;
+  toAmount: number;
+  fromAmount: number;
 }
-const SwapScreen = ({ status, from, setFrom, to, setTo }: SwapConnectProps) => {
+const SwapScreen = ({
+  status,
+  from,
+  setFrom,
+  to,
+  setTo,
+  toAmount,
+  fromAmount,
+}: SwapConnectProps) => {
   const ExampleSwap = {
     tokenFrom: from,
-    amountFrom: 2323,
+    amountFrom: fromAmount,
     tokenTo: to,
-    amountTo: 4322,
+    amountTo: toAmount,
   };
 
   const store = useStore();
@@ -25,7 +35,7 @@ const SwapScreen = ({ status, from, setFrom, to, setTo }: SwapConnectProps) => {
   const onClear = () => {
     if (status === "completed") {
       store.updateModal("NULL");
-      store.addAddressToWallet("");
+      store.addAddressToWallet({ label: "", amount: 0 });
       store.updateTrxStatus(false);
       store.updateApproveTrx(false);
       store.updateTrxReceipt(false);
@@ -70,7 +80,7 @@ const SwapScreen = ({ status, from, setFrom, to, setTo }: SwapConnectProps) => {
 
       {status === "default" && (
         <div className="absolute bottom-[42px] flex flex-row justify-center w-full left-0 right-0">
-          {store.wallet === "" ? (
+          {store.wallet.label === "" ? (
             <button
               className="bg-ocean-blue text-white text-[14px] py-[10px] px-[31px] rounded-full"
               onClick={() => store.updateModal("SelectWallet")}

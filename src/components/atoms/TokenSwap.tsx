@@ -17,6 +17,10 @@ interface TokenSwapProps {
   setTo: Dispatch<React.SetStateAction<CoinType>>;
   from: CoinType;
   setFrom: Dispatch<React.SetStateAction<CoinType>>;
+  fromAmount: number;
+  toAmount: number;
+  setFromAmount: Dispatch<React.SetStateAction<number>>;
+  setToAmount: Dispatch<React.SetStateAction<number>>;
 }
 
 const TokenSwap = ({
@@ -26,18 +30,22 @@ const TokenSwap = ({
   setTo,
   from,
   setFrom,
+  fromAmount,
+  setFromAmount,
+  setToAmount,
+  toAmount,
 }: TokenSwapProps) => {
   const [duration, setDuration] = useState<string>(Durations[0]);
 
-  const [fromAmount, setFromAmount] = useState<number>(0);
-  const [toAmount, setToAmount] = useState<number>(0);
-
-  const total = "-";
   const store = useStore();
   const reverse = () => {
     const temp = from;
     setFrom(to);
     setTo(temp);
+
+    const tempAmount = fromAmount;
+    setFromAmount(toAmount);
+    setToAmount(tempAmount);
   };
 
   return (
@@ -46,7 +54,7 @@ const TokenSwap = ({
         <div className="w-[124px] md:w-[148px]">
           <CoinOptions selected={from} setSelected={setFrom} />
         </div>
-        <BalanceLabel balance={100.1234} />
+        <BalanceLabel balance={store.wallet.amount} />
       </div>
       <div className="text-white/30 flex flex-row items-end w-full  justify-between">
         <AmountLabel
@@ -66,7 +74,7 @@ const TokenSwap = ({
         <div className="w-[124px] md:w-[148px]">
           <CoinOptions selected={to} setSelected={setTo} />
         </div>
-        <BalanceLabel balance={100.1234} />
+        <BalanceLabel balance={0} />
       </div>
       <AmountLabel amount={toAmount} name={to.name} setAmount={setToAmount} />
       <Duration selected={duration} setSelected={setDuration} />
@@ -77,7 +85,7 @@ const TokenSwap = ({
           value="0.5%"
           classname="my-[2px] md:my-1"
         />
-        <FeeLabel label="Total Amount" value={`${total} ETH`} />
+        <FeeLabel label="Total Amount" value={`${fromAmount} ETH`} />
       </div>
       <div className="flex justify-center mt-10">
         <button

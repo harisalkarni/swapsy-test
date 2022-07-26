@@ -62,7 +62,7 @@ const SwapCreated = () => {
         className="absolute top-[18px] right-[18px]"
         onClick={() => {
           store.updateModal("NULL");
-          store.addAddressToWallet("");
+          store.addAddressToWallet({ label: "", amount: 0 });
           store.updateTrxReceipt(true);
         }}
       >

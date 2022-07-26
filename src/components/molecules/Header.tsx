@@ -37,7 +37,7 @@ function Header({ activeTab, setTab, onConnect }: Props) {
             className="w-4 md:w-5 object-contain"
           />
           <p className="text-white font-semibold text-[10px] md:text-[12px] ml-[8px]">
-            {store.wallet !== "" ? "2a34s" : "Connect"}
+            {store.wallet.label !== "" ? "2a34s" : "Connect"}
           </p>
         </button>
       </div>

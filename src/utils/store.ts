@@ -1,13 +1,13 @@
 import create from 'zustand'
-import {ModalType} from 'constants/types'
+import {ModalType, WalletDetail} from 'constants/types'
 type Store = {
     modal: string,
-    wallet:string,
+    wallet:WalletDetail,
     trxStatus: boolean,
     approveTrx: boolean,
     trxReceipt: boolean,
     updateModal: (modalType: ModalType) => void,
-    addAddressToWallet: (a: string) =>void,
+    addAddressToWallet: (a: WalletDetail) =>void,
     updateTrxStatus: (a: boolean) => void,
     updateApproveTrx: (a: boolean) => void,
     updateTrxReceipt: (a: boolean) => void
@@ -15,7 +15,10 @@ type Store = {
 
 const useStore = create<Store>((set) => ({
     modal: 'NULL',
-    wallet:'',
+    wallet: {
+        label: '',
+        amount: 0
+    },
     trxStatus: false,
     approveTrx: false,
     trxReceipt: false,
@@ -25,10 +28,10 @@ const useStore = create<Store>((set) => ({
             modal: text
         }))
     },
-    addAddressToWallet(text:string){
+    addAddressToWallet(detail: WalletDetail){
         set(state => ({
             ...state, 
-            wallet: text
+            wallet: detail
         })) 
     },
     updateTrxStatus(val : boolean){

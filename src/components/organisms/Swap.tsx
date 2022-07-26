@@ -1,6 +1,6 @@
 import TokenSwap from "components/atoms/TokenSwap";
 import { useState, useRef, useEffect } from "react";
-import { TabType } from "constants/types";
+import { TabType, WalletDetail } from "constants/types";
 import Header from "components/molecules/Header";
 import History from "components/molecules/History";
 import SelectWallet from "components/molecules/SelectWallet";
@@ -28,9 +28,12 @@ const Swap = () => {
   const [from, setFrom] = useState<CoinType>(Coins[0]);
   const [to, setTo] = useState<CoinType>(Coins[1]);
 
+  const [fromAmount, setFromAmount] = useState<number>(0);
+  const [toAmount, setToAmount] = useState<number>(0);
+
   const store = useStore();
   const onActionConnect = () => {
-    if (store.wallet === "") {
+    if (store.wallet.label === "") {
       store.updateModal("SelectWallet");
     } else {
       if (store.approveTrx) {
@@ -45,7 +48,7 @@ const Swap = () => {
 
   useOnClickOutside(ref, () => store.updateModal("NULL"));
 
-  const onSelectWallet = (a: string) => {
+  const onSelectWallet = (a: WalletDetail) => {
     store.addAddressToWallet(a);
     if (store.trxReceipt) {
       store.updateModal("SwapConfirm");
@@ -61,7 +64,7 @@ const Swap = () => {
       setRightSide(false);
     }
 
-    if (store.wallet === "") {
+    if (store.wallet.label === "") {
       store.updateModal("SelectWallet");
     } else {
       store.updateModal("MyWallet");
@@ -121,6 +124,8 @@ const Swap = () => {
             from={from}
             setFrom={setFrom}
             setTo={setTo}
+            toAmount={toAmount}
+            fromAmount={fromAmount}
           />
         );
       case "CanceledModal":
@@ -155,6 +160,8 @@ const Swap = () => {
             from={from}
             setFrom={setFrom}
             setTo={setTo}
+            toAmount={toAmount}
+            fromAmount={fromAmount}
           />
         );
       case "ApprovingToken":
@@ -217,6 +224,8 @@ const Swap = () => {
             from={from}
             setFrom={setFrom}
             setTo={setTo}
+            toAmount={toAmount}
+            fromAmount={fromAmount}
           />
         );
       case "WrongNetwork":
@@ -289,6 +298,8 @@ const Swap = () => {
             from={from}
             setFrom={setFrom}
             setTo={setTo}
+            toAmount={toAmount}
+            fromAmount={fromAmount}
           />
         );
       case "CanceledModal":
@@ -323,6 +334,8 @@ const Swap = () => {
             from={from}
             setFrom={setFrom}
             setTo={setTo}
+            toAmount={toAmount}
+            fromAmount={fromAmount}
           />
         );
       case "ApprovingToken":
@@ -385,6 +398,8 @@ const Swap = () => {
             from={from}
             setFrom={setFrom}
             setTo={setTo}
+            toAmount={toAmount}
+            fromAmount={fromAmount}
           />
         );
       case "WrongNetwork":
@@ -412,11 +427,15 @@ const Swap = () => {
         {activeTab === "CREATE" ? (
           <TokenSwap
             actionConnect={onActionConnect}
-            address={store.wallet}
+            address={store.wallet.label}
             to={to}
             setTo={setTo}
             from={from}
             setFrom={setFrom}
+            toAmount={toAmount}
+            setToAmount={setToAmount}
+            fromAmount={fromAmount}
+            setFromAmount={setFromAmount}
           />
         ) : (
           <History />
