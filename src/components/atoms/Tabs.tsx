@@ -19,14 +19,14 @@ const Tabs = ({ activeTab, setActiveTab, classname }: Props) => {
         className="relative pb-[9px] mr-[40px] cursor-pointer"
         onClick={() => setActiveTab("CREATE")}
       >
-        <div>Create</div>
+        <div className="md:text-[24px] text-[20px]">Create</div>
         {activeTab === "CREATE" && renderActiveBar()}
       </div>
       <div
         className="relative pb-[9px] cursor-pointer"
         onClick={() => setActiveTab("HISTORY")}
       >
-        <div>My Swaps</div>
+        <div className="md:text-[24px] text-[20px]">My Swaps</div>
         {activeTab === "HISTORY" && renderActiveBar()}
       </div>
     </div>

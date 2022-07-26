@@ -425,7 +425,7 @@ const Swap = () => {
 
   return (
     <div className="min-h-screen min-w-screen flex flex-col items-center justify-start pt-[96px] md:pt-0 overflow-x-hidden bg-black relative">
-      <div className="absolute inset-0 opacity-40 bg-gradient-to-b from-black to-blue-purple"></div>
+      <div className="absolute inset-0 opacity-70 bg-gradient-to-b from-black to-blue-purple"></div>
       <Header
         activeTab={activeTab}
         setTab={setActiveTab}
