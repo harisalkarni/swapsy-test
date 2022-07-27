@@ -29,6 +29,8 @@ export type ModalType =
   | "SomethingWrong"
   | "ApprovingTokenReceipt";
 export type ModalAlert = "loading" | "success" | "failed";
+export type SideModal = "ConnectWallet" | "SelectWallet" | "NULL";
+export type SwapStatus = "SWAP" | "ACCEPT";
 export type WalletDetail = {
   label: string;
   amount: number;

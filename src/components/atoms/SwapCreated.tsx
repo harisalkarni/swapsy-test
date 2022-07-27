@@ -63,7 +63,10 @@ const SwapCreated = () => {
         onClick={() => {
           store.updateModal("NULL");
           store.addAddressToWallet({ label: "", amount: 0 });
-          store.updateTrxReceipt(true);
+          store.updateTrxStatus(false);
+          store.updateApproveTrx(false);
+          store.updateTrxReceipt(false);
+          store.updateSideModal("NULL");
         }}
       >
         <IoMdClose size={20} color="#fff" />

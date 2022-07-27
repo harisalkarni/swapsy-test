@@ -34,7 +34,12 @@ const Swap = () => {
   const store = useStore();
   const onActionConnect = () => {
     if (store.wallet.label === "") {
-      store.updateModal("SelectWallet");
+      if (isBrowser) {
+        store.updateSideModal("SelectWallet");
+      } else {
+        store.updateModal("SelectWallet");
+      }
+
       store.updateOverlay(false);
     } else {
       if (store.approveTrx) {
@@ -54,7 +59,13 @@ const Swap = () => {
 
   const onSelectWallet = (a: WalletDetail) => {
     store.addAddressToWallet(a);
-    store.updateOverlay(true);
+    if (isBrowser && store.swapStatus == "ACCEPT") {
+      store.updateOverlay(false);
+    } else {
+      store.updateOverlay(true);
+    }
+    store.updateSideModal("NULL");
+
     if (store.trxReceipt) {
       store.updateModal("SwapConfirm");
     } else {
@@ -71,10 +82,18 @@ const Swap = () => {
 
     if (store.wallet.label === "") {
       store.updateOverlay(false);
-      store.updateModal("SelectWallet");
+      if (isBrowser) {
+        store.updateSideModal("SelectWallet");
+      } else {
+        store.updateModal("SelectWallet");
+      }
     } else {
       store.updateOverlay(false);
-      store.updateModal("MyWallet");
+      if (isBrowser) {
+        store.updateSideModal("ConnectWallet");
+      } else {
+        store.updateModal("MyWallet");
+      }
     }
   };
 
@@ -82,6 +101,8 @@ const Swap = () => {
     if (window.location.pathname == "/accept") {
       store.updateModal("SwapConfirm");
       store.updateTrxReceipt(true);
+      store.updateOverlay(false);
+      store.updateSwapStatus("ACCEPT");
       setFromAmount(10);
       setToAmount(10);
     }
@@ -254,8 +275,8 @@ const Swap = () => {
   };
 
   const renderDekstopRight = () => {
-    switch (store.modal) {
-      case "MyWallet":
+    switch (store.sideModal) {
+      case "ConnectWallet":
         return (
           <div ref={ref}>
             <ConnectWallet />;
@@ -475,14 +496,16 @@ const Swap = () => {
       {store.modal !== "NULL" && isBrowser && (
         <div
           className={`${
-            store.overlay ? "bg-black bg-opacity-80" : "bg-transparent"
-          } absolute top-0 bottom-0 left-0 right-0 flex  flex-row items-center justify-center `}
+            store.overlay
+              ? "top-0 bottom-0 left-0 right-0 items-center bg-black bg-opacity-80"
+              : "top-[150px] bg-transparent"
+          } absolute  flex  flex-row  justify-center `}
         >
           <div ref={ref}>{renderDesktopModal() as any}</div>
         </div>
       )}
 
-      {store.modal !== "NULL" && isBrowser && !rightSide && (
+      {store.sideModal !== "NULL" && isBrowser && !rightSide && (
         <div className="absolute right-[40px] top-[91px]">
           {renderDekstopRight() as any}
         </div>

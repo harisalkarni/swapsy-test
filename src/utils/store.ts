@@ -1,5 +1,5 @@
 import create from "zustand";
-import { ModalType, WalletDetail } from "constants/types";
+import { ModalType, SideModal, SwapStatus, WalletDetail } from "constants/types";
 type Store = {
   modal: string;
   wallet: WalletDetail;
@@ -7,12 +7,16 @@ type Store = {
   approveTrx: boolean;
   trxReceipt: boolean;
   overlay: boolean;
+  sideModal: SideModal;
+  swapStatus: SwapStatus;
   updateModal: (modalType: ModalType) => void;
   addAddressToWallet: (a: WalletDetail) => void;
   updateTrxStatus: (a: boolean) => void;
   updateApproveTrx: (a: boolean) => void;
   updateTrxReceipt: (a: boolean) => void;
   updateOverlay: (a: boolean) => void;
+  updateSideModal: (a: SideModal) => void;
+  updateSwapStatus: (a: SwapStatus) => void;
 };
 
 const useStore = create<Store>((set) => ({
@@ -25,6 +29,8 @@ const useStore = create<Store>((set) => ({
   trxStatus: false,
   approveTrx: false,
   trxReceipt: false,
+  sideModal: "NULL",
+  swapStatus: "SWAP",
   updateModal(text: ModalType) {
     set((state) => ({
       ...state,
@@ -59,6 +65,18 @@ const useStore = create<Store>((set) => ({
     set((state) => ({
       ...state,
       overlay: val,
+    }));
+  },
+  updateSideModal(val: SideModal){
+    set((state) => ({
+      ...state,
+      sideModal: val,
+    }));
+  },
+  updateSwapStatus(val: SwapStatus){
+    set((state) => ({
+      ...state,
+      swapStatus: val,
     }));
   },
 }));

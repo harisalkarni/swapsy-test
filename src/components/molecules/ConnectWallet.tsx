@@ -97,6 +97,7 @@ const ConnectWallet = () => {
             store.updateTrxStatus(false);
             store.updateApproveTrx(false);
             store.updateTrxReceipt(false);
+            store.updateSideModal("NULL");
           }}
         >
           Disconnect
