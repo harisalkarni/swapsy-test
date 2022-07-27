@@ -46,7 +46,7 @@ const SwapScreen = ({
 
   return (
     <div
-      className={`z-20 w-[294px] h-[485px]  rounded-[5px] pt-[33px] px-[33px] relative ${
+      className={`relative z-20 h-[485px]  w-[294px] rounded-[5px] px-[33px] pt-[33px] ${
         status === "completed" ? "bg-ocean-blue" : "bg-erie-black"
       }`}
     >
@@ -61,16 +61,16 @@ const SwapScreen = ({
       </div>
 
       {status === "completed" && (
-        <div className="bg-tea-green w-[137px] h-[41px] text-ocean-blue font-medium text-[17px] rounded-[5px] flex flex-row justify-center items-center -ml-[40px] mb-[33px]">
+        <div className="-ml-[40px] mb-[33px] flex h-[41px] w-[137px] flex-row items-center justify-center rounded-[5px] bg-tea-green text-[17px] font-medium text-ocean-blue">
           <span>Completed</span>
         </div>
       )}
-      <div className="text-white opacity-60 text-[10px]">Expires in 2d 12h</div>
-      <div className="text-[20px] text-white mb-[12px]">Swap #94812</div>
-      <div className="text-white text-[10px] mb-[32px] flex flex-row">
+      <div className="text-[10px] text-white opacity-60">Expires in 2d 12h</div>
+      <div className="mb-[12px] text-[20px] text-white">Swap #94812</div>
+      <div className="mb-[32px] flex flex-row text-[10px] text-white">
         <div>
           <span className="text-white opacity-60">Created by </span>
-          <span className="text-tea-green truncate">0xb319Ac09505B1f0….</span>
+          <span className="truncate text-tea-green">0xb319Ac09505B1f0….</span>
         </div>
       </div>
       <SwapConnect swap={ExampleSwap} />
@@ -79,10 +79,10 @@ const SwapScreen = ({
       </div>
 
       {status === "default" && (
-        <div className="absolute bottom-[42px] flex flex-row justify-center w-full left-0 right-0">
+        <div className="absolute bottom-[42px] left-0 right-0 flex w-full flex-row justify-center">
           {store.wallet.label === "" ? (
             <button
-              className="bg-ocean-blue text-white text-[14px] py-[10px] px-[31px] rounded-full"
+              className="rounded-full bg-ocean-blue py-[10px] px-[31px] text-[14px] text-white"
               onClick={() => {
                 store.updateModal("SelectWallet");
                 store.updateOverlay(false);
@@ -92,14 +92,14 @@ const SwapScreen = ({
             </button>
           ) : store.trxReceipt ? (
             <button
-              className="bg-ocean-blue text-white text-[14px] py-[10px] px-[31px] rounded-full"
+              className="rounded-full bg-ocean-blue py-[10px] px-[31px] text-[14px] text-white"
               onClick={() => store.updateModal("ApprovingTokenReceipt")}
             >
               Approve {`${to.name}`}
             </button>
           ) : (
             <button
-              className="bg-ocean-blue text-white text-[14px] py-[10px] px-[31px] rounded-full"
+              className="rounded-full bg-ocean-blue py-[10px] px-[31px] text-[14px] text-white"
               onClick={() => store.updateModal("ProcessingTrx")}
             >
               Accept

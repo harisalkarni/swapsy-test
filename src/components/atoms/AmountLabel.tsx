@@ -10,7 +10,7 @@ function AmountLabel({ amount, name, setAmount }: Props) {
   const [width, setWidth] = useState(1);
 
   return (
-    <div className="flex flex-row items-end w-[85px] h-[33px]">
+    <div className="flex h-[33px] w-[85px] flex-row items-end">
       <input
         type="text"
         value={amount}
@@ -24,7 +24,7 @@ function AmountLabel({ amount, name, setAmount }: Props) {
         pattern="^[0-9]*[.,]?[0-9]*$"
         size={width}
         placeholder="0.00"
-        className={`h-6 md:h-7 text-left max-w-[200px] text-[24px] md:text-[27px] bg-transparent outline-none text-white placeholder:text-white/30 ${
+        className={`h-6 max-w-[200px] bg-transparent text-left text-[24px] text-white outline-none placeholder:text-white/30 md:h-7 md:text-[27px] ${
           amount === 0 ? "text-white/30" : "text-white"
         }`}
       />
@@ -32,7 +32,7 @@ function AmountLabel({ amount, name, setAmount }: Props) {
       <div
         className={`${
           amount === 0 ? "text-white/30" : "text-white"
-        } text-[16px] md:text-[18px] ml-1 leading-[20px]`}
+        } ml-1 text-[16px] leading-[20px] md:text-[18px]`}
       >
         {name}
       </div>

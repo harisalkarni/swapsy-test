@@ -6,7 +6,7 @@ interface Props {
 
 function BalanceLabel({ balance }: Props) {
   return (
-    <div className="text-[8px] md:text-[11px] opacity-60 text-white ml-[16px]">
+    <div className="ml-[16px] text-[8px] text-white opacity-60 md:text-[11px]">
       <div>Balance</div>
       <div>{numeral(balance).format("0,0.00")}</div>
     </div>

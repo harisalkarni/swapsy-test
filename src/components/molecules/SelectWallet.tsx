@@ -41,14 +41,14 @@ const SelectWallet = ({ onSelectWallet }: SelectedWalletProps) => {
     },
   ];
   return (
-    <div className="w-[319px] md:w-[222px] md:h-[314px] h-[481px] bg-erie-black bg-opacity-98 pt-[53px] md:pt-[24px] md:pb-[24px] pb-[42px] px-[32px] md:px-[23px] rounded-[10px] z-20 relative">
+    <div className="relative z-20 h-[481px] w-[319px] rounded-[10px] bg-erie-black bg-opacity-98 px-[32px] pt-[53px] pb-[42px] md:h-[314px] md:w-[222px] md:px-[23px] md:pt-[24px] md:pb-[24px]">
       <div
         className="absolute top-[19px] right-[19px]"
         onClick={() => store.updateModal("NULL")}
       >
         <IoMdClose size={20} color="#707070" />
       </div>
-      <div className="text-[20px] md:text-[16px] text-white mb-[36px] md:mb-[10px] font-medium">
+      <div className="mb-[36px] text-[20px] font-medium text-white md:mb-[10px] md:text-[16px]">
         Select a Wallet
       </div>
       {listWallet.map((wallet, index) => {

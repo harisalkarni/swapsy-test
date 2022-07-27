@@ -57,7 +57,7 @@ const SwapCreated = () => {
   ];
 
   return (
-    <div className="w-[281px] h-[481px] bg-ocean-blue rounded-[5px] relative pt-[69px] z-20">
+    <div className="relative z-20 h-[481px] w-[281px] rounded-[5px] bg-ocean-blue pt-[69px]">
       <div
         className="absolute top-[18px] right-[18px]"
         onClick={() => {
@@ -69,22 +69,22 @@ const SwapCreated = () => {
         <IoMdClose size={20} color="#fff" />
       </div>
       <div className="flex flex-col items-center">
-        <div className="w-[67px] h-[50px] mb-[24px]">
+        <div className="mb-[24px] h-[50px] w-[67px]">
           <FaCheck color="#DBF9CD" size={67} />
         </div>
-        <div className="text-[20px] text-white w-[83px] text-center font-bold">
+        <div className="w-[83px] text-center text-[20px] font-bold text-white">
           Swap Created
         </div>
       </div>
       <div className="mt-[39px]  px-[24px] ">
-        <div className="text-[12px] text-white mb-[8px]">Swap Link</div>
-        <div className="bg-white w-[234px] h-[40px] rounded-[5px] flex items-center justify-center  px-[10px] mb-[8px]">
+        <div className="mb-[8px] text-[12px] text-white">Swap Link</div>
+        <div className="mb-[8px] flex h-[40px] w-[234px] items-center justify-center rounded-[5px]  bg-white px-[10px]">
           {copiedData ? (
-            <div className="text-secondary-purple text-[14px] font-medium  text-center">
+            <div className="text-center text-[14px] font-medium  text-secondary-purple">
               Link Copied!
             </div>
           ) : (
-            <div className="flex flex-row justify-between w-full">
+            <div className="flex w-full flex-row justify-between">
               <div className="text-[11px] font-bold">{textBox}</div>
               <CopyToClipboard
                 text={textBox}
@@ -98,20 +98,20 @@ const SwapCreated = () => {
           )}
         </div>
         <div
-          className={`border border-white w-[234px] h-[32px] rounded-[5px] flex flex-row  items-center  px-[10px] mb-[28px] ${
-            sendRecipient ? "bg-white justify-center" : "border border-white"
+          className={`mb-[28px] flex h-[32px] w-[234px] flex-row items-center rounded-[5px]  border  border-white px-[10px] ${
+            sendRecipient ? "justify-center bg-white" : "border border-white"
           }`}
         >
           {sendRecipient ? (
-            <div className="text-secondary-purple text-[14px] font-medium">
+            <div className="text-[14px] font-medium text-secondary-purple">
               Sent!
             </div>
           ) : (
-            <div className="flex justify-between w-full">
+            <div className="flex w-full justify-between">
               <input
                 type="text"
                 placeholder="Recipient Email"
-                className="text-[10px] appearance-none text-white/50 w-full bg-none bg-transparent leading-tight focus:text-white focus:outline-none focus:shadow-outline"
+                className="focus:shadow-outline w-full appearance-none bg-transparent bg-none text-[10px] leading-tight text-white/50 focus:text-white focus:outline-none"
               />
               <button onClick={() => setSendRecipient(true)}>
                 <FaTelegramPlane color="#fff" size={18} />
@@ -120,10 +120,10 @@ const SwapCreated = () => {
           )}
         </div>
         <div className="flex flex-col items-center">
-          <div className="flex flex-row justify-between w-[179px]">
+          <div className="flex w-[179px] flex-row justify-between">
             {socialMedia.map((item) => {
               return (
-                <div className="bg-secondaryblack w-[36px] h-[36px] rounded-[2px] flex flex-row justify-center items-center cursor-pointer">
+                <div className="flex h-[36px] w-[36px] cursor-pointer flex-row items-center justify-center rounded-[2px] bg-secondaryblack">
                   <img
                     src={item.icon}
                     alt={item.name}
@@ -136,7 +136,7 @@ const SwapCreated = () => {
           </div>
         </div>
 
-        <div className="text-tea-green text-[10px] mt-[24px] text-center">
+        <div className="mt-[24px] text-center text-[10px] text-tea-green">
           View on Etherscan
         </div>
       </div>

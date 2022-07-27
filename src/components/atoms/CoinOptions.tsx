@@ -19,19 +19,19 @@ export default function CoinOptions({ selected, setSelected }: Props) {
     <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          <div className="mt-1 relative">
-            <Listbox.Button className="relative w-full bg-secondaryblack rounded-md shadow-sm px-[7px] pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-[12px] md:text-[13px]">
+          <div className="relative mt-1">
+            <Listbox.Button className="relative w-full cursor-default rounded-md bg-secondaryblack px-[7px] py-2 pr-10 text-left text-[12px] shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 md:text-[13px]">
               <span className="flex items-center">
                 <img
                   src={selected.avatar}
                   alt="icon"
-                  className="flex-shrink-0 w-[21px] md:w-[23px] object-contain rounded-full"
+                  className="w-[21px] flex-shrink-0 rounded-full object-contain md:w-[23px]"
                 />
-                <span className="ml-3 block truncate text-white text-[12px] md:text-[13px]">
+                <span className="ml-3 block truncate text-[12px] text-white md:text-[13px]">
                   {selected.name}
                 </span>
               </span>
-              <span className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+              <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                 <ChevronDownIcon
                   className="h-5 w-5 text-second-tea-green"
                   aria-hidden="true"
@@ -46,14 +46,14 @@ export default function CoinOptions({ selected, setSelected }: Props) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute z-10 mt-1 w-full bg-secondaryblack shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
+              <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-secondaryblack py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                 {Coins.map((coin, index) => (
                   <Listbox.Option
                     key={index}
                     className={({ active }) =>
                       classNames(
-                        active ? "text-white bg-indigo-600" : "text-gray-900",
-                        "cursor-default select-none relative py-2 px-[7px] pr-9"
+                        active ? "bg-indigo-600 text-white" : "text-gray-900",
+                        "relative cursor-default select-none py-2 px-[7px] pr-9"
                       )
                     }
                     value={coin}
@@ -64,12 +64,12 @@ export default function CoinOptions({ selected, setSelected }: Props) {
                           <img
                             src={coin.avatar}
                             alt="icon"
-                            className="flex-shrink-0 object-contain w-[21px] md:w-[23px] rounded-full"
+                            className="w-[21px] flex-shrink-0 rounded-full object-contain md:w-[23px]"
                           />
                           <span
                             className={classNames(
                               selected ? "font-semibold" : "font-normal",
-                              "ml-3 block truncate text-white text-[12px] md:text-[13px]"
+                              "ml-3 block truncate text-[12px] text-white md:text-[13px]"
                             )}
                           >
                             {coin.name}

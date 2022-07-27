@@ -434,17 +434,17 @@ const Swap = () => {
   };
 
   return (
-    <div className="min-h-screen min-w-screen flex flex-col items-center justify-start pt-[96px] md:pt-0 overflow-x-hidden bg-black relative">
-      <div className="absolute inset-0 opacity-70 bg-gradient-to-b from-black to-blue-purple"></div>
+    <div className="min-w-screen relative flex min-h-screen flex-col items-center justify-start overflow-x-hidden bg-black pt-[96px] md:pt-0">
+      <div className="absolute inset-0 bg-gradient-to-b from-black to-blue-purple opacity-70"></div>
       <Header
         activeTab={activeTab}
         setTab={setActiveTab}
         onConnect={onConnect}
       />
       <div
-        className={`rounded-[8px] relative z-5  md:mt-20 w-full ${
+        className={`z-5 relative w-full  rounded-[8px] md:mt-20 ${
           activeTab === "CREATE" &&
-          "bg-erie-black p-8 md:p-[35px] w-[320px] md:w-[336px]"
+          "w-[320px] bg-erie-black p-8 md:w-[336px] md:p-[35px]"
         }`}
       >
         {activeTab === "CREATE" ? (
@@ -466,7 +466,7 @@ const Swap = () => {
       </div>
       {store.modal !== "NULL" && isMobile && (
         <div
-          className={`absolute top-0 bottom-0 left-0 right-0 flex bg-black bg-opacity-80 flex-row justify-center items-center `}
+          className={`absolute top-0 bottom-0 left-0 right-0 flex flex-row items-center justify-center bg-black bg-opacity-80 `}
         >
           <div ref={ref}>{renderModalType() as any}</div>
         </div>
@@ -476,7 +476,7 @@ const Swap = () => {
         <div
           className={`${
             store.overlay ? "bg-black bg-opacity-80" : "bg-transparent"
-          } absolute top-0 bottom-0 left-0 right-0 flex  flex-row justify-center items-center `}
+          } absolute top-0 bottom-0 left-0 right-0 flex  flex-row items-center justify-center `}
         >
           <div ref={ref}>{renderDesktopModal() as any}</div>
         </div>

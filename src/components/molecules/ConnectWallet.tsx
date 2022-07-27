@@ -47,7 +47,7 @@ const ConnectWallet = () => {
   };
   return (
     <div
-      className={`z-20 w-[319px] md:w-[222px] md:h-[352px] h-[481px]  bg-opacity-98 pt-[63px] md:pt-[24px] pb-[42px] px-[38px] md:px-[20px] rounded-[10px] relative bg-erie-black md:bg-ocean-blue`}
+      className={`relative z-20 h-[481px] w-[319px] rounded-[10px]  bg-erie-black bg-opacity-98 px-[38px] pt-[63px] pb-[42px] md:h-[352px] md:w-[222px] md:bg-ocean-blue md:px-[20px] md:pt-[24px]`}
     >
       {/* <div
         className="absolute top-[19px] right-[19px]"
@@ -56,13 +56,13 @@ const ConnectWallet = () => {
         <IoMdClose size={20} color="#707070" />
       </div> */}
       <div>
-        <div className="text-[10px] mb-[41px] md:mb-[39px] flex flex-row justify-between items-center">
+        <div className="mb-[41px] flex flex-row items-center justify-between text-[10px] md:mb-[39px]">
           <div>
             <div className="text-tea-green">Connected Wallet</div>
             <div className="text-white">0xb319ac09505b1f04c1bf216…</div>
           </div>
           <div>
-            <FiCopy size={23} className="md:text-white text-white" />
+            <FiCopy size={23} className="text-white md:text-white" />
           </div>
         </div>
       </div>
@@ -71,26 +71,26 @@ const ConnectWallet = () => {
         return (
           <div
             key={index}
-            className="flex flex-row justify-between items-center mb-[16px] md:mb-[9px]"
+            className="mb-[16px] flex flex-row items-center justify-between md:mb-[9px]"
           >
             <div className="flex flex-1 items-center">
-              <div className="w-[30px] h-[30px] md:w-[25px] md:h-[25px] mr-[12px]">
+              <div className="mr-[12px] h-[30px] w-[30px] md:h-[25px] md:w-[25px]">
                 {iconRender(list.name)}
               </div>
               <div className="text-[12px] text-white md:text-[9px]">
                 {list.name}
               </div>
             </div>
-            <div className="text-white text-[12px] opacity-100 md:opacity-50">
+            <div className="text-[12px] text-white opacity-100 md:opacity-50">
               {list.amount}
             </div>
           </div>
         );
       })}
 
-      <div className="absolute bottom-[42px] md:bottom-[32px] left-0 right-0 flex flex-1 justify-center">
+      <div className="absolute bottom-[42px] left-0 right-0 flex flex-1 justify-center md:bottom-[32px]">
         <button
-          className=" w-[136px] text-[11px] text-white h-[34px] border border-tea-green rounded-full"
+          className=" h-[34px] w-[136px] rounded-full border border-tea-green text-[11px] text-white"
           onClick={() => {
             store.updateModal("NULL");
             store.addAddressToWallet({ label: "", amount: 0 });

@@ -49,14 +49,14 @@ const TokenSwap = ({
   };
 
   return (
-    <div className="relative z-5">
-      <div className="flex flex-row items-center mb-[8px]">
-        <div className="w-[124px] md:w-[123px] h-[36px] md:h-[41px]">
+    <div className="z-5 relative">
+      <div className="mb-[8px] flex flex-row items-center">
+        <div className="h-[36px] w-[124px] md:h-[41px] md:w-[123px]">
           <CoinOptions selected={from} setSelected={setFrom} />
         </div>
         <BalanceLabel balance={store.wallet.amount} />
       </div>
-      <div className="text-white/30 flex flex-row items-end w-full  justify-between">
+      <div className="flex w-full flex-row items-end justify-between  text-white/30">
         <AmountLabel
           amount={fromAmount}
           name={from.name}
@@ -66,19 +66,19 @@ const TokenSwap = ({
           <img
             src={ArrowIcon}
             alt="Arrow Icon"
-            className="w-[13.5px] h-5 md:w-6 md:h-6 object-contain"
+            className="h-5 w-[13.5px] object-contain md:h-6 md:w-6"
           />
         </button>
       </div>
-      <div className="flex flex-row items-center mt-4 mb-[8px]">
-        <div className="w-[124px] md:w-[123px] h-[36px] md:h-[41px]">
+      <div className="mt-4 mb-[8px] flex flex-row items-center">
+        <div className="h-[36px] w-[124px] md:h-[41px] md:w-[123px]">
           <CoinOptions selected={to} setSelected={setTo} />
         </div>
         <BalanceLabel balance={0} />
       </div>
       <AmountLabel amount={toAmount} name={to.name} setAmount={setToAmount} />
       <Duration selected={duration} setSelected={setDuration} />
-      <div className="text-white/40 md:text-white flex flex-col mt-9 text-[10px] md:text-[12px]">
+      <div className="mt-9 flex flex-col text-[10px] text-white/40 md:text-[12px] md:text-white">
         <FeeLabel label="Price" value="0.007 per USDT" />
         <FeeLabel
           label="Platform Fee"
@@ -87,9 +87,9 @@ const TokenSwap = ({
         />
         <FeeLabel label="Total Amount" value={`${fromAmount} ETH`} />
       </div>
-      <div className="flex justify-center mt-10">
+      <div className="mt-10 flex justify-center">
         <button
-          className={`text-white font-semibold py-[10px] px-[33px] rounded-full text-[14px] ${
+          className={`rounded-full py-[10px] px-[33px] text-[14px] font-semibold text-white ${
             fromAmount === 0 && address !== ""
               ? "bg-ocean-blue/30"
               : "bg-ocean-blue "

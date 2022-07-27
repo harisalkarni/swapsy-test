@@ -16,11 +16,11 @@ function Header({ activeTab, setTab, onConnect }: Props) {
   const store = useStore();
   return (
     <>
-      <div className="flex flex-row justify-between w-full px-[30px] md:px-[62px]  items-center relative z-0 md:pt-[29px] pt-0">
+      <div className="relative z-0 flex w-full flex-row items-center  justify-between px-[30px] pt-0 md:px-[62px] md:pt-[29px]">
         <img
           src={Logo}
           alt="swapsi logo"
-          className="w-[93px] md:w-[141px] object-contain"
+          className="w-[93px] object-contain md:w-[141px]"
         />
         <Tabs
           activeTab={activeTab}
@@ -28,15 +28,15 @@ function Header({ activeTab, setTab, onConnect }: Props) {
           classname="hidden md:flex fixed right-0 left-0"
         />
         <button
-          className="flex flex-row items-center relative z-10 md:bg-ocean-blue justify-center md:h-[40px] md:w-[141px] text-center md:rounded-full"
+          className="relative z-10 flex flex-row items-center justify-center text-center md:h-[40px] md:w-[141px] md:rounded-full md:bg-ocean-blue"
           onClick={() => onConnect()}
         >
           <img
             alt="wallet"
             src={isMobile ? Wallet : WalletDesktop}
-            className="w-4 md:w-5 object-contain"
+            className="w-4 object-contain md:w-5"
           />
-          <p className="text-white font-semibold text-[10px] md:text-[12px] ml-[8px]">
+          <p className="ml-[8px] text-[10px] font-semibold text-white md:text-[12px]">
             {store.wallet.label !== "" ? "2a34s" : "Connect"}
           </p>
         </button>

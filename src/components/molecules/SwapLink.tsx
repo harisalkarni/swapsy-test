@@ -35,7 +35,7 @@ const SwapLink = ({
 
   return (
     <div
-      className={`z-20 w-[294px] h-[485px]  rounded-[5px]  px-[33px] relative bg-erie-black  ${
+      className={`relative z-20 h-[485px]  w-[294px]  rounded-[5px] bg-erie-black px-[33px]  ${
         button ? "pt-[33px]" : "pt-[69px]"
       }`}
     >
@@ -45,15 +45,15 @@ const SwapLink = ({
       >
         <IoMdClose size={20} color="#707070" />
       </div>
-      <div className={`flex flex-col items-center mb-[24px] `}>
+      <div className={`mb-[24px] flex flex-col items-center `}>
         <div className="text-[20px] text-tea-green">Swap #94812</div>
-        <div className="text-white opacity-70 text-[10px]">{text}</div>
+        <div className="text-[10px] text-white opacity-70">{text}</div>
       </div>
 
       <SwapConnect swap={ExampleSwap} />
 
       {button && (
-        <div className="mt-[40px] flex flex-row justify-between items-center">
+        <div className="mt-[40px] flex flex-row items-center justify-between">
           <div>
             <div className="text-[10px] text-tea-green">Swap Link</div>
             <div className="text-[9px] text-white">
@@ -69,9 +69,9 @@ const SwapLink = ({
       </div>
 
       {button && (
-        <div className="absolute bottom-[42px] flex flex-row justify-center w-full left-0 right-0">
+        <div className="absolute bottom-[42px] left-0 right-0 flex w-full flex-row justify-center">
           <button
-            className="bg-ocean-blue text-white text-[11px] py-[9px] px-[48px] rounded-full"
+            className="rounded-full bg-ocean-blue py-[9px] px-[48px] text-[11px] text-white"
             onClick={() => onCancel()}
           >
             {btnText}
