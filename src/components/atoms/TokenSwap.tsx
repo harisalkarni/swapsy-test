@@ -51,7 +51,7 @@ const TokenSwap = ({
   return (
     <div className="z-5 relative">
       <div className="mb-[8px] flex flex-row items-center">
-        <div className="h-[36px] w-[124px] md:h-[41px] md:w-[123px]">
+        <div className="h-[36px] w-[124px] rounded-[16px] md:h-[41px] md:w-[123px]">
           <CoinOptions selected={from} setSelected={setFrom} />
         </div>
         <BalanceLabel balance={store.wallet.amount} />
@@ -89,7 +89,7 @@ const TokenSwap = ({
       </div>
       <div className="mt-10 flex justify-center">
         <button
-          className={`rounded-full py-[10px] px-[33px] text-[14px] font-semibold text-white ${
+          className={`h-[40px] w-[176px] rounded-full text-[14px] font-semibold  text-white md:h-[46px] md:w-[201px] ${
             fromAmount === 0 && address !== ""
               ? "bg-ocean-blue/30"
               : "bg-ocean-blue "

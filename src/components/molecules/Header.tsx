@@ -28,7 +28,11 @@ function Header({ activeTab, setTab, onConnect }: Props) {
           classname="hidden md:flex fixed right-0 left-0"
         />
         <button
-          className="relative z-10 flex flex-row items-center justify-center text-center md:h-[40px] md:w-[141px] md:rounded-full md:bg-ocean-blue"
+          className={`relative z-10 flex h-[36px] w-[123px] flex-row items-center justify-center rounded-full text-center md:h-[40px] md:w-[141px] ${
+            store.wallet.label == ""
+              ? "md:bg-ocean-blue"
+              : "bg-black md:bg-black"
+          }`}
           onClick={() => onConnect()}
         >
           <img

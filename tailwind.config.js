@@ -5,6 +5,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        'swapsy': "url('/src/assets/background.png')",
+      },
       fontFamily: {
         sans: ["Poppins", ...defaultTheme.fontFamily.sans],
       },

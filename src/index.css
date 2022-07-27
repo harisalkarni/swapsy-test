@@ -82,4 +82,11 @@
     width: 0;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
 }
+.swap-box-shadow{
+  box-shadow: 0;
+}
+
+.bg-main-swapsy{
+  background: transparent linear-gradient(180deg, #000000 -10%, #413AC8 100%) 0% 0% no-repeat padding-box;
+}
 }

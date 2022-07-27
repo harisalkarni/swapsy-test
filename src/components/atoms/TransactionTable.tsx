@@ -51,44 +51,44 @@ function TransactionTable({ type }: Props) {
   };
   return (
     <div className="md:mt-[55px]">
-      <div className="text-white flex flex-row px-[9px] md:px-4  text-[10px] md:text-xs mb-[22px] mt-[29px] justify-between">
-        <div className="w-1/5 md:w-1/1">Swap</div>
+      <div className="mb-[22px] mt-[29px] flex flex-row justify-between  px-[9px] text-[10px] text-white md:px-4 md:text-xs">
+        <div className="md:w-1/1 w-1/5">Swap</div>
         <div className="w-1/3 md:w-1/3">From</div>
         <div className="w-1/3">To</div>
         {!isCancelled && <div className="w-1/6"></div>}
       </div>
-      <div className="h-[274px] md:h-[355px] overflow-y-scroll overscroll-auto hover:overscroll-contain">
+      <div className="h-[274px] overflow-y-scroll overscroll-auto hover:overscroll-contain md:h-[800px]">
         {MySwapDummy.map(
           ({ amountTo, amountFrom, coinFrom, coinTo, id }, index) => {
             return (
               <div
                 key={index}
-                className="w-full  mb-[8px] bg-erie-black px-[9px] md:px-4 py-[10px] md:py-[10px] rounded-[5px] font-medium"
+                className="mb-[8px]  w-full rounded-[5px] bg-erie-black px-[9px] py-[10px] font-medium md:px-4 md:py-[10px]"
               >
-                <div className="flex flex-row justify-between text-white items-center">
+                <div className="flex flex-row items-center justify-between text-white">
                   <div
-                    className="w-1/5 md:w-1/1"
+                    className="md:w-1/1 w-1/5"
                     onClick={() => store.updateModal("DetailSwap")}
                   >
-                    <div className="text-[10px] md:text-xs text-tea-green">
+                    <div className="text-[10px] text-tea-green md:text-xs">
                       {id}
                     </div>
                     {isOpen && (
-                      <div className="text-[6px] md:text-[10px] font-normal">
+                      <div className="text-[6px] font-normal md:text-[10px]">
                         Expires in 1d 45m
                       </div>
                     )}
                   </div>
-                  <div className="flex flex-row items-center w-1/3 md:w-1/3">
+                  <div className="flex w-1/3 flex-row items-center md:w-1/3">
                     <div className="mr-[5px]">
                       <img
                         src={getCoin(coinFrom).avatar}
-                        className="w-[21px] md:w-6 object-contain "
+                        className="w-[21px] object-contain md:w-6 "
                         alt="coin icon"
                       />
                     </div>
                     <div>
-                      <div className="text-[7px] md:text-[10px] text-tea-green">
+                      <div className="text-[7px] text-tea-green md:text-[10px]">
                         {getCoin(coinFrom).name}
                       </div>
                       <div className="text-[10px] md:text-xs">
@@ -96,16 +96,16 @@ function TransactionTable({ type }: Props) {
                       </div>
                     </div>
                   </div>
-                  <div className="flex flex-row items-center w-1/3">
+                  <div className="flex w-1/3 flex-row items-center">
                     <div className="mr-[5px]">
                       <img
                         src={getCoin(coinTo).avatar}
-                        className="w-[21px] md:w-6 object-contain"
+                        className="w-[21px] object-contain md:w-6"
                         alt="coin icon"
                       />
                     </div>
                     <div>
-                      <div className="text-[7px] md:text-[10px] text-tea-green">
+                      <div className="text-[7px] text-tea-green md:text-[10px]">
                         {getCoin(coinTo).name}
                       </div>
                       <div className="text-[10px] md:text-xs">
@@ -117,7 +117,7 @@ function TransactionTable({ type }: Props) {
                     <div className="w-1/6 md:flex md:flex-row md:justify-end">
                       <button
                         onClick={() => displayModal()}
-                        className={`text-[7px] text-center md:text-[10px] w-[53px] h-[20px] md:w-[60px] md:h-[22px] rounded-full ${
+                        className={`h-[20px] w-[53px] rounded-full text-center text-[7px] md:h-[22px] md:w-[60px] md:text-[10px] ${
                           isCompleted
                             ? " border border-tea-green text-white"
                             : "bg-tea-green text-black"

@@ -20,6 +20,7 @@ import SwapExpired from "components/atoms/SwapExpired";
 import SomethingWrong from "components/atoms/SomethingWrong";
 import Coins from "constants/coins";
 import { CoinType } from "constants/types";
+import Background from "assets/background.png";
 
 const Swap = () => {
   const [activeTab, setActiveTab] = useState<TabType>("CREATE");
@@ -55,6 +56,7 @@ const Swap = () => {
   useOnClickOutside(ref, () => {
     store.updateModal("NULL");
     store.updateOverlay(true);
+    store.updateSideModal("NULL");
   });
 
   const onSelectWallet = (a: WalletDetail) => {
@@ -455,17 +457,18 @@ const Swap = () => {
   };
 
   return (
-    <div className="min-w-screen relative flex min-h-screen flex-col items-center justify-start overflow-x-hidden bg-black pt-[96px] md:pt-0">
-      <div className="absolute inset-0 bg-gradient-to-b from-black to-blue-purple opacity-70"></div>
+    <div className="min-w-screen relative flex min-h-screen flex-col  items-center justify-start overflow-x-hidden pt-[96px] md:pt-0">
+      <div className="bg-main-swapsy absolute inset-0"></div>
+
       <Header
         activeTab={activeTab}
         setTab={setActiveTab}
         onConnect={onConnect}
       />
       <div
-        className={`z-5 relative w-full  rounded-[8px] md:mt-20 ${
+        className={`z-5 swap-box-shadow relative w-full  rounded-[16px] md:mt-20 ${
           activeTab === "CREATE" &&
-          "w-[320px] bg-erie-black p-8 md:w-[336px] md:p-[35px]"
+          "w-[320px] bg-erie-black px-[33px] py-[30px] md:w-[336px] md:px-[35px] md:py-[40px] "
         }`}
       >
         {activeTab === "CREATE" ? (
