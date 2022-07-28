@@ -13,18 +13,18 @@ const CancelingSwap = () => {
   }, [store]);
 
   return (
-    <div className="z-20 w-[294px] h-[485px]  rounded-[5px] pt-[88px] px-[33px] relative bg-erie-black flex flex-col items-center">
+    <div className="relative z-20 flex  h-[485px] w-[294px] flex-col items-center rounded-[5px] bg-erie-black px-[33px] pt-[88px]">
       <div
-        className="absolute top-[18px] right-[18px]"
+        className="absolute top-[18px] right-[18px] cursor-pointer"
         onClick={() => store.updateModal("NULL")}
       >
         <IoMdClose size={20} color="#707070" />
       </div>
       <div className="text-[20px] text-tea-green">Swap #9481</div>
-      <div className="w-[50px] h-[50px] mt-[92px] mb-[25px]">
+      <div className="mt-[92px] mb-[25px] h-[50px] w-[50px]">
         <img src={Loading} alt="loader" />
       </div>
-      <div className="w-[104px] text-[20px] text-white text-center font-medium">
+      <div className="w-[104px] text-center text-[20px] font-medium text-white">
         Canceling Swap..
       </div>
     </div>

@@ -43,8 +43,11 @@ const SelectWallet = ({ onSelectWallet }: SelectedWalletProps) => {
   return (
     <div className="relative z-20 h-[481px] w-[319px] rounded-[10px] bg-erie-black bg-opacity-98 px-[32px] pt-[53px] pb-[42px] md:h-[314px] md:w-[222px] md:px-[23px] md:pt-[24px] md:pb-[24px]">
       <div
-        className="absolute top-[19px] right-[19px]"
-        onClick={() => store.updateModal("NULL")}
+        className="absolute top-[19px] right-[19px] cursor-pointer"
+        onClick={() => {
+          store.updateModal("NULL");
+          store.updateSideModal("NULL");
+        }}
       >
         <IoMdClose size={20} color="#707070" />
       </div>

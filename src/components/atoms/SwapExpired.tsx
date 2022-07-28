@@ -5,9 +5,9 @@ import useStore from "utils/store";
 const SwapExpired = () => {
   const store = useStore();
   return (
-    <div className="w-[294px] h-[485px] bg-erie-black rounded-[5px]  justify-center relative text-center flex pt-[67px]">
+    <div className="relative flex h-[485px] w-[294px]  justify-center rounded-[5px] bg-erie-black pt-[67px] text-center">
       <div
-        className="absolute top-[12px] right-[12px]"
+        className="absolute top-[12px] right-[12px] cursor-pointer"
         onClick={() => store.updateModal("NULL")}
       >
         <IoMdClose size={20} color="#707070" />
@@ -21,8 +21,8 @@ const SwapExpired = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-[69px] left-0 right-0 flex flex-row w-full justify-center">
-        <button className="bg-ocean-blue text-white text-[14px] py-[10px] px-[34px] rounded-full">
+      <div className="absolute bottom-[69px] left-0 right-0 flex w-full flex-row justify-center">
+        <button className="rounded-full bg-ocean-blue py-[10px] px-[34px] text-[14px] text-white">
           Create a Swap
         </button>
       </div>

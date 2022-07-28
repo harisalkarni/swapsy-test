@@ -52,7 +52,7 @@ const SwapScreen = ({
       }`}
     >
       <div
-        className="absolute top-[16px] right-[16px]"
+        className="absolute top-[16px] right-[16px] cursor-pointer"
         onClick={() => onClear()}
       >
         <IoMdClose

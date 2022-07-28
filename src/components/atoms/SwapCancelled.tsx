@@ -11,33 +11,33 @@ interface Props {
 const SwapCancelled = ({ text, swap, amount }: Props) => {
   const store = useStore();
   return (
-    <div className="z-20 w-[294px] h-[485px]  rounded-[5px] pt-[68px] px-[33px] relative bg-erie-black flex flex-col items-center">
+    <div className="relative z-20 flex  h-[485px] w-[294px] flex-col items-center rounded-[5px] bg-erie-black px-[33px] pt-[68px]">
       <div
-        className="absolute top-[18px] right-[18px]"
+        className="absolute top-[18px] right-[18px] cursor-pointer"
         onClick={() => store.updateModal("NULL")}
       >
         <IoMdClose size={20} color="#707070" />
       </div>
-      <div className="w-[67px] h-[50px] mb-[24px]">
+      <div className="mb-[24px] h-[50px] w-[67px]">
         {" "}
         <FaCheck color="#DBF9CD" size={67} />
       </div>
-      <div className="text-white w-[104px] text-center text-[20px] font-medium">
+      <div className="w-[104px] text-center text-[20px] font-medium text-white">
         {text}
       </div>
       <div className="mt-[43px]">
-        <div className="bg-secondaryblack w-[220px] h-[40px] flex flex-row justify-between text-[12px] py-[11px] px-[11px]">
-          <div className="opacity-70 text-white font-medium">Swap</div>
-          <div className="text-white font-medium">{swap}</div>
+        <div className="flex h-[40px] w-[220px] flex-row justify-between bg-secondaryblack py-[11px] px-[11px] text-[12px]">
+          <div className="font-medium text-white opacity-70">Swap</div>
+          <div className="font-medium text-white">{swap}</div>
         </div>
-        <div className="bg-secondaryblack w-[220px] h-[40px] flex flex-row justify-between text-[12px] py-[11px] px-[11px] mt-[8px]">
-          <div className="opacity-70 text-white">Amount</div>
+        <div className="mt-[8px] flex h-[40px] w-[220px] flex-row justify-between bg-secondaryblack py-[11px] px-[11px] text-[12px]">
+          <div className="text-white opacity-70">Amount</div>
           <div className="text-white">{amount} ETH</div>
         </div>
       </div>
       <div className=" absolute bottom-[34px] left-0 right-0  flex flex-row justify-center">
         <button
-          className="text-white w-[138px] h-[34px] rounded-full text-[11px] bg-ocean-blue"
+          className="h-[34px] w-[138px] rounded-full bg-ocean-blue text-[11px] text-white"
           onClick={() => store.updateModal("NULL")}
         >
           Ok
