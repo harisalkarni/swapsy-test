@@ -38,6 +38,7 @@ module.exports = {
         "dark-charcoal": "#303030",
         "blue-purple": "#413AC8",
         "secondary-purple": "#443CCF",
+        "sonic-silver": "#777777"
       },
     },
   },

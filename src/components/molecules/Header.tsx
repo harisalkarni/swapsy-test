@@ -8,7 +8,7 @@ import Tabs from "components/atoms/Tabs";
 import useStore from "utils/store";
 interface Props {
   activeTab: TabType;
-  setTab: Dispatch<React.SetStateAction<TabType>>;
+  setTab: (a: TabType) => void;
   onConnect: () => void;
 }
 

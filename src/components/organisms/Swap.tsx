@@ -20,10 +20,8 @@ import SwapExpired from "components/atoms/SwapExpired";
 import SomethingWrong from "components/atoms/SomethingWrong";
 import Coins from "constants/coins";
 import { CoinType } from "constants/types";
-import Background from "assets/background.png";
 
 const Swap = () => {
-  const [activeTab, setActiveTab] = useState<TabType>("CREATE");
   const [rightSide, setRightSide] = useState<boolean>(false);
 
   const [from, setFrom] = useState<CoinType>(Coins[0]);
@@ -461,17 +459,17 @@ const Swap = () => {
       <div className="bg-main-swapsy absolute inset-0"></div>
 
       <Header
-        activeTab={activeTab}
-        setTab={setActiveTab}
+        activeTab={store.swapTab}
+        setTab={store.updateSwapTab}
         onConnect={onConnect}
       />
       <div
         className={`z-5 swap-box-shadow relative w-full  rounded-[16px] md:mt-20 ${
-          activeTab === "CREATE" &&
+          store.swapTab === "CREATE" &&
           "w-[320px] bg-erie-black px-[33px] py-[30px] md:w-[336px] md:px-[35px] md:py-[40px] "
         }`}
       >
-        {activeTab === "CREATE" ? (
+        {store.swapTab === "CREATE" ? (
           <TokenSwap
             actionConnect={onActionConnect}
             address={store.wallet.label}
