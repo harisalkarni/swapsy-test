@@ -9,7 +9,7 @@ interface Props {
 
 function AmountLabel({ amount, name, setAmount, error }: Props) {
   const [width, setWidth] = useState(1);
-  console.log("kontole", error);
+
   return (
     <div>
       <div className="flex h-[33px] w-[85px] flex-row items-end">
