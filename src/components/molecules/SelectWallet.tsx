@@ -7,6 +7,7 @@ import TokenpocketIcon from "assets/tokenpocket.png";
 import WalletConnect from "assets/walletconnect.png";
 import useStore from "utils/store";
 import { WalletDetail } from "constants/types";
+import { isBrowser } from "react-device-detect";
 interface SelectedWalletProps {
   onSelectWallet: (a: WalletDetail) => void;
 }
@@ -45,8 +46,11 @@ const SelectWallet = ({ onSelectWallet }: SelectedWalletProps) => {
       <div
         className="absolute top-[19px] right-[19px] cursor-pointer"
         onClick={() => {
-          store.updateModal("NULL");
-          store.updateSideModal("NULL");
+          if (isBrowser) {
+            store.updateSideModal("NULL");
+          } else {
+            store.updateModal("NULL");
+          }
         }}
       >
         <IoMdClose size={20} color="#707070" />

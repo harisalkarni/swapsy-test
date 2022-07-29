@@ -54,11 +54,13 @@ const TokenSwap = ({
         return true;
       } else if (toAmount === 0) {
         return true;
+      } else if (fromAmount > store.wallet.amount) {
+        return true;
       } else {
         return false;
       }
     }
-  }, [fromAmount, toAmount, address]);
+  }, [fromAmount, toAmount, address, store.wallet.amount]);
 
   return (
     <div className="z-5 relative">
@@ -73,6 +75,7 @@ const TokenSwap = ({
           amount={fromAmount}
           name={from.name}
           setAmount={setFromAmount}
+          error={fromAmount > store.wallet.amount}
         />
         <button onClick={reverse}>
           <img
@@ -88,7 +91,12 @@ const TokenSwap = ({
         </div>
         <BalanceLabel balance={0} />
       </div>
-      <AmountLabel amount={toAmount} name={to.name} setAmount={setToAmount} />
+      <AmountLabel
+        amount={toAmount}
+        name={to.name}
+        setAmount={setToAmount}
+        error={toAmount > store.wallet.amount}
+      />
       <Duration selected={duration} setSelected={setDuration} />
       <div className="mt-9 flex flex-col text-[10px] text-white/40 md:text-[12px] md:text-white">
         <FeeLabel label="Price" value="0.007 per USDT" />

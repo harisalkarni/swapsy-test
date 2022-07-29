@@ -59,9 +59,11 @@ const ConnectWallet = () => {
         <div className="mb-[41px] flex flex-row items-center justify-between text-[10px] md:mb-[39px]">
           <div>
             <div className="text-tea-green">Connected Wallet</div>
-            <div className="text-white">0xb319ac09505b1f04c1bf216…</div>
+            <div className="text-white">
+              {store.wallet.label !== "" && "2a34s"}
+            </div>
           </div>
-          <div>
+          <div className="cursor-pointer">
             <FiCopy size={23} className="text-white md:text-white" />
           </div>
         </div>

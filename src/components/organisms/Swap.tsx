@@ -1,6 +1,6 @@
 import TokenSwap from "components/atoms/TokenSwap";
 import { useState, useRef, useEffect } from "react";
-import { TabType, WalletDetail } from "constants/types";
+import { WalletDetail } from "constants/types";
 import Header from "components/molecules/Header";
 import History from "components/molecules/History";
 import SelectWallet from "components/molecules/SelectWallet";
@@ -103,10 +103,17 @@ const Swap = () => {
       store.updateTrxReceipt(true);
       store.updateOverlay(false);
       store.updateSwapStatus("ACCEPT");
-      setFromAmount(10);
-      setToAmount(10);
+      setFromAmount(100);
+      setToAmount(100);
     }
   }, []);
+
+  useEffect(() => {
+    if (store.wallet.label == "") {
+      setFromAmount(0);
+      setToAmount(0);
+    }
+  }, [store.wallet]);
 
   const renderModalType = () => {
     switch (store.modal) {
@@ -400,7 +407,7 @@ const Swap = () => {
           <DepositModal
             title={`Approving ${to.name}`}
             body="To continue the transaction you need to approve spend USDC from your wallet."
-            onCancel={() => store.updateModal("NULL")}
+            onCancel={() => store.updateModal("SwapConfirm")}
             onSuccess={() => {
               store.updateTrxReceipt(false);
               store.updateModal("SwapConfirm");
@@ -413,7 +420,7 @@ const Swap = () => {
           <DepositModal
             title="Processing Transaction"
             body="You will receive the order amount Once you accept the transaction from your wallet."
-            onCancel={() => store.updateModal("NULL")}
+            onCancel={() => store.updateModal("SwapConfirm")}
             onSuccess={() => {
               store.updateModal("TransactionSuccess");
               store.updateTrxStatus(true);
