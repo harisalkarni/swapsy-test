@@ -40,7 +40,7 @@ const SwapLink = ({
       }`}
     >
       <div
-        className="absolute top-[12px] right-[12px]"
+        className="absolute top-[12px] right-[12px] cursor-pointer"
         onClick={() => store.updateModal("NULL")}
       >
         <IoMdClose size={20} color="#707070" />

@@ -5,22 +5,22 @@ import useStore from "utils/store";
 const WrongNetwork = () => {
   const store = useStore();
   return (
-    <div className="w-[281px] h-[369px] bg-erie-black bg-opacity-98 pt-[53px] pb-[42px] px-[32px] rounded-[10px] relative flex flex-col justify-center">
+    <div className="relative flex h-[369px] w-[281px] flex-col justify-center rounded-[10px] bg-erie-black bg-opacity-98 px-[32px] pt-[53px] pb-[42px]">
       <div
-        className="absolute top-[19px] right-[19px]"
+        className="absolute top-[19px] right-[19px] cursor-pointer"
         onClick={() => store.updateModal("NULL")}
       >
         <IoMdClose size={20} color="#707070" />
       </div>
-      <div className="text-[20px] text-white font-medium text-center  mb-[59px]">
-        <div className="flex flex-row justify-center mb-[25px]">
+      <div className="mb-[59px] text-center text-[20px] font-medium  text-white">
+        <div className="mb-[25px] flex flex-row justify-center">
           <img src={ErrorIcon} alt="error icon" />
         </div>
         Wrong Network Detected
       </div>
 
       <div className="absolute bottom-[56px] left-0 right-0 flex flex-1 justify-center">
-        <button className=" w-[136px] text-[11px] text-white h-[34px] bg-ocean-blue rounded-full">
+        <button className=" h-[34px] w-[136px] rounded-full bg-ocean-blue text-[11px] text-white">
           Switch Network
         </button>
       </div>

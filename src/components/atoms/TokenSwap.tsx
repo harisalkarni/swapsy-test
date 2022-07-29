@@ -1,6 +1,6 @@
 import Duration from "./Duration";
 import ArrowIcon from "assets/arrow-icon.svg";
-import React, { useState, Dispatch } from "react";
+import React, { useState, Dispatch, useCallback } from "react";
 
 import Durations from "constants/durations";
 import BalanceLabel from "./BalanceLabel";
@@ -48,10 +48,24 @@ const TokenSwap = ({
     setToAmount(tempAmount);
   };
 
+  const disableButton = useCallback(() => {
+    if (address !== "") {
+      if (fromAmount === 0) {
+        return true;
+      } else if (toAmount === 0) {
+        return true;
+      } else if (fromAmount > store.wallet.amount) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }, [fromAmount, toAmount, address, store.wallet.amount]);
+
   return (
     <div className="z-5 relative">
       <div className="mb-[8px] flex flex-row items-center">
-        <div className="h-[36px] w-[124px] md:h-[41px] md:w-[123px]">
+        <div className="h-[36px] w-[124px] rounded-[16px] md:h-[41px] md:w-[123px]">
           <CoinOptions selected={from} setSelected={setFrom} />
         </div>
         <BalanceLabel balance={store.wallet.amount} />
@@ -61,6 +75,7 @@ const TokenSwap = ({
           amount={fromAmount}
           name={from.name}
           setAmount={setFromAmount}
+          error={fromAmount > store.wallet.amount}
         />
         <button onClick={reverse}>
           <img
@@ -76,7 +91,12 @@ const TokenSwap = ({
         </div>
         <BalanceLabel balance={0} />
       </div>
-      <AmountLabel amount={toAmount} name={to.name} setAmount={setToAmount} />
+      <AmountLabel
+        amount={toAmount}
+        name={to.name}
+        setAmount={setToAmount}
+        error={toAmount > store.wallet.amount}
+      />
       <Duration selected={duration} setSelected={setDuration} />
       <div className="mt-9 flex flex-col text-[10px] text-white/40 md:text-[12px] md:text-white">
         <FeeLabel label="Price" value="0.007 per USDT" />
@@ -89,13 +109,11 @@ const TokenSwap = ({
       </div>
       <div className="mt-10 flex justify-center">
         <button
-          className={`rounded-full py-[10px] px-[33px] text-[14px] font-semibold text-white ${
-            fromAmount === 0 && address !== ""
-              ? "bg-ocean-blue/30"
-              : "bg-ocean-blue "
+          className={`h-[40px] w-[176px] rounded-full text-[14px] font-semibold  text-white md:h-[46px] md:w-[201px] ${
+            disableButton() ? "bg-ocean-blue/30" : "bg-ocean-blue "
           }`}
           onClick={() => actionConnect()}
-          disabled={fromAmount === 0 && address !== ""}
+          disabled={disableButton()}
         >
           {store.approveTrx
             ? "Create Swap"

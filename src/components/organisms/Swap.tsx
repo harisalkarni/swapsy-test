@@ -1,6 +1,6 @@
 import TokenSwap from "components/atoms/TokenSwap";
 import { useState, useRef, useEffect } from "react";
-import { TabType, WalletDetail } from "constants/types";
+import { WalletDetail } from "constants/types";
 import Header from "components/molecules/Header";
 import History from "components/molecules/History";
 import SelectWallet from "components/molecules/SelectWallet";
@@ -22,7 +22,6 @@ import Coins from "constants/coins";
 import { CoinType } from "constants/types";
 
 const Swap = () => {
-  const [activeTab, setActiveTab] = useState<TabType>("CREATE");
   const [rightSide, setRightSide] = useState<boolean>(false);
 
   const [from, setFrom] = useState<CoinType>(Coins[0]);
@@ -34,7 +33,12 @@ const Swap = () => {
   const store = useStore();
   const onActionConnect = () => {
     if (store.wallet.label === "") {
-      store.updateModal("SelectWallet");
+      if (isBrowser) {
+        store.updateSideModal("SelectWallet");
+      } else {
+        store.updateModal("SelectWallet");
+      }
+
       store.updateOverlay(false);
     } else {
       if (store.approveTrx) {
@@ -50,11 +54,18 @@ const Swap = () => {
   useOnClickOutside(ref, () => {
     store.updateModal("NULL");
     store.updateOverlay(true);
+    store.updateSideModal("NULL");
   });
 
   const onSelectWallet = (a: WalletDetail) => {
     store.addAddressToWallet(a);
-    store.updateOverlay(true);
+    if (isBrowser && store.swapStatus == "ACCEPT") {
+      store.updateOverlay(false);
+    } else {
+      store.updateOverlay(true);
+    }
+    store.updateSideModal("NULL");
+
     if (store.trxReceipt) {
       store.updateModal("SwapConfirm");
     } else {
@@ -71,10 +82,18 @@ const Swap = () => {
 
     if (store.wallet.label === "") {
       store.updateOverlay(false);
-      store.updateModal("SelectWallet");
+      if (isBrowser) {
+        store.updateSideModal("SelectWallet");
+      } else {
+        store.updateModal("SelectWallet");
+      }
     } else {
       store.updateOverlay(false);
-      store.updateModal("MyWallet");
+      if (isBrowser) {
+        store.updateSideModal("ConnectWallet");
+      } else {
+        store.updateModal("MyWallet");
+      }
     }
   };
 
@@ -82,10 +101,19 @@ const Swap = () => {
     if (window.location.pathname == "/accept") {
       store.updateModal("SwapConfirm");
       store.updateTrxReceipt(true);
-      setFromAmount(10);
-      setToAmount(10);
+      store.updateOverlay(false);
+      store.updateSwapStatus("ACCEPT");
+      setFromAmount(100);
+      setToAmount(100);
     }
   }, []);
+
+  useEffect(() => {
+    if (store.wallet.label == "") {
+      setFromAmount(0);
+      setToAmount(0);
+    }
+  }, [store.wallet]);
 
   const renderModalType = () => {
     switch (store.modal) {
@@ -254,8 +282,8 @@ const Swap = () => {
   };
 
   const renderDekstopRight = () => {
-    switch (store.modal) {
-      case "MyWallet":
+    switch (store.sideModal) {
+      case "ConnectWallet":
         return (
           <div ref={ref}>
             <ConnectWallet />;
@@ -379,7 +407,7 @@ const Swap = () => {
           <DepositModal
             title={`Approving ${to.name}`}
             body="To continue the transaction you need to approve spend USDC from your wallet."
-            onCancel={() => store.updateModal("NULL")}
+            onCancel={() => store.updateModal("SwapConfirm")}
             onSuccess={() => {
               store.updateTrxReceipt(false);
               store.updateModal("SwapConfirm");
@@ -392,7 +420,7 @@ const Swap = () => {
           <DepositModal
             title="Processing Transaction"
             body="You will receive the order amount Once you accept the transaction from your wallet."
-            onCancel={() => store.updateModal("NULL")}
+            onCancel={() => store.updateModal("SwapConfirm")}
             onSuccess={() => {
               store.updateModal("TransactionSuccess");
               store.updateTrxStatus(true);
@@ -434,20 +462,21 @@ const Swap = () => {
   };
 
   return (
-    <div className="min-w-screen relative flex min-h-screen flex-col items-center justify-start overflow-x-hidden bg-black pt-[96px] md:pt-0">
-      <div className="absolute inset-0 bg-gradient-to-b from-black to-blue-purple opacity-70"></div>
+    <div className="min-w-screen relative flex min-h-screen flex-col  items-center justify-start overflow-x-hidden pt-[96px] md:pt-0">
+      <div className="bg-main-swapsy absolute inset-0"></div>
+
       <Header
-        activeTab={activeTab}
-        setTab={setActiveTab}
+        activeTab={store.swapTab}
+        setTab={store.updateSwapTab}
         onConnect={onConnect}
       />
       <div
-        className={`z-5 relative w-full  rounded-[8px] md:mt-20 ${
-          activeTab === "CREATE" &&
-          "w-[320px] bg-erie-black p-8 md:w-[336px] md:p-[35px]"
+        className={`z-5 swap-box-shadow relative w-full  rounded-[16px] md:mt-20 ${
+          store.swapTab === "CREATE" &&
+          "w-[320px] bg-erie-black px-[33px] py-[30px] md:w-[336px] md:px-[35px] md:py-[40px] "
         }`}
       >
-        {activeTab === "CREATE" ? (
+        {store.swapTab === "CREATE" ? (
           <TokenSwap
             actionConnect={onActionConnect}
             address={store.wallet.label}
@@ -475,14 +504,16 @@ const Swap = () => {
       {store.modal !== "NULL" && isBrowser && (
         <div
           className={`${
-            store.overlay ? "bg-black bg-opacity-80" : "bg-transparent"
-          } absolute top-0 bottom-0 left-0 right-0 flex  flex-row items-center justify-center `}
+            store.overlay
+              ? "top-0 bottom-0 left-0 right-0 items-center bg-black bg-opacity-80"
+              : "top-[150px] bg-transparent"
+          } absolute  flex  flex-row  justify-center `}
         >
           <div ref={ref}>{renderDesktopModal() as any}</div>
         </div>
       )}
 
-      {store.modal !== "NULL" && isBrowser && !rightSide && (
+      {store.sideModal !== "NULL" && isBrowser && !rightSide && (
         <div className="absolute right-[40px] top-[91px]">
           {renderDekstopRight() as any}
         </div>

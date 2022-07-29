@@ -59,11 +59,14 @@ const SwapCreated = () => {
   return (
     <div className="relative z-20 h-[481px] w-[281px] rounded-[5px] bg-ocean-blue pt-[69px]">
       <div
-        className="absolute top-[18px] right-[18px]"
+        className="absolute top-[18px] right-[18px] cursor-pointer"
         onClick={() => {
           store.updateModal("NULL");
           store.addAddressToWallet({ label: "", amount: 0 });
-          store.updateTrxReceipt(true);
+          store.updateTrxStatus(false);
+          store.updateApproveTrx(false);
+          store.updateTrxReceipt(false);
+          store.updateSideModal("NULL");
         }}
       >
         <IoMdClose size={20} color="#fff" />

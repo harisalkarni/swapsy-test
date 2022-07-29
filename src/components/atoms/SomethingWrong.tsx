@@ -5,9 +5,9 @@ import useStore from "utils/store";
 const SomethingWrong = () => {
   const store = useStore();
   return (
-    <div className="w-[294px] h-[485px]  rounded-[5px] pt-[88px] px-[33px] relative bg-erie-black flex flex-col items-center">
+    <div className="relative flex  h-[485px] w-[294px] flex-col items-center rounded-[5px] bg-erie-black px-[33px] pt-[88px]">
       <div
-        className="absolute top-[18px] right-[18px]"
+        className="absolute top-[18px] right-[18px] cursor-pointer"
         onClick={() => store.updateModal("NULL")}
       >
         <IoMdClose size={20} color="#707070" />
@@ -15,14 +15,14 @@ const SomethingWrong = () => {
       <div className="mb-[24px]">
         <img src={ErrorIcon} alt="Loading" />
       </div>
-      <div className="text-white w-[124px] text-center text-[20px]">
+      <div className="w-[124px] text-center text-[20px] text-white">
         Something Went Wrong
       </div>
-      <div className="mt-[43px] text-center w-[104px] text-[10px] opacity-70 text-white">
+      <div className="mt-[43px] w-[104px] text-center text-[10px] text-white opacity-70">
         Check your wallet for more details
       </div>
       <div className=" absolute bottom-[43px] left-0 right-0  flex flex-row justify-center">
-        <button className="text-white w-[138px] h-[34px] rounded-full text-[11px] bg-ocean-blue">
+        <button className="h-[34px] w-[138px] rounded-full bg-ocean-blue text-[11px] text-white">
           Ok
         </button>
       </div>

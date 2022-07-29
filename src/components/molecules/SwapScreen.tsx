@@ -4,6 +4,7 @@ import { IoMdClose } from "react-icons/io";
 import useStore from "utils/store";
 import { CoinType } from "constants/types";
 import React, { Dispatch } from "react";
+import { isBrowser } from "react-device-detect";
 
 interface SwapConnectProps {
   status?: string;
@@ -51,7 +52,7 @@ const SwapScreen = ({
       }`}
     >
       <div
-        className="absolute top-[16px] right-[16px]"
+        className="absolute top-[16px] right-[16px] cursor-pointer"
         onClick={() => onClear()}
       >
         <IoMdClose
@@ -84,8 +85,12 @@ const SwapScreen = ({
             <button
               className="rounded-full bg-ocean-blue py-[10px] px-[31px] text-[14px] text-white"
               onClick={() => {
-                store.updateModal("SelectWallet");
                 store.updateOverlay(false);
+                if (isBrowser) {
+                  store.updateSideModal("SelectWallet");
+                } else {
+                  store.updateModal("SelectWallet");
+                }
               }}
             >
               Connect & Accept

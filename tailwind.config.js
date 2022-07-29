@@ -5,6 +5,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        'swapsy': "url('/src/assets/background.png')",
+      },
       fontFamily: {
         sans: ["Poppins", ...defaultTheme.fontFamily.sans],
       },
@@ -35,6 +38,8 @@ module.exports = {
         "dark-charcoal": "#303030",
         "blue-purple": "#413AC8",
         "secondary-purple": "#443CCF",
+        "sonic-silver": "#777777",
+        'red' : '#FC4D6F'
       },
     },
   },
