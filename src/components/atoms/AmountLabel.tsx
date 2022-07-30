@@ -8,19 +8,34 @@ interface Props {
 }
 
 function AmountLabel({ amount, name, setAmount, error }: Props) {
-  const [width, setWidth] = useState(1);
+  const [width, setWidth] = useState(
+    amount.toString().length === 1
+      ? 1
+      : amount.toString().length === 0
+      ? 1
+      : amount.toString().length
+  );
 
   return (
     <div>
       <div className="flex h-[33px] w-[85px] flex-row items-end">
         <input
           type="text"
+          step="0.01"
           value={amount}
           onChange={(e) => {
             if (e.target.validity.valid) {
-              const targetValue = parseInt(e.target.value) || 0;
+              console.log("kontole", e.target.value.length);
+              const amount = e.target.value;
+              const targetValue = parseFloat(amount) || 0;
               setAmount(targetValue);
-              setWidth(e.target.value.length === 1 ? 3 : e.target.value.length);
+              setWidth(
+                e.target.value.length === 1
+                  ? 1
+                  : e.target.value.length === 0
+                  ? 1
+                  : e.target.value.length
+              );
             }
           }}
           pattern="^[0-9]*[.,]?[0-9]*$"

@@ -39,7 +39,8 @@ module.exports = {
         "blue-purple": "#413AC8",
         "secondary-purple": "#443CCF",
         "sonic-silver": "#777777",
-        'red' : '#FC4D6F'
+        'red' : '#FC4D6F',
+        'third-black': "#303030"
       },
     },
   },
