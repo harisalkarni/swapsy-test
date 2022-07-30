@@ -48,6 +48,12 @@ const TokenSwap = ({
     setToAmount(tempAmount);
   };
 
+  const setMax = () => {
+    if (store.wallet.label !== "") {
+      setFromAmount(store.wallet.amount);
+    }
+  };
+
   const disableButton = useCallback(() => {
     if (address !== "") {
       if (fromAmount === 0) {
@@ -64,39 +70,58 @@ const TokenSwap = ({
 
   return (
     <div className="z-5 relative">
-      <div className="mb-[8px] flex flex-row items-center">
-        <div className="h-[36px] w-[124px] rounded-[16px] md:h-[41px] md:w-[123px]">
-          <CoinOptions selected={from} setSelected={setFrom} />
-        </div>
-        <BalanceLabel balance={store.wallet.amount} />
-      </div>
-      <div className="flex w-full flex-row items-end justify-between  text-white/30">
-        <AmountLabel
-          amount={fromAmount}
-          name={from.name}
-          setAmount={setFromAmount}
-          error={fromAmount > store.wallet.amount}
-        />
-        <button onClick={reverse}>
-          <img
-            src={ArrowIcon}
-            alt="Arrow Icon"
-            className="h-5 w-[13.5px] object-contain md:h-6 md:w-6"
+      <div>
+        <div>
+          <div className="flex  flex-row justify-between">
+            <div
+              className={`w-[108px] md:w-[130px] ${
+                fromAmount > store.wallet.amount ? "border border-red" : ""
+              }`}
+            >
+              <CoinOptions selected={from} setSelected={setFrom} />
+            </div>
+            <div className="flex  w-[140px]   flex-row items-center justify-between ">
+              <BalanceLabel balance={store.wallet.amount} />
+              <button
+                className="rounded-lg bg-third-black px-[7px] py-[3px] text-[7px] text-white"
+                onClick={() => setMax()}
+              >
+                max
+              </button>
+            </div>
+          </div>
+          <AmountLabel
+            amount={fromAmount}
+            name={from.name}
+            setAmount={setFromAmount}
+            error={fromAmount > store.wallet.amount}
           />
-        </button>
-      </div>
-      <div className="mt-4 mb-[8px] flex flex-row items-center">
-        <div className="h-[36px] w-[124px] md:h-[41px] md:w-[123px]">
-          <CoinOptions selected={to} setSelected={setTo} />
         </div>
-        <BalanceLabel balance={0} />
+        <div>
+          <div className="flex flex-row">
+            <div className="mt-[16px] w-[108px] md:w-[130px]">
+              <CoinOptions selected={to} setSelected={setTo} />
+            </div>
+            <div
+              onClick={reverse}
+              className="flex w-[140px] flex-row justify-center"
+            >
+              <img
+                src={ArrowIcon}
+                alt="Arrow sIcon"
+                className="h-5 w-[13.5px]  md:h-6 md:w-6"
+              />
+            </div>
+          </div>
+          <AmountLabel
+            amount={toAmount}
+            name={to.name}
+            setAmount={setToAmount}
+            error={toAmount > store.wallet.amount}
+          />
+        </div>
       </div>
-      <AmountLabel
-        amount={toAmount}
-        name={to.name}
-        setAmount={setToAmount}
-        error={toAmount > store.wallet.amount}
-      />
+
       <Duration selected={duration} setSelected={setDuration} />
       <div className="mt-9 flex flex-col text-[10px] text-white/40 md:text-[12px] md:text-white">
         <FeeLabel label="Price" value="0.007 per USDT" />

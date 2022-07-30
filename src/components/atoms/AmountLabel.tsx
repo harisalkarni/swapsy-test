@@ -1,4 +1,5 @@
-import React, { useState, Dispatch } from "react";
+import React, { useState, Dispatch, useEffect } from "react";
+import NumberFormat from "react-number-format";
 
 interface Props {
   amount: number;
@@ -8,29 +9,37 @@ interface Props {
 }
 
 function AmountLabel({ amount, name, setAmount, error }: Props) {
-  const [width, setWidth] = useState(1);
+  const [width, setWidth] = useState(20);
+
+  useEffect(() => {
+    setWidth(
+      amount.toString().length <= 1 ? 20 : amount.toString().length * 15
+    );
+  }, [amount]);
 
   return (
     <div>
       <div className="flex h-[33px] w-[85px] flex-row items-end">
-        <input
-          type="text"
-          value={amount}
-          onChange={(e) => {
-            if (e.target.validity.valid) {
-              const targetValue = parseInt(e.target.value) || 0;
-              setAmount(targetValue);
-              setWidth(e.target.value.length === 1 ? 3 : e.target.value.length);
-            }
-          }}
-          pattern="^[0-9]*[.,]?[0-9]*$"
-          size={width}
-          placeholder="0.00"
-          className={`h-6 max-w-[200px] bg-transparent text-left text-[24px] text-white outline-none placeholder:text-white/30 md:h-7 md:text-[27px] ${
+        <NumberFormat
+          placeholder="0"
+          className={`h-6 max-w-[200px]  bg-transparent text-left text-[24px] text-white outline-none placeholder:text-white/30 md:h-7 md:text-[27px] ${
             error ? "text-red" : amount === 0 ? "text-white/30" : "text-white"
           }`}
+          value={amount}
+          style={{ width: width }}
+          onValueChange={(values) => {
+            const { formattedValue } = values;
+            const val = parseFloat(formattedValue);
+            setWidth(
+              formattedValue.length === 1
+                ? 20
+                : formattedValue.length === 0
+                ? 20
+                : formattedValue.length * 15
+            );
+            setAmount(val);
+          }}
         />
-
         <div
           className={`${
             error ? "text-red" : amount === 0 ? "text-white/30" : "text-white"
