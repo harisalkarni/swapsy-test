@@ -1,4 +1,4 @@
-import React, { useState, Dispatch } from "react";
+import React, { useState, Dispatch, useEffect } from "react";
 import NumberFormat from "react-number-format";
 
 interface Props {
@@ -9,13 +9,13 @@ interface Props {
 }
 
 function AmountLabel({ amount, name, setAmount, error }: Props) {
-  const [width, setWidth] = useState(
-    amount.toString().length === 1
-      ? 20
-      : amount.toString().length === 0
-      ? 20
-      : amount.toString().length * 10
-  );
+  const [width, setWidth] = useState(20);
+
+  useEffect(() => {
+    setWidth(
+      amount.toString().length <= 1 ? 20 : amount.toString().length * 15
+    );
+  }, [amount]);
 
   return (
     <div>
@@ -35,7 +35,7 @@ function AmountLabel({ amount, name, setAmount, error }: Props) {
                 ? 20
                 : formattedValue.length === 0
                 ? 20
-                : formattedValue.length * 10
+                : formattedValue.length * 15
             );
             setAmount(val);
           }}
